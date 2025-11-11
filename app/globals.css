@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
+  --background-light: #f6f6f8;
+  --background-dark: #101622;
   --foreground: #171717;
+  --primary: #135bec;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-light: var(--background-light);
+  --color-background-dark: var(--background-dark);
+  --color-primary: var(--primary);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -21,6 +29,17 @@
 
 body {
   background: var(--background);
+  background-color: var(--color-background-light);
+  background-color: var(--color-background-dark);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
+  min-height: max(884px, 100dvh)
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }
