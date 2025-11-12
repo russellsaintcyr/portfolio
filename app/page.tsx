@@ -74,7 +74,7 @@ export default function Home() {
                   <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
                     data-alt="Abstract gradient for e-commerce platform thumbnail"
                     style={{
-                      backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmsqRyBstfSr5idMwEWt0_Iaf82dVnjY2r2nvFwXXfZOweiC52hovs3xhSinsZTtRMGKHAzgsZKSuoT4hUW3Psz-gF-5FyOhCBKaX9UCbu0F0RSS4ZcYw4dmXBZoejrBlhlph_kq2IWffKDW6tTb1Ap2OHFNR4AFclFH2LCoVjpKST7xTFg_ZzxBvplzYh_EYXQHxNebc4OeLQJFSkhsGbrfMYtQw2tHa9hvWJmmsF1aGL1hQ9a0uIQwTSDcuyFMH1b-cB0a04rcyw")'
+                      backgroundImage: 'url("futurecults.png")'
                     }}
                   >
                   </div>
@@ -84,11 +84,11 @@ export default function Home() {
                       with React, Node.js, and Stripe for payments.</p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">React</span>
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Angular</span>
                       <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Node.js</span>
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">MongoDB</span>
                       <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Stripe</span>
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Google Maps API</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
@@ -102,7 +102,7 @@ export default function Home() {
                   <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
                     data-alt="Abstract gradient for data visualization dashboard thumbnail"
                     style={{
-                      backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCv-31HAW5C10aix0y_8_cLkxbmUZvW5TRa3jFXPOuhqgQi23bWpGQC4CL691XQ4YDFCqmNCWHAyD_5gFFOydsyZ000nRZwbubFa3BcfDg2RdurSAltYXyS1Nv4ldvmx3QtVuMP-pw1GI13ICIXdO85yCXS1BkhFuitfOTrCuQtazGWDnrzhmPK5Kd_-vp7MXO9b7lf_gieXzXOl6iFw8-tscWegyoCpDdthc-5CXJdQe7F2SkRe8pkIDATxzbCY5Sv4gnXdGQZL1Gw")'
+                      backgroundImage: 'url("worldweary.png")'
                     }}
                   >
                   </div>
@@ -113,9 +113,9 @@ export default function Home() {
                       visualizing complex datasets using D3.js and Python.</p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">D3.js</span>
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">JSP</span>
                       <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Python</span>
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">MySQL</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
@@ -129,7 +129,7 @@ export default function Home() {
                   <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
                     data-alt="Abstract gradient for project management tool thumbnail"
                     style={{
-                      backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHcJFgJbpR6atXhZugTAAhMXsV8dLYg13RaNFuJFFJ3Ine2qipO8j-f13wsE7FkAiHJfQkiZq__SHvato70hEd0OGSQM6GAxi--33WPxP4aDso6h-JGnvUHzefilR-r6r--IiIlIokrai2Tdi07OIwqUpN8NVDLCb3sjnguCJo__CoDocYQmsLpHpfB4fd_0LD_C69-w7ygJytDeM3QrOphpr1NMhm25SBUwrsXqZ5raw_Us_l7c5quZT6tUdEPL4snk4O3WdcIImB")'
+                      backgroundImage: 'url("now_playing.png")'
                     }}
                   >
                   </div>
@@ -139,9 +139,11 @@ export default function Home() {
                       manage tasks, deadlines, and progress.</p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Vue.js</span>
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">React</span>
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Firebase</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Spotify</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
@@ -240,7 +242,7 @@ export default function Home() {
           </section>
 
           {/* Contact Info */}
-          <section className="container mx-auto px-4 py-16 md:py-24" id="contact">
+          {/* <section className="container mx-auto px-4 py-16 md:py-24" id="contact">
             <div className="max-w-3xl mx-auto">
               <div className="flex flex-col justify-end gap-8">
                 <div className="flex flex-col gap-2 text-center">
@@ -271,13 +273,17 @@ export default function Home() {
                 </form>
               </div>
             </div>
-          </section>
+          </section> */}
         </main>
 
         <footer className="bg-white dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800">
           <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center">
-              <p className="text-gray-600 dark:text-gray-400 text-sm">© 2024 Russell Saint Cyr. All Rights Reserved.</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                © 2025 Russell Saint Cyr.</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                This site was built with Next.js, Tailwind CSS, and Google Stitch, with assistance from Gemini.
+              </p>
               <div className="flex items-center space-x-6">
                 <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                   href="#">
