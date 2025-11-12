@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export default function Home() {
   return (
@@ -17,11 +18,11 @@ export default function Home() {
                 href="#about">About</a>
             </div>
             <div className="flex items-center space-x-4">
-              <a href="https://github.com/russellsaintcyr" target="_blank">
-                <img src="github.svg" alt="GitHub logo" width={20} height={20} />
+              <a href="https://github.com/russellsaintcyr" target="_blank" >
+                <FaGithub size={24} />
               </a>
               <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank">
-                <img src="linkedin.svg" alt="LinkedIn logo" width={20} height={20} />
+                <FaLinkedin size={24} />
               </a>
             </div>
           </nav>
@@ -103,7 +104,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                                {/* Worldweary */}
+                {/* Worldweary */}
                 <div
                   className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
                   <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
@@ -242,7 +243,7 @@ export default function Home() {
                     <span className="material-symbols-outlined text-primary text-3xl">bug_report</span>
                     <div className="flex flex-col gap-1">
                       <h3 className="text-gray-900 dark:text-white text-base font-bold">Testing</h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Leading efforts to automate testing with 
+                      <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Leading efforts to automate testing with
                         Cypress, Playwright and Vitest.</p>
                     </div>
                   </div>
@@ -273,11 +274,11 @@ export default function Home() {
                 </a>
               </p>
               <div className="flex items-center space-x-6">
-                <a href="https://github.com/russellsaintcyr" target="_blank">
-                  <img src="github.svg" alt="GitHub logo" width={20} height={20} />
+                <a href="https://github.com/russellsaintcyr" target="_blank" >
+                  <FaGithub size={24} />
                 </a>
                 <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank">
-                  <img src="linkedin.svg" alt="LinkedIn logo" width={20} height={20} />
+                  <FaLinkedin size={24} />
                 </a>
               </div>
             </div>
