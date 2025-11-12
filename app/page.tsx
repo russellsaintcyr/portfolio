@@ -262,7 +262,7 @@ export default function Home() {
                   </div>
                   <textarea
                     className="form-textarea w-full min-w-0 resize-y overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 py-3 text-base"
-                    placeholder="Your Message" rows="5"></textarea>
+                    placeholder="Your Message" rows={5}></textarea>
                   <button
                     className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
                     type="submit">

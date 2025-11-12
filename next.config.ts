@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  // Optional: If your repo name is 'my-app', you need a basePath for correct asset paths
+  // basePath: '/my-app',
 };
 
 export default nextConfig;
