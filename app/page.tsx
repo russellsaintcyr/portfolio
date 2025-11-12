@@ -39,7 +39,7 @@ export default function Home() {
                     className="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl">
                     Russell Saint Cyr</h1>
                   <h1
-                    className="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl">
+                    className="text-gray-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.033em] md:text-5xl">
                     Senior Frontend Developer and Architect</h1>
                   <h2
                     className="text-gray-600 dark:text-gray-300 text-lg font-normal leading-normal md:text-xl max-w-3xl mx-auto">
@@ -66,34 +66,6 @@ export default function Home() {
                   creating robust and user-friendly web solutions.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Futurecults website */}
-                <div
-                  className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
-                  <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
-                    data-alt="Abstract gradient for e-commerce platform thumbnail"
-                    style={{
-                      backgroundImage: 'url("futurecults.png")'
-                    }}
-                  >
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">futurecults.com</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">A full-featured online store built
-                      with React, Node.js, and Stripe for payments.</p>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Angular</span>
-                      <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">MongoDB</span>
-                      <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Google Maps API</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 mt-2">
-                    <a className="text-primary font-semibold text-sm hover:underline" href="#">Live Demo TBD</a>
-                    <a className="text-primary font-semibold text-sm hover:underline" href="#">GitHub Repo</a>
-                  </div>
-                </div>
                 {/* Worldweary */}
                 <div
                   className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
@@ -107,8 +79,9 @@ export default function Home() {
                   <div className="flex flex-col gap-2">
                     <h3 className="text-gray-900 dark:text-white text-xl font-bold">worldweary.com
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">An interactive dashboard for
-                      visualizing complex datasets using D3.js and Python.</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      A website for readers to submit personals questions
+                    </p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">JSP</span>
@@ -118,7 +91,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center gap-4 mt-2">
                     <span className="text-primary font-semibold text-sm">Live Demo</span>
-                    <a className="text-primary font-semibold text-sm hover:underline" href="#">GitHub Repo</a>
+                    <span className="text-primary font-semibold text-sm">GitHub Repo</span>
                   </div>
                 </div>
                 {/* Spotify playlist rater */}
@@ -133,8 +106,9 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <h3 className="text-gray-900 dark:text-white text-xl font-bold">Spotify playlist rater</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">A collaborative tool for teams to
-                      manage tasks, deadlines, and progress.</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">A tool for allowing users to manage playlists on Spotify,
+                      with full playback funtionality.
+                    </p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">React</span>
@@ -145,8 +119,38 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
-                    <a className="text-primary font-semibold text-sm hover:underline" href="#">Live Demo TBD</a>
-                    <a className="text-primary font-semibold text-sm hover:underline" href="#">GitHub Repo</a>
+                    <span className="text-primary font-semibold text-sm">Live Demo</span>
+                    <span className="text-primary font-semibold text-sm">GitHub Repo</span>
+                  </div>
+                </div>
+                {/* Futurecults website */}
+                <div
+                  className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
+                  <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
+                    data-alt="Abstract gradient for e-commerce platform thumbnail"
+                    style={{
+                      backgroundImage: 'url("futurecults.png")'
+                    }}
+                  >
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">futurecults.com</h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">An artistic website for users to read stories of
+                      characters selected on a map of Los Angeles, with musical accompaniment. Also created an adminstrative
+                      website for managing and uploading content.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Angular</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">MongoDB</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Google Maps API</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 mt-2">
+                    <span className="text-primary font-semibold text-sm">Live Demo</span>
+                    <span className="text-primary font-semibold text-sm">GitHub Repo</span>
                   </div>
                 </div>
               </div>
@@ -191,13 +195,24 @@ export default function Home() {
                   </div>
                   <div
                     className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-                    <span className="material-symbols-outlined text-primary text-3xl">developer_mode</span>
+                    <span className="material-symbols-outlined text-primary text-3xl">code_blocks</span>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-900 dark:text-white text-base font-bold">React</h3>
+                      <h3 className="text-gray-900 dark:text-white text-base font-bold">Angular/React</h3>
                       <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Building dynamic
-                        user interfaces with React and its ecosystem.</p>
+                        user interfaces with frameworks like Angular and React.</p>
                     </div>
                   </div>
+                  <div
+                    className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
+                    <span className="material-symbols-outlined text-primary text-3xl">developer_mode</span>
+                    <div className="flex flex-col gap-1">
+                      <h3 className="text-gray-900 dark:text-white text-base font-bold">React Native</h3>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Developing hybrid applications from a single codebase
+                        for Android, iOS and web.
+                      </p>
+                    </div>
+                  </div>
+
                   <div
                     className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
                     <span className="material-symbols-outlined text-primary text-3xl">hub</span>
@@ -205,15 +220,6 @@ export default function Home() {
                       <h3 className="text-gray-900 dark:text-white text-base font-bold">Node.js</h3>
                       <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Developing scalable
                         server-side applications.</p>
-                    </div>
-                  </div>
-                  <div
-                    className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-                    <span className="material-symbols-outlined text-primary text-3xl">data_object</span>
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-900 dark:text-white text-base font-bold">Python</h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Utilizing Python for
-                        backend services and data processing.</p>
                     </div>
                   </div>
                   <div
@@ -280,7 +286,10 @@ export default function Home() {
               <p className="text-gray-600 dark:text-gray-400 text-sm">
                 © 2025 Russell Saint Cyr.</p>
               <p className="text-gray-600 dark:text-gray-400 text-sm">
-                This site was built with Next.js, Tailwind CSS, and Google Stitch, with assistance from Gemini.
+                This site was built with Next.js, Tailwind CSS, and Google Stitch, leveraging Google Gemini to accelerate development.
+                <a href="https://github.com/russellsaintcyr/portfolio" target="_blank">
+                  <span className="material-symbols-outlined text-primary text-3xl">code</span>
+                </a>
               </p>
               <div className="flex items-center space-x-6">
                 <a href="https://github.com/russellsaintcyr" target="_blank">
