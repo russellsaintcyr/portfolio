@@ -204,7 +204,7 @@ export default function Home() {
                     className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
                     <span className="material-symbols-outlined text-primary text-3xl">code</span>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-900 dark:text-white text-base font-bold">TypeScript/JavaScript</h3>
+                      <h3 className="text-gray-900 dark:text-white text-base font-bold">TypeScript / JavaScript</h3>
                       <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Advanced proficiency
                         in modern scripting (ES6+).</p>
                     </div>
@@ -213,7 +213,7 @@ export default function Home() {
                     className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
                     <span className="material-symbols-outlined text-primary text-3xl">code_blocks</span>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-900 dark:text-white text-base font-bold">Angular/React</h3>
+                      <h3 className="text-gray-900 dark:text-white text-base font-bold">Angular / React</h3>
                       <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Building dynamic
                         user interfaces with frameworks like Angular and React.</p>
                     </div>
