@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         {children}
         <GoogleAnalytics gaId="G-F6DT2D4BPF" />
+        <GoogleTagManager gtmId="GTM-K5DNJRFZ" />
       </body>
     </html>
   );
