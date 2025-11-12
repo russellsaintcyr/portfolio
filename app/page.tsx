@@ -15,17 +15,15 @@ export default function Home() {
                 href="#projects">Projects</a>
               <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                 href="#about">About</a>
-              <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                href="#contact">Contact</a>
+              {/* <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                href="#contact">Contact</a> */}
             </div>
             <div className="flex items-center space-x-4">
-              <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                href="#">
-                <span className="material-symbols-outlined">code</span>
+              <a href="https://github.com/russellsaintcyr" target="_blank">
+                <img src="github.svg" alt="GitHub logo" width={20} height={20} />
               </a>
-              <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                href="#">
-                <span className="material-symbols-outlined">alternate_email</span>
+              <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank">
+                <img src="linkedin.svg" alt="LinkedIn logo" width={20} height={20} />
               </a>
             </div>
           </nav>
@@ -33,7 +31,7 @@ export default function Home() {
 
         {/* Main */}
         <main>
-          <section className="container mx-auto px-4 py-16 md:py-24" id="home">
+          <section className="container mx-auto px-4 py-8 md:py-8" id="home">
             <div className="flex flex-col gap-6 @container">
               <div className="flex flex-col gap-8 text-center items-center">
                 <div className="flex flex-col gap-2">
@@ -57,7 +55,7 @@ export default function Home() {
           </section>
 
           {/* Featured Projects */}
-          <section className="container mx-auto px-4 py-16 md:py-24" id="projects">
+          <section className="container mx-auto px-4 py-8 md:py-8" id="projects">
             <div className="flex flex-col gap-10 @container">
               <div className="flex flex-col gap-4 text-center items-center">
                 <h2
@@ -119,7 +117,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
-                    <a className="text-primary font-semibold text-sm hover:underline" href="#">Live Demo TBD</a>
+                    <span className="text-primary font-semibold text-sm">Live Demo</span>
                     <a className="text-primary font-semibold text-sm hover:underline" href="#">GitHub Repo</a>
                   </div>
                 </div>
@@ -156,7 +154,7 @@ export default function Home() {
           </section>
 
           {/* About Me */}
-          <section className="container mx-auto px-4 py-16 md:py-24" id="about">
+          <section className="container mx-auto px-4 py-8 md:py-8" id="about">
             <div className="flex flex-col lg:flex-row items-center gap-12 @container">
               <div className="w-full lg:w-1/3 flex justify-center">
                 <div className="w-64 h-64 md:w-80 md:h-80 bg-center bg-no-repeat bg-cover rounded-full"
@@ -186,9 +184,9 @@ export default function Home() {
                     className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
                     <span className="material-symbols-outlined text-primary text-3xl">code</span>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-900 dark:text-white text-base font-bold">JavaScript</h3>
+                      <h3 className="text-gray-900 dark:text-white text-base font-bold">TypeScript/JavaScript</h3>
                       <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Advanced proficiency
-                        in modern JavaScript (ES6+).</p>
+                        in modern scripting (ES6+).</p>
                     </div>
                   </div>
                   <div
@@ -242,7 +240,7 @@ export default function Home() {
           </section>
 
           {/* Contact Info */}
-          {/* <section className="container mx-auto px-4 py-16 md:py-24" id="contact">
+          {/* <section className="container mx-auto px-4 py-8 md:py-8" id="contact">
             <div className="max-w-3xl mx-auto">
               <div className="flex flex-col justify-end gap-8">
                 <div className="flex flex-col gap-2 text-center">
@@ -285,17 +283,11 @@ export default function Home() {
                 This site was built with Next.js, Tailwind CSS, and Google Stitch, with assistance from Gemini.
               </p>
               <div className="flex items-center space-x-6">
-                <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                  href="#">
-                  <span className="material-symbols-outlined">code</span>
+                <a href="https://github.com/russellsaintcyr" target="_blank">
+                  <img src="github.svg" alt="GitHub logo" width={20} height={20} />
                 </a>
-                <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                  href="#">
-                  <span className="material-symbols-outlined">alternate_email</span>
-                </a>
-                <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                  href="#">
-                  <span className="material-symbols-outlined">link</span>
+                <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank">
+                  <img src="linkedin.svg" alt="LinkedIn logo" width={20} height={20} />
                 </a>
               </div>
             </div>
