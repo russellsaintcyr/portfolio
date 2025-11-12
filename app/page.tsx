@@ -64,7 +64,46 @@ export default function Home() {
                   creating robust and user-friendly web solutions.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Worldweary */}
+                {/* Spotify playlist rater */}
+                <div
+                  className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
+                  <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
+                    data-alt="Abstract gradient for project management tool thumbnail"
+                    style={{
+                      backgroundImage: 'url("now_playing.png")'
+                    }}
+                  >
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">Spotify playlist rater</h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">A tool allowing users to manage playlists on Spotify,
+                      with full playback funtionality. Built with Angular, but being redesigned in React Native and Firebase.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Angular</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">React Native</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Node.js</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Express</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Firebase</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Bootstrap</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Spotify</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 mt-2">
+                    <span className="text-primary font-semibold text-sm">Live Demo</span>
+                    <a className="text-primary font-semibold text-sm"
+                      href="https://github.com/russellsaintcyr/spotify-playlist-rater" target="_blank">GitHub Repo</a>
+                  </div>
+                </div>
+
+                                {/* Worldweary */}
                 <div
                   className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
                   <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
@@ -79,12 +118,14 @@ export default function Home() {
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       A website for "Ireland's only independent advice column."
-                      Included the ability for users to submit and search for questions, 
+                      Included the ability for users to submit and search for questions,
                       and for adminstrators to manage and respond to submissions.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">JSP</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Java</span>
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">MySQL</span>
                     </div>
@@ -94,35 +135,7 @@ export default function Home() {
                     <span className="text-primary font-semibold text-sm">GitHub Repo</span>
                   </div>
                 </div>
-                {/* Spotify playlist rater */}
-                <div
-                  className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
-                  <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
-                    data-alt="Abstract gradient for project management tool thumbnail"
-                    style={{
-                      backgroundImage: 'url("now_playing.png")'
-                    }}
-                  >
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">Spotify playlist rater</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">A tool for allowing users to manage playlists on Spotify,
-                      with full playback funtionality.
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">React</span>
-                      <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Firebase</span>
-                      <span
-                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Spotify</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 mt-2">
-                    <span className="text-primary font-semibold text-sm">Live Demo</span>
-                    <span className="text-primary font-semibold text-sm">GitHub Repo</span>
-                  </div>
-                </div>
+
                 {/* Futurecults website */}
                 <div
                   className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
@@ -135,15 +148,17 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <h3 className="text-gray-900 dark:text-white text-xl font-bold">futurecults.com</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">An artistic website for users to read stories of
-                      characters selected on a map of Los Angeles, with musical accompaniment. Also created an adminstrative
-                      website for managing and uploading content.
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">An artistic website for users to read fictional stories of
+                      characters selected on a map of Los Angeles, with accompanying songs per character. Included an advanced adminstrative
+                      website for managing and styling content.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Angular</span>
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">MongoDB</span>
+                      <span
+                        className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Bootstrap</span>
                       <span
                         className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">Google Maps API</span>
                     </div>
@@ -224,11 +239,11 @@ export default function Home() {
                   </div>
                   <div
                     className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-                    <span className="material-symbols-outlined text-primary text-3xl">database</span>
+                    <span className="material-symbols-outlined text-primary text-3xl">bug_report</span>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-900 dark:text-white text-base font-bold">SQL</h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Designing and
-                        managing relational databases.</p>
+                      <h3 className="text-gray-900 dark:text-white text-base font-bold">Testing</h3>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Leading efforts to automate testing with 
+                        Cypress, Playwright and Vitest.</p>
                     </div>
                   </div>
                   <div
