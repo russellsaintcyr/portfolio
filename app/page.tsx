@@ -7,7 +7,7 @@ export default function Home() {
 
         <header className="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
           <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a className="text-xl font-bold text-gray-900 dark:text-white" href="#">Russell Saint Cyr</a>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">Russell Saint Cyr</span>
             <div className="hidden md:flex items-center space-x-6">
               <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                 href="#home">Home</a>
@@ -15,8 +15,6 @@ export default function Home() {
                 href="#projects">Projects</a>
               <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                 href="#about">About</a>
-              {/* <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                href="#contact">Contact</a> */}
             </div>
             <div className="flex items-center space-x-4">
               <a href="https://github.com/russellsaintcyr" target="_blank">
@@ -80,7 +78,9 @@ export default function Home() {
                     <h3 className="text-gray-900 dark:text-white text-xl font-bold">worldweary.com
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      A website for readers to submit personals questions
+                      A website for "Ireland's only independent advice column."
+                      Included the ability for users to submit and search for questions, 
+                      and for adminstrators to manage and respond to submissions.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <span
@@ -244,40 +244,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-
-          {/* Contact Info */}
-          {/* <section className="container mx-auto px-4 py-8 md:py-8" id="contact">
-            <div className="max-w-3xl mx-auto">
-              <div className="flex flex-col justify-end gap-8">
-                <div className="flex flex-col gap-2 text-center">
-                  <h2
-                    className="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight md:text-4xl">
-                    Get In Touch</h2>
-                  <p className="text-gray-600 dark:text-gray-300 text-base font-normal leading-normal">Interested
-                    in collaborating or have a question? I'd love to hear from you. Fill out the form below,
-                    and I'll get back to you as soon as possible.</p>
-                </div>
-                <form className="flex flex-col gap-4">
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <input
-                      className="form-input flex-1 w-full min-w-0 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 py-3 text-base"
-                      placeholder="Your Name" type="text" />
-                    <input
-                      className="form-input flex-1 w-full min-w-0 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 py-3 text-base"
-                      placeholder="Your Email" type="email" />
-                  </div>
-                  <textarea
-                    className="form-textarea w-full min-w-0 resize-y overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 py-3 text-base"
-                    placeholder="Your Message" rows={5}></textarea>
-                  <button
-                    className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
-                    type="submit">
-                    <span className="truncate">Send Message</span>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </section> */}
         </main>
 
         <footer className="bg-white dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800">
