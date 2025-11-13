@@ -1,4 +1,4 @@
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import SocialLinks from './SocialLinks';
 
 export default function Footer() {
   return (
@@ -13,14 +13,7 @@ export default function Footer() {
               <span className="material-symbols-outlined text-primary text-3xl">code</span>
             </a>
           </p>
-          <div className="flex items-center space-x-6">
-            <a href="https://github.com/russellsaintcyr" target="_blank" >
-              <FaGithub size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank">
-              <FaLinkedin size={24} />
-            </a>
-          </div>
+          <SocialLinks />
         </div>
       </div>
     </footer>

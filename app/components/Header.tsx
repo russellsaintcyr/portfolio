@@ -1,4 +1,4 @@
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import SocialLinks from './SocialLinks';
 
 export default function Header() {
   return (
@@ -13,14 +13,7 @@ export default function Header() {
           <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
             href="#about">About</a>
         </div>
-        <div className="flex items-center space-x-4">
-          <a href="https://github.com/russellsaintcyr" target="_blank" >
-            <FaGithub size={24} />
-          </a>
-          <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank">
-            <FaLinkedin size={24} />
-          </a>
-        </div>
+        <SocialLinks className="flex items-center space-x-4" />
       </nav>
     </header>
   );

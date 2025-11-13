@@ -1,3 +1,5 @@
+import Skill from './Skill';
+
 export default function AboutMe() {
   return (
     <section className="container mx-auto px-4 py-8 md:py-8" id="about">
@@ -26,62 +28,36 @@ export default function AboutMe() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div
-              className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-              <span className="material-symbols-outlined text-primary text-3xl">code</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-gray-900 dark:text-white text-base font-bold">TypeScript / JavaScript</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Advanced proficiency
-                  in modern scripting (ES6+).</p>
-              </div>
-            </div>
-            <div
-              className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-              <span className="material-symbols-outlined text-primary text-3xl">code_blocks</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-gray-900 dark:text-white text-base font-bold">Angular / React</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Building dynamic
-                  user interfaces with frameworks like Angular and React.</p>
-              </div>
-            </div>
-            <div
-              className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-              <span className="material-symbols-outlined text-primary text-3xl">developer_mode</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-gray-900 dark:text-white text-base font-bold">React Native</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Developing hybrid applications from a single codebase
-                  for Android, iOS and web.
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-              <span className="material-symbols-outlined text-primary text-3xl">hub</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-gray-900 dark:text-white text-base font-bold">Node.js</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Developing scalable
-                  server-side applications.</p>
-              </div>
-            </div>
-            <div
-              className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-              <span className="material-symbols-outlined text-primary text-3xl">bug_report</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-gray-900 dark:text-white text-base font-bold">Testing</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Leading efforts to automate testing with
-                  Cypress, Playwright and Vitest.</p>
-              </div>
-            </div>
-            <div
-              className="flex flex-1 gap-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-4 flex-col">
-              <span className="material-symbols-outlined text-primary text-3xl">cloud</span>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-gray-900 dark:text-white text-base font-bold">AWS</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-normal">Deploying and
-                  managing applications on AWS.</p>
-              </div>
-            </div>
+            <Skill
+              iconName="code"
+              title="TypeScript / JavaScript"
+              description="Advanced proficiency in modern scripting (ES6+)."
+            />
+            <Skill
+              iconName="code_blocks"
+              title="Angular / React"
+              description="Building dynamic user interfaces with frameworks like Angular and React."
+            />
+            <Skill
+              iconName="developer_mode"
+              title="React Native"
+              description="Developing hybrid applications from a single codebase for Android, iOS and web."
+            />
+            <Skill
+              iconName="hub"
+              title="Node.js"
+              description="Developing scalable server-side applications."
+            />
+            <Skill
+              iconName="bug_report"
+              title="Testing"
+              description="Leading efforts to automate testing with Cypress, Playwright and Vitest."
+            />
+            <Skill
+              iconName="cloud"
+              title="AWS"
+              description="Deploying and managing applications on AWS."
+            />
           </div>
         </div>
       </div>
