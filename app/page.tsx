@@ -100,7 +100,7 @@ export default function Home() {
                   <div className="flex items-center gap-4 mt-2">
                     {/* <span className="text-primary font-semibold text-sm">Live Demo</span> */}
                     <a className="text-primary font-semibold text-sm"
-                      href="https://github.com/russellsaintcyr/spotify-playlist-rater" target="_blank">GitHub Repo</a>
+                      href="https://github.com/russellsaintcyr/playlist-webapp" target="_blank">GitHub Repo</a>
                   </div>
                 </div>
 
