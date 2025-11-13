@@ -45,10 +45,10 @@ export default function Home() {
                     Senior Frontend Developer | 20+ Years Building Scalable Applications
                   </h2>
                 </div>
-                <a className="flex min-w-[84px] max-w-xs cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
+                {/* <a className="flex min-w-[84px] max-w-xs cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
                   href="#projects">
                   <span className="truncate">View My Work</span>
-                </a>
+                </a> */}
               </div>
             </div>
           </section>
@@ -98,7 +98,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
-                    <span className="text-primary font-semibold text-sm">Live Demo</span>
+                    {/* <span className="text-primary font-semibold text-sm">Live Demo</span> */}
                     <a className="text-primary font-semibold text-sm"
                       href="https://github.com/russellsaintcyr/spotify-playlist-rater" target="_blank">GitHub Repo</a>
                   </div>
@@ -115,10 +115,10 @@ export default function Home() {
                   >
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">worldweary.com
+                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">World Weary
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      A website for "Ireland's only independent advice column."
+                      A website for Ireland's only independent advice column.
                       Included the ability for users to submit and search for questions,
                       and for adminstrators to manage and respond to submissions.
                     </p>
@@ -132,8 +132,8 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
-                    <span className="text-primary font-semibold text-sm">Live Demo</span>
-                    <span className="text-primary font-semibold text-sm">GitHub Repo</span>
+                    {/* <span className="text-primary font-semibold text-sm">Live Demo</span> */}
+                    {/* <span className="text-primary font-semibold text-sm">GitHub Repo</span> */}
                   </div>
                 </div>
 
@@ -148,8 +148,8 @@ export default function Home() {
                   >
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">futurecults.com</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">An artistic website for users to read fictional stories of
+                    <h3 className="text-gray-900 dark:text-white text-xl font-bold">Futurecults</h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">An artist's website for users to read fictional stories of
                       characters selected on a map of Los Angeles, with accompanying songs per character. Included an advanced adminstrative
                       website for managing and styling content.
                     </p>
@@ -165,8 +165,8 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2">
-                    <span className="text-primary font-semibold text-sm">Live Demo</span>
-                    <span className="text-primary font-semibold text-sm">GitHub Repo</span>
+                    {/* <span className="text-primary font-semibold text-sm">Live Demo</span> */}
+                    {/* <span className="text-primary font-semibold text-sm">GitHub Repo</span> */}
                   </div>
                 </div>
               </div>
