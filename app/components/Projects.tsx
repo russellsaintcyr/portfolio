@@ -15,11 +15,13 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Project
             backgroundImage="now_playing.png"
-            title="Spotify playlist rater"
-            description="A tool allowing users to manage playlists on Spotify, with full playback funtionality. Built with Angular, but being redesigned in React Native and Firebase."
+            title="Playlist Manager"
+            description="A tool allowing Spotify users to manage playlists and rate songs, with full playback funtionality. Built with Angular, but redesigning in React Native and Firebase."
             skills={['Angular', 'React Native', 'Node.js', 'Express', 'Firebase', 'Bootstrap', 'Spotify']}
             showGitHubRepo={true}
+            showLiveDemo={true}
             githubRepoUrl="https://github.com/russellsaintcyr/playlist-webapp"
+            liveDemoUrl="https://russellsaintcyr.github.io/playlist-manager/#/"
           />
           <Project
             backgroundImage="worldweary.png"
