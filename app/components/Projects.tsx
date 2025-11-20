@@ -14,7 +14,7 @@ export default function Projects() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Project
-            imageSrc="now_playing_2024.png"
+            imageSrc="/portfolio/now_playing_2024.png"
             imageAlt="Screenshot of Playlist Manager showing music interface"
             title="Playlist Manager"
             description="A tool allowing users to manage playlists and rate tracks, with full playback functionality. Built with Angular, but being redesigned in React Native and Firebase."
@@ -25,14 +25,14 @@ export default function Projects() {
             githubRepoUrl="https://github.com/russellsaintcyr/playlist-webapp"
           />
           <Project
-            imageSrc="worldweary.png"
+            imageSrc="/portfolio/worldweary.png"
             imageAlt="Screenshot of World Weary advice column website"
             title="World Weary"
             description="A website for Ireland's only independent advice column. Included the ability for users to submit and search for questions, and for adminstrators to manage and respond to submissions."
             skills={['JSP', 'Java', 'MySQL']}
           />
           <Project
-            imageSrc="futurecults.png"
+            imageSrc="/portfolio/futurecults.png"
             imageAlt="Screenshot of Futurecults interactive map and story website"
             title="Futurecults"
             description="An artist's website for users to read fictional stories of characters selected on a map of Los Angeles, with accompanying songs per character. Included an advanced adminstrative website for managing and styling content."
