@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 interface ProjectProps {
   imageSrc: string;
@@ -47,12 +48,24 @@ export default function Project({
       </div>
       <div className="flex items-center gap-4 mt-2">
         {showLiveDemo && liveDemoUrl && (
-          <a className="text-primary font-semibold text-sm" href={liveDemoUrl} target="_blank" rel="noopener noreferrer">
+          <a 
+            className="flex items-center gap-2 text-primary font-semibold text-sm transition-all duration-200 hover:text-primary/80 hover:underline hover:scale-105 active:scale-95 active:text-primary/60" 
+            href={liveDemoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <FaExternalLinkAlt className="w-3 h-3" />
             Live Demo
           </a>
         )}
         {showGitHubRepo && githubRepoUrl && (
-          <a className="text-primary font-semibold text-sm" href={githubRepoUrl} target="_blank" rel="noopener noreferrer">
+          <a 
+            className="flex items-center gap-2 text-primary font-semibold text-sm transition-all duration-200 hover:text-primary/80 hover:underline hover:scale-105 active:scale-95 active:text-primary/60" 
+            href={githubRepoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <FaGithub className="w-3 h-3" />
             GitHub Repo
           </a>
         )}
