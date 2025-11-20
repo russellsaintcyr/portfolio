@@ -12,13 +12,24 @@ export default function Projects() {
             are some of the projects I'm proud to have worked on. Each project showcases my skills in
             creating robust and user-friendly web solutions.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Project
+            imageSrc="/portfolio/brianstcyr_portfolio.png"
+            imageAlt="Screenshot of Brian St. Cyr Portfolio"
+            title="Brian St. Cyr Portfolio"
+            description="A modern portfolio website built with Next.js and Contentful to showcase projects and skills, featuring responsive design and lazy loading."
+            skills={['React', 'Next.js', 'Contentful CMS', 'TypeScript', 'Tailwind CSS']}
+            showGitHubRepo={true}
+            showLiveDemo={true}
+            liveDemoUrl="https://russellsaintcyr.github.io/brianstcyr-portfolio"
+            githubRepoUrl="https://github.com/russellsaintcyr/brianstcyr-portfolio"
+          />
           <Project
             imageSrc="/portfolio/now_playing_2024.png"
             imageAlt="Screenshot of Playlist Manager showing music interface"
             title="Playlist Manager"
             description="A tool allowing users to manage playlists and rate tracks, with full playback functionality. Built with Angular, but being redesigned in React Native and Firebase."
-            skills={['Angular', 'Node.js', 'Bootstrap', 'Spotify']}
+            skills={['Angular', 'TypeScript', 'Node.js', 'Bootstrap', 'Spotify']}
             showGitHubRepo={true}
             showLiveDemo={true}
             liveDemoUrl="https://russellsaintcyr.github.io/playlist-manager"
