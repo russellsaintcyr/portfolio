@@ -6,7 +6,7 @@ import Introduction from './components/Introduction';
 
 export default function Home() {
   return (
-    <div className="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    <div className="font-display text-gray-800 dark:text-gray-200">
       <div className="relative w-full overflow-x-hidden">
         <Header />
         <main>

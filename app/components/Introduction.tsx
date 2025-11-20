@@ -1,7 +1,7 @@
 export default function Introduction() {
   return (
-    <section className="container mx-auto px-4 py-8 md:py-8" id="home">
-      <div className="flex flex-col gap-6 @container">
+    <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-700 py-8 md:py-8" id="home">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col gap-8 text-center items-center">
           <div className="flex flex-col gap-2">
             <h1

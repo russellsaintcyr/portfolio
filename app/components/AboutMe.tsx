@@ -2,8 +2,9 @@ import Skill from './Skill';
 
 export default function AboutMe() {
   return (
-    <section className="container mx-auto px-4 py-8 md:py-8" id="about">
-      <div className="flex flex-col lg:flex-row items-center gap-12 @container">
+    <section className="bg-gray-50 dark:bg-slate-800 py-8 md:py-8" id="about">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center gap-12 @container">
         <div className="w-full lg:w-1/3 flex justify-center">
           <div className="w-64 h-64 md:w-80 md:h-80 bg-center bg-no-repeat bg-cover rounded-full"
             data-alt="Professional headshot of Russell Saint Cyr"
@@ -59,6 +60,7 @@ export default function AboutMe() {
               description="Deploying and managing applications on AWS."
             />
           </div>
+        </div>
         </div>
       </div>
     </section>
