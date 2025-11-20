@@ -14,23 +14,24 @@ export default function Projects() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Project
-            backgroundImage="now_playing.png"
-            title="Playlist Manager"
-            description="A tool allowing Spotify users to manage playlists and rate songs, with full playback funtionality. Built with Angular, but redesigning in React Native and Firebase."
+            imageSrc="/now_playing.png"
+            imageAlt="Screenshot of Spotify Playlist Manager showing music interface"
+            title="Spotify playlist rater"
+            description="A tool allowing users to manage playlists on Spotify, with full playback funtionality. Built with Angular, but being redesigned in React Native and Firebase."
             skills={['Angular', 'React Native', 'Node.js', 'Express', 'Firebase', 'Bootstrap', 'Spotify']}
             showGitHubRepo={true}
-            showLiveDemo={true}
             githubRepoUrl="https://github.com/russellsaintcyr/playlist-webapp"
-            liveDemoUrl="https://russellsaintcyr.github.io/playlist-manager/#/"
           />
           <Project
-            backgroundImage="worldweary.png"
+            imageSrc="/worldweary.png"
+            imageAlt="Screenshot of World Weary advice column website"
             title="World Weary"
             description="A website for Ireland's only independent advice column. Included the ability for users to submit and search for questions, and for adminstrators to manage and respond to submissions."
             skills={['JSP', 'Java', 'MySQL']}
           />
           <Project
-            backgroundImage="futurecults.png"
+            imageSrc="/futurecults.png"
+            imageAlt="Screenshot of Futurecults interactive map and story website"
             title="Futurecults"
             description="An artist's website for users to read fictional stories of characters selected on a map of Los Angeles, with accompanying songs per character. Included an advanced adminstrative website for managing and styling content."
             skills={['Angular', 'MongoDB', 'Bootstrap', 'Google Maps API']}

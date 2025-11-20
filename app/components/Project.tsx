@@ -1,5 +1,8 @@
+import Image from 'next/image';
+
 interface ProjectProps {
-  backgroundImage: string;
+  imageSrc: string;
+  imageAlt: string;
   title: string;
   description: string;
   skills: string[];
@@ -10,7 +13,8 @@ interface ProjectProps {
 }
 
 export default function Project({
-  backgroundImage,
+  imageSrc,
+  imageAlt,
   title,
   description,
   skills,
@@ -20,13 +24,15 @@ export default function Project({
   liveDemoUrl,
 }: ProjectProps) {
   return (
-    <div className="flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
-      <div
-        className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg"
-        style={{
-          backgroundImage: `url("${backgroundImage}")`
-        }}
-      >
+    <div className="group flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          className="object-contain transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
       </div>
       <div className="flex flex-col gap-2">
         <h3 className="text-gray-900 dark:text-white text-xl font-bold">{title}</h3>
