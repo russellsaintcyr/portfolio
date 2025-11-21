@@ -15,7 +15,7 @@ export default function Projects() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Project
-              imageSrc="/portfolio/brianstcyr_portfolio.png"
+              imageSrc="/portfolio/brianstcyr_portfolio_700x416.webp"
               imageAlt="Screenshot of Brian St. Cyr Portfolio"
               title="Brian St. Cyr Portfolio"
               description="A modern portfolio website built with Next.js and Contentful to showcase projects and skills, featuring responsive design and lazy loading."
@@ -26,7 +26,7 @@ export default function Projects() {
               githubRepoUrl="https://github.com/russellsaintcyr/brianstcyr-portfolio"
             />
             <Project
-              imageSrc="/portfolio/now_playing_2024.png"
+              imageSrc="/portfolio/now_playing_700x490.webp"
               imageAlt="Screenshot of Playlist Manager showing music interface"
               title="Playlist Manager"
               description="A tool allowing users to manage playlists and rate tracks, with full playback functionality. Built with Angular, but being redesigned in React Native and Firebase."
@@ -37,14 +37,14 @@ export default function Projects() {
               githubRepoUrl="https://github.com/russellsaintcyr/playlist-webapp"
             />
             <Project
-              imageSrc="/portfolio/worldweary.png"
+              imageSrc="/portfolio/worldweary_700x414.webp"
               imageAlt="Screenshot of World Weary advice column website"
               title="World Weary"
               description="A website for Ireland's only independent advice column. Included the ability for users to submit and search for questions, and for adminstrators to manage and respond to submissions."
               skills={['JSP', 'Java', 'MySQL']}
             />
             <Project
-              imageSrc="/portfolio/futurecults.png"
+              imageSrc="/portfolio/futurecults_700x384.webp"
               imageAlt="Screenshot of Futurecults interactive map and story website"
               title="Futurecults"
               description="An artist's website for users to read fictional stories of characters selected on a map of Los Angeles, with accompanying songs per character. Included an advanced adminstrative website for managing and styling content."
