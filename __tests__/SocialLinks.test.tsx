@@ -5,7 +5,7 @@ import SocialLinks from '@/app/components/SocialLinks'
 describe('SocialLinks Component', () => {
   it('renders GitHub link with correct href', () => {
     render(<SocialLinks />)
-    const githubLink = screen.getByRole('link', { name: /github/i })
+    const githubLink = screen.getByLabelText('GitHub')
     expect(githubLink).toHaveAttribute('href', 'https://github.com/russellsaintcyr')
     expect(githubLink).toHaveAttribute('target', '_blank')
     expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer')
@@ -13,7 +13,7 @@ describe('SocialLinks Component', () => {
 
   it('renders LinkedIn link with correct href', () => {
     render(<SocialLinks />)
-    const linkedinLink = screen.getByRole('link', { name: /linkedin/i })
+    const linkedinLink = screen.getByLabelText('LinkedIn')
     expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/in/russellsaintcyr/')
     expect(linkedinLink).toHaveAttribute('target', '_blank')
     expect(linkedinLink).toHaveAttribute('rel', 'noopener noreferrer')

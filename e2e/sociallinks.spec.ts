@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('SocialLinks', () => {
   test('GitHub link has correct href', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 })
     await page.goto('/')
     const githubLink = page.locator('a[href="https://github.com/russellsaintcyr"]')
     await expect(githubLink).toBeVisible()
@@ -10,6 +11,7 @@ test.describe('SocialLinks', () => {
   })
 
   test('LinkedIn link has correct href', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 })
     await page.goto('/')
     const linkedinLink = page.locator('a[href="https://www.linkedin.com/in/russellsaintcyr/"]')
     await expect(linkedinLink).toBeVisible()
@@ -18,6 +20,7 @@ test.describe('SocialLinks', () => {
   })
 
   test('social links open in new tab', async ({ context, page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 })
     await page.goto('/')
     
     // Listen for new page (popup)
@@ -32,6 +35,7 @@ test.describe('SocialLinks', () => {
   })
 
   test('all social links are present in header', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 })
     await page.goto('/')
     const header = page.locator('header')
     expect(await header.locator('a[href="https://github.com/russellsaintcyr"]').count()).toBe(1)
@@ -39,6 +43,7 @@ test.describe('SocialLinks', () => {
   })
 
   test('all social links are present in footer', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 })
     await page.goto('/')
     const footer = page.locator('footer')
     expect(await footer.locator('a[href="https://github.com/russellsaintcyr"]').count()).toBe(1)

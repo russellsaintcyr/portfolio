@@ -6,6 +6,7 @@ test('has title', async ({ page }) => {
 })
 
 test('navigation links are visible', async ({ page }) => {
+  await page.setViewportSize({ width: 1200, height: 800 })
   await page.goto('/')
   await expect(page.locator('text=Home')).toBeVisible()
   await expect(page.locator('text=Projects')).toBeVisible()
@@ -13,6 +14,7 @@ test('navigation links are visible', async ({ page }) => {
 })
 
 test('can navigate to projects section', async ({ page }) => {
+  await page.setViewportSize({ width: 1200, height: 800 })
   await page.goto('/')
   await page.click('a[href="#projects"]')
   await expect(page.locator('text=Featured Projects')).toBeVisible()

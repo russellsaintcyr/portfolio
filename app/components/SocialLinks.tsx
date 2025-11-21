@@ -7,10 +7,10 @@ interface SocialLinksProps {
 export default function SocialLinks({ className = "flex items-center space-x-6" }: SocialLinksProps) {
   return (
     <div className={className}>
-      <a href="https://github.com/russellsaintcyr" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/russellsaintcyr" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <FaGithub size={24} />
       </a>
-      <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/in/russellsaintcyr/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
         <FaLinkedin size={24} />
       </a>
     </div>

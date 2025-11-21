@@ -43,3 +43,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 app/code.html
+
+# interview prep
+developer-info.md
