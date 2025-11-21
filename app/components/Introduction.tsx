@@ -12,7 +12,7 @@ export default function Introduction() {
               Senior Frontend Developer and Architect</h1>
             <h2
               className="text-gray-600 dark:text-gray-300 text-lg font-normal leading-normal md:text-xl max-w-3xl mx-auto">
-              Senior Frontend Developer | 20+ Years Building Scalable Applications
+              20+ Years Building Scalable Applications
             </h2>
           </div>
           {/* <a className="flex min-w-[84px] max-w-xs cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"

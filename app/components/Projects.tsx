@@ -11,14 +11,14 @@ export default function Projects() {
               Featured Projects</h2>
             <p className="text-gray-600 dark:text-gray-300 text-base font-normal leading-normal max-w-3xl">Here
               are some of the projects I'm proud to have worked on. Each project showcases my skills in
-              creating robust and user-friendly web solutions.</p>
+              creating user-friendly web solutions with robust backends and industry best practices.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Project
               imageSrc="/portfolio/brianstcyr_portfolio_700x416.webp"
               imageAlt="Screenshot of Brian St. Cyr Portfolio"
               title="Brian St. Cyr Portfolio"
-              description="A modern portfolio website built with Next.js and Contentful to showcase projects and skills, featuring responsive design and lazy loading."
+              description="A modern portfolio website built with Next.js and Contentful to showcase and sell artwork, featuring responsive design and lazy loading."
               skills={['React', 'Next.js', 'Contentful CMS', 'TypeScript', 'Tailwind CSS']}
               showGitHubRepo={true}
               showLiveDemo={true}
@@ -29,8 +29,8 @@ export default function Projects() {
               imageSrc="/portfolio/now_playing_700x490.webp"
               imageAlt="Screenshot of Playlist Manager showing music interface"
               title="Playlist Manager"
-              description="A tool allowing users to manage playlists and rate tracks, with full playback functionality. Built with Angular, but being redesigned in React Native and Firebase."
-              skills={['Angular', 'TypeScript', 'Node.js', 'Bootstrap', 'Spotify']}
+              description="A passion project allowing users to manage playlists and rate tracks, with playback functionality. Built with Angular and Firebase, but being redesigned for React Native/Expo."
+              skills={['Angular', 'TypeScript', 'Firebase', 'Node.js', 'Bootstrap', 'Spotify']}
               showGitHubRepo={true}
               showLiveDemo={true}
               liveDemoUrl="https://russellsaintcyr.github.io/playlist-manager"
