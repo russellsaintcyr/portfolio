@@ -5,20 +5,22 @@ import Project from './Project';
 
 export default function Projects() {
 
-  const [currentLocation, setCurrentLocation] = useState<Location | undefined>();
-  
+  const [currentLocation, setCurrentLocation] = useState<Location>();
+
   useEffect(() => {
-        // This code will only run on the client-side after the component mounts
-        if (typeof window !== 'undefined') {
-          console.log('window.location in Projects component:', window.location);
-          setCurrentLocation(window.location);
-        }
-      }, []); // Empty dependency array ensures it runs only once after initial render
+    // This code will only run on the client-side after the component mounts
+    if (typeof window !== 'undefined') {
+      console.log('window.location in Projects component:', window.location);
+      setCurrentLocation(window.location);
+    }
+  }, []); // Empty dependency array ensures it runs only once after initial render
 
   function getImagePath(imagePath: string): string {
-    // Ensure imagePath starts with "/"
-    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-    return cleanPath;
+    const basePath = currentLocation?.pathname ?? '/';
+    // console.log('Base Path:', basePath);
+    const newPath = `${basePath}${imagePath}`;
+    console.log('New Image Path:', newPath);
+    return newPath;
   }
 
   return (
