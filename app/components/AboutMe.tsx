@@ -1,4 +1,5 @@
 import Skill from './Skill';
+import { getImagePath } from '../lib/utils';
 
 export default function AboutMe() {
   return (
@@ -9,7 +10,7 @@ export default function AboutMe() {
           <div className="w-64 h-64 md:w-80 md:h-80 bg-center bg-no-repeat bg-cover rounded-full"
             data-alt="Professional headshot of Russell Saint Cyr"
             style={{
-              backgroundImage: 'url("profile_photo.jpg")'
+              backgroundImage: `url("${getImagePath('profile_photo.jpg')}")`
             }}
           >
           </div>
