@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ImageWrapper from './ImageWrapper';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 interface ProjectProps {
@@ -27,7 +27,7 @@ export default function Project({
   return (
     <div className="group flex flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-800">
       <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-        <Image
+        <ImageWrapper
           src={imageSrc}
           alt={imageAlt}
           fill

@@ -1,18 +1,7 @@
-'use client';
-
-import { useContext } from 'react';
 import Project from './Project';
 import projects from '../data/projects.json';
-import { LocationContext } from '../page';
 
 export default function Projects() {
-  const currentLocation = useContext(LocationContext);
-
-  function getImagePath(imagePath: string): string {
-    const basePath = currentLocation?.pathname ?? '/';
-    const newPath = `${basePath}${imagePath}`;
-    return newPath;
-  }
 
   return (
     <section className="bg-white dark:bg-gray-900 py-8 md:py-8" id="projects">
@@ -31,7 +20,7 @@ export default function Projects() {
               <Project
                 key={project.title + idx}
                 {...project}
-                imageSrc={getImagePath(project.imageSrc)}
+                imageSrc={project.imageSrc}
               />
             ))}
           </div>

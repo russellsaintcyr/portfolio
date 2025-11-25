@@ -1,4 +1,5 @@
-import { getBasePath } from './getBasePath';
+import { useContext } from 'react';
+import { LocationContext } from '../page';
 
 /**
  * Get the correct image path based on the deployment environment
@@ -6,17 +7,10 @@ import { getBasePath } from './getBasePath';
  * @returns The correct path for the current environment
  */
 export function getImagePath(imagePath: string): string {
-    const basePath = getBasePath();
-    console.log('Base Path:', basePath);
+    const currentLocation = useContext(LocationContext);
+    const basePath = currentLocation?.pathname ?? '/';
+    const newPath = `${basePath}${imagePath}`;
+    console.log('Image Path:', newPath);
+    return newPath;
 
-    if (typeof window !== 'undefined') {
-        console.log('window.location', window.location);
-    } else {
-        console.log('window is undefined');
-    }
-    // Ensure imagePath starts with "/"
-    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-
-    // Return path with or without basePath depending on environment
-    return `${basePath}${cleanPath}`;
 }
