@@ -1,17 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import Project from './Project';
 import projects from '../data/projects.json';
+import { LocationContext } from '../page';
 
 export default function Projects() {
-  const [currentLocation, setCurrentLocation] = useState<Location>();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentLocation(window.location);
-    }
-  }, []);
+  const currentLocation = useContext(LocationContext);
 
   function getImagePath(imagePath: string): string {
     const basePath = currentLocation?.pathname ?? '/';
