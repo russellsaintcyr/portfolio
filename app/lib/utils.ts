@@ -6,10 +6,17 @@ import { getBasePath } from './getBasePath';
  * @returns The correct path for the current environment
  */
 export function getImagePath(imagePath: string): string {
-  const basePath = getBasePath();
-  // Ensure imagePath starts with "/"
-  const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-  
-  // Return path with or without basePath depending on environment
-  return `${basePath}${cleanPath}`;
+    const basePath = getBasePath();
+    console.log('Base Path:', basePath);
+
+    if (typeof window !== 'undefined') {
+        console.log('window.location', window.location);
+    } else {
+        console.log('window is undefined');
+    }
+    // Ensure imagePath starts with "/"
+    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+
+    // Return path with or without basePath depending on environment
+    return `${basePath}${cleanPath}`;
 }
