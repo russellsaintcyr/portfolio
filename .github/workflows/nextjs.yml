@@ -77,6 +77,8 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} vitest run
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          EXPORT_MODE: true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
