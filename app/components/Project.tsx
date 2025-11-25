@@ -40,7 +40,10 @@ export default function Project({
         <p className="text-gray-600 dark:text-gray-400 text-sm">{description}</p>
         <div className="flex flex-wrap gap-2 mt-2">
           {skills.map((skill) => (
-            <span key={skill} className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">
+            <span
+              key={skill}
+              className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-900 dark:bg-blue-600 dark:text-white"
+            >
               {skill}
             </span>
           ))}
