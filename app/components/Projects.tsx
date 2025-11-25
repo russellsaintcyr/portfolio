@@ -1,7 +1,26 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Project from './Project';
-import { getImagePath } from '../lib/utils';
 
 export default function Projects() {
+
+  const [currentLocation, setCurrentLocation] = useState<Location | undefined>();
+  
+  useEffect(() => {
+        // This code will only run on the client-side after the component mounts
+        if (typeof window !== 'undefined') {
+          console.log('window.location in Projects component:', window.location);
+          setCurrentLocation(window.location);
+        }
+      }, []); // Empty dependency array ensures it runs only once after initial render
+
+  function getImagePath(imagePath: string): string {
+    // Ensure imagePath starts with "/"
+    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+    return cleanPath;
+  }
+
   return (
     <section className="bg-white dark:bg-gray-900 py-8 md:py-8" id="projects">
       <div className="container mx-auto px-4">
