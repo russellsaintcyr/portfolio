@@ -17,7 +17,7 @@
     "description": "A passion project allowing users to manage playlists and rate tracks, with playback functionality. Built with Angular and Firebase, but being redesigned for React Native/Expo.",
     "skills": ["Angular", "TypeScript", "Firebase", "Node.js", "Bootstrap", "Spotify"],
     "showGitHubRepo": true,
-    "showLiveDemo": true,
+    "showLiveDemo": false,
     "liveDemoUrl": "https://russellsaintcyr.github.io/playlist-manager",
     "githubRepoUrl": "https://github.com/russellsaintcyr/playlist-webapp"
   },
