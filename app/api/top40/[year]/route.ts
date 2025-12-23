@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { getRedisClient } from '@/lib/redis';
 
 interface Lyric {
@@ -24,7 +22,7 @@ interface Top40Data {
   };
 }
 
-// GET - Read data from KV, fallback to JSON file
+// GET - Read data from Redis
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ year: string }> }
@@ -39,7 +37,7 @@ export async function GET(
 
     const key = `top40:${yearNum}`;
 
-    // Try to get from Redis first
+    // Get from Redis
     try {
       const redis = await getRedisClient();
       const dataStr = await redis.get(key);
@@ -52,31 +50,17 @@ export async function GET(
           },
         });
       }
-    } catch (redisError) {
-      console.error('Redis read error (falling back to file):', redisError);
-    }
-
-    // Fallback to JSON file
-    try {
-      const filePath = path.join(
-        process.cwd(),
-        'app',
-        'data',
-        'top40',
-        `${yearNum}.json`
-      );
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      const data = JSON.parse(fileContents) as Top40Data;
-      console.log(`⚠️ GET /api/top40/${yearNum}: Data loaded from file fallback`);
-      return NextResponse.json(data, {
-        headers: {
-          'X-Data-Source': 'file',
-        },
-      });
-    } catch (fileError) {
+      
+      // No data in Redis
       return NextResponse.json(
-        { error: 'Data not found' },
+        { error: 'Data not found in Redis' },
         { status: 404 }
+      );
+    } catch (redisError) {
+      console.error('Redis read error:', redisError);
+      return NextResponse.json(
+        { error: 'Failed to read from Redis' },
+        { status: 500 }
       );
     }
   } catch (error) {

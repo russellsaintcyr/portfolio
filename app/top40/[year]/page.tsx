@@ -30,7 +30,7 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
     // Get metadata from index.json (coverImage, playlists)
     const metadata = getYearMetadata(year);
     
-    // Try Redis first for content (description, lyrics)
+    // Get content from Redis (description, lyrics)
     let contentData: Partial<Top40Data> | null = null;
     try {
       const { getRedisClient } = await import('@/lib/redis');
@@ -41,39 +41,26 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
         contentData = JSON.parse(dataStr) as Partial<Top40Data>;
       }
     } catch (redisError) {
-      // Redis not configured or error, fallback to file
-      console.log('Redis not available, using file fallback');
+      console.error('Redis read error:', redisError);
+      // If Redis fails, return null - no fallback
+      return null;
     }
     
-    // Fallback to JSON file if Redis doesn't have data
+    // If no data in Redis, return null
     if (!contentData) {
-      try {
-        const fs = await import('fs');
-        const path = await import('path');
-        const filePath = path.join(
-          process.cwd(),
-          'app',
-          'data',
-          'top40',
-          `${year}.json`
-        );
-        const fileContents = fs.readFileSync(filePath, 'utf8');
-        contentData = JSON.parse(fileContents) as Partial<Top40Data>;
-      } catch (fileError) {
-        // No file fallback either
-      }
+      return null;
     }
     
-    // Merge metadata (from index.json) with content (from Redis/file)
+    // Merge metadata (from index.json) with content (from Redis)
     // Metadata takes precedence for coverImage and playlists
     const mergedData: Top40Data = {
       year,
       coverImage: metadata?.coverImage 
         ? `<img src="${metadata.coverImage}" alt="Top 40 ${year} Cover" />`
-        : contentData?.coverImage,
-      description: contentData?.description || '',
-      lyrics: contentData?.lyrics || [],
-      playlists: metadata?.playlists || contentData?.playlists,
+        : undefined,
+      description: contentData.description || '',
+      lyrics: contentData.lyrics || [],
+      playlists: metadata?.playlists || undefined,
     };
     
     return mergedData;

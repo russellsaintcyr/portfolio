@@ -68,10 +68,10 @@ export default function Top40({ data, originalData }: Top40Props) {
             if (result.dataSource === 'redis') {
               console.log(`✅ Top40 ${data.year} data loaded from Redis`);
             } else {
-              console.log(`⚠️ Top40 ${data.year} data loaded from file fallback (not in Redis)`);
+              console.log(`⚠️ Top40 ${data.year} data source: ${result.dataSource}`);
             }
           } else {
-            console.log(`⚠️ Top40 ${data.year} data not found`);
+            console.log(`⚠️ Top40 ${data.year} data not found in Redis`);
           }
         })
         .catch((error) => {
