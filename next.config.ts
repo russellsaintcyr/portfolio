@@ -8,7 +8,13 @@ const nextConfig: NextConfig = {
     output: 'export',
     basePath: '/portfolio',
     images: { 
-      unoptimized: true 
+      unoptimized: true,
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'image-cdn-ak.spotifycdn.com',
+        },
+      ],
     },
     env: {
       NEXT_PUBLIC_BASE_PATH: '/portfolio',
@@ -16,7 +22,12 @@ const nextConfig: NextConfig = {
   }),
   ...(!isGitHubPages && {
     images: {
-      domains: [], // Add any external image domains here if needed
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'image-cdn-ak.spotifycdn.com',
+        },
+      ],
     },
     env: {
       NEXT_PUBLIC_BASE_PATH: '',
