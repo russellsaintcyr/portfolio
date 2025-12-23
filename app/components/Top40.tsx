@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
+import Toast from './Toast';
 
 interface Lyric {
   artist: string;
@@ -39,6 +40,9 @@ export default function Top40({ data, originalData }: Top40Props) {
   const [lyrics, setLyrics] = useState<Lyric[]>(data.lyrics || []);
   const [descriptionKey] = useState(`top40-${data.year}-description`);
   const [lyricsKey] = useState(`top40-${data.year}-lyrics`);
+  const [isSavingDescription, setIsSavingDescription] = useState(false);
+  const [isSavingLyrics, setIsSavingLyrics] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -49,78 +53,119 @@ export default function Top40({ data, originalData }: Top40Props) {
       // localStorage is only used as temporary buffer during active editing
       setDescription(data.description);
       setLyrics(data.lyrics || []);
-    }
-  }, [data.description, data.lyrics]);
 
-  const handleDescriptionSave = (content: string) => {
+      // Check if data exists in Redis
+      fetch(`/api/top40/${data.year}`)
+        .then((response) => {
+          const dataSource = response.headers.get('X-Data-Source');
+          if (response.ok) {
+            return response.json().then((data) => ({ data, dataSource }));
+          }
+          return null;
+        })
+        .then((result) => {
+          if (result) {
+            if (result.dataSource === 'redis') {
+              console.log(`✅ Top40 ${data.year} data loaded from Redis`);
+            } else {
+              console.log(`⚠️ Top40 ${data.year} data loaded from file fallback (not in Redis)`);
+            }
+          } else {
+            console.log(`⚠️ Top40 ${data.year} data not found`);
+          }
+        })
+        .catch((error) => {
+          console.log(`⚠️ Top40 ${data.year} Redis check failed:`, error);
+        });
+    }
+  }, [data.description, data.lyrics, data.year]);
+
+  const handleDescriptionPreview = (content: string) => {
     localStorage.setItem(descriptionKey, content);
     setDescription(content);
     setIsEditingDescription(false);
   };
 
-  const handleLyricsSave = (updatedLyrics: Lyric[]) => {
+  const handleDescriptionSave = async (content: string) => {
+    setIsSavingDescription(true);
+    localStorage.setItem(descriptionKey, content);
+    setDescription(content);
+    
+    // Save to Redis via API
+    try {
+      const mergedData = {
+        ...originalData,
+        description: content,
+        lyrics: lyrics,
+      };
+      const response = await fetch(`/api/top40/${data.year}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mergedData),
+      });
+      if (response.ok) {
+        console.log('Saved to Redis successfully');
+        setIsEditingDescription(false);
+        setToast({ message: 'Saved to Redis successfully!', type: 'success' });
+      } else {
+        setToast({ message: 'Failed to save to Redis', type: 'error' });
+      }
+    } catch (error) {
+      console.error('Failed to save to Redis:', error);
+      setToast({ message: 'Failed to save to Redis', type: 'error' });
+    } finally {
+      setIsSavingDescription(false);
+    }
+  };
+
+  const handleLyricsPreview = (updatedLyrics: Lyric[]) => {
     localStorage.setItem(lyricsKey, JSON.stringify(updatedLyrics));
     setLyrics(updatedLyrics);
     setIsEditingLyrics(false);
   };
 
-  const handleDescriptionExport = (htmlContent: string) => {
-    // Get latest lyrics from localStorage
-    const savedLyrics = localStorage.getItem(lyricsKey);
-    let mergedLyrics = lyrics;
-    if (savedLyrics) {
-      try {
-        mergedLyrics = JSON.parse(savedLyrics);
-      } catch (e) {
-        console.error('Failed to parse saved lyrics for export:', e);
-      }
-    }
-
-    const mergedData = {
-      ...originalData,
-      description: htmlContent,
-      lyrics: mergedLyrics,
-    };
-
-    const blob = new Blob([JSON.stringify(mergedData, null, 2)], {
-      type: 'application/json',
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${data.year}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const handleDescriptionCopy = async (htmlContent: string) => {
-    // Get latest lyrics from localStorage
-    const savedLyrics = localStorage.getItem(lyricsKey);
-    let mergedLyrics = lyrics;
-    if (savedLyrics) {
-      try {
-        mergedLyrics = JSON.parse(savedLyrics);
-      } catch (e) {
-        console.error('Failed to parse saved lyrics for copy:', e);
-      }
-    }
-
-    const mergedData = {
-      ...originalData,
-      description: htmlContent,
-      lyrics: mergedLyrics,
-    };
-
+  const handleLyricsSave = async (updatedLyrics: Lyric[]) => {
+    setIsSavingLyrics(true);
+    localStorage.setItem(lyricsKey, JSON.stringify(updatedLyrics));
+    setLyrics(updatedLyrics);
+    
+    // Save to Redis via API
     try {
-      await navigator.clipboard.writeText(JSON.stringify(mergedData, null, 2));
-      alert('JSON copied to clipboard!');
-    } catch (err) {
-      console.error('Failed to copy:', err);
+      const mergedData = {
+        ...originalData,
+        description: description,
+        lyrics: updatedLyrics,
+      };
+      const response = await fetch(`/api/top40/${data.year}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mergedData),
+      });
+      if (response.ok) {
+        console.log('Saved to Redis successfully');
+        setIsEditingLyrics(false);
+        setToast({ message: 'Saved to Redis successfully!', type: 'success' });
+      } else {
+        setToast({ message: 'Failed to save to Redis', type: 'error' });
+      }
+    } catch (error) {
+      console.error('Failed to save to Redis:', error);
+      setToast({ message: 'Failed to save to Redis', type: 'error' });
+    } finally {
+      setIsSavingLyrics(false);
     }
   };
+
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
           Top 40 of {data.year}
@@ -146,9 +191,8 @@ export default function Top40({ data, originalData }: Top40Props) {
             <Top40Editor
               initialContent={description}
               year={data.year}
+              onPreview={handleDescriptionPreview}
               onSave={handleDescriptionSave}
-              onExport={handleDescriptionExport}
-              onCopy={handleDescriptionCopy}
               onCancel={() => setIsEditingDescription(false)}
             />
           ) : (
@@ -180,8 +224,10 @@ export default function Top40({ data, originalData }: Top40Props) {
                 <LyricsEditor
                   initialLyrics={lyrics}
                   year={data.year}
+                  onPreview={handleLyricsPreview}
                   onSave={handleLyricsSave}
                   onCancel={() => setIsEditingLyrics(false)}
+                  isSaving={isSavingLyrics}
                 />
               </div>
             )}

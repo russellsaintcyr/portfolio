@@ -11,11 +11,13 @@ interface Lyric {
 interface LyricsEditorProps {
   initialLyrics: Lyric[];
   year: number;
+  onPreview: (lyrics: Lyric[]) => void;
   onSave: (lyrics: Lyric[]) => void;
   onCancel?: () => void;
+  isSaving?: boolean;
 }
 
-export default function LyricsEditor({ initialLyrics, year, onSave, onCancel }: LyricsEditorProps) {
+export default function LyricsEditor({ initialLyrics, year, onPreview, onSave, onCancel, isSaving = false }: LyricsEditorProps) {
   const [lyrics, setLyrics] = useState<Lyric[]>(initialLyrics);
   const [hasChanges, setHasChanges] = useState(false);
   const localStorageKey = `top40-${year}-lyrics`;
@@ -48,6 +50,17 @@ export default function LyricsEditor({ initialLyrics, year, onSave, onCancel }: 
     updated[index] = { ...updated[index], [field]: value };
     setLyrics(updated);
     setHasChanges(true);
+  };
+
+  const handlePreview = () => {
+    // Convert newlines to <br> tags when saving
+    const lyricsWithBreaks = lyrics.map(lyric => ({
+      ...lyric,
+      text: lyric.text.replace(/\n/g, '<br>')
+    }));
+    localStorage.setItem(localStorageKey, JSON.stringify(lyricsWithBreaks));
+    onPreview(lyricsWithBreaks);
+    setHasChanges(false);
   };
 
   const handleSave = () => {
@@ -105,18 +118,50 @@ export default function LyricsEditor({ initialLyrics, year, onSave, onCancel }: 
             Add Lyric
           </button>
           <button
-            onClick={handleSave}
-            className="px-3 py-1.5 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+            onClick={handlePreview}
+            className="px-3 py-1.5 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             type="button"
           >
-            Save
+            Preview
           </button>
+          {onCancel && (
+            <button
+              onClick={handleCancel}
+              className="px-3 py-1.5 text-sm font-medium bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+              type="button"
+            >
+              Cancel
+            </button>
+          )}
           <button
-            onClick={handleCancel}
-            className="px-3 py-1.5 text-sm font-medium bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+            onClick={handleSave}
+            disabled={isSaving}
+            className="px-3 py-1.5 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             type="button"
           >
-            Cancel
+            {isSaving && (
+              <svg
+                className="animate-spin h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            )}
+            {isSaving ? 'Saving...' : 'Save'}
           </button>
         </div>
       </div>

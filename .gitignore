@@ -46,3 +46,4 @@ app/code.html
 
 # interview prep
 developer-info.md
+.env*.local

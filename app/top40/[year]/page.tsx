@@ -1,6 +1,4 @@
 import { notFound } from 'next/navigation';
-import fs from 'fs';
-import path from 'path';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Top40 from '../../components/Top40';
@@ -28,6 +26,23 @@ interface Top40Data {
 
 async function getTop40Data(year: number): Promise<Top40Data | null> {
   try {
+    // Try Redis first, then fallback to file
+    try {
+      const { getRedisClient } = await import('@/lib/redis');
+      const redis = await getRedisClient();
+      const key = `top40:${year}`;
+      const dataStr = await redis.get(key);
+      if (dataStr) {
+        return JSON.parse(dataStr) as Top40Data;
+      }
+    } catch (redisError) {
+      // Redis not configured or error, fallback to file
+      console.log('Redis not available, using file fallback');
+    }
+    
+    // Fallback to JSON file
+    const fs = await import('fs');
+    const path = await import('path');
     const filePath = path.join(
       process.cwd(),
       'app',
@@ -38,6 +53,7 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileContents) as Top40Data;
   } catch (error) {
+    console.error('Error fetching Top40 data:', error);
     return null;
   }
 }
@@ -61,8 +77,8 @@ export default async function Top40YearPage({
   const { year } = await params;
   const yearNum = parseInt(year, 10);
 
-  // Validate year is between 2020-2025
-  if (isNaN(yearNum) || yearNum < 2020 || yearNum > 2025) {
+  // Validate year is between 2020-2026
+  if (isNaN(yearNum) || yearNum < 2020 || yearNum > 2026) {
     notFound();
   }
 

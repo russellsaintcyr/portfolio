@@ -9,19 +9,19 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 interface Top40EditorProps {
   initialContent: string;
   year: number;
+  onPreview: (content: string) => void;
   onSave: (content: string) => void;
-  onExport: (content: string) => void;
-  onCopy: (content: string) => void;
   onCancel?: () => void;
+  isSaving?: boolean;
 }
 
 export default function Top40Editor({
   initialContent,
   year,
+  onPreview,
   onSave,
-  onExport,
-  onCopy,
   onCancel,
+  isSaving = false,
 }: Top40EditorProps) {
   const [content, setContent] = useState(initialContent);
   const [hasChanges, setHasChanges] = useState(false);
@@ -43,18 +43,16 @@ export default function Top40Editor({
     setHasChanges(true);
   };
 
+  const handlePreview = () => {
+    localStorage.setItem(localStorageKey, content);
+    onPreview(content);
+    setHasChanges(false);
+  };
+
   const handleSave = () => {
     localStorage.setItem(localStorageKey, content);
     onSave(content);
     setHasChanges(false);
-  };
-
-  const handleExport = () => {
-    onExport(content);
-  };
-
-  const handleCopy = () => {
-    onCopy(content);
   };
 
   return (
@@ -69,11 +67,11 @@ export default function Top40Editor({
         </div>
         <div className="flex gap-2">
           <button
-            onClick={handleSave}
-            className="px-4 py-1.5 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+            onClick={handlePreview}
+            className="px-4 py-1.5 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             type="button"
           >
-            Save to Browser
+            Preview
           </button>
           {onCancel && (
             <button
@@ -85,18 +83,34 @@ export default function Top40Editor({
             </button>
           )}
           <button
-            onClick={handleExport}
-            className="px-4 py-1.5 text-sm font-medium bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+            onClick={handleSave}
+            disabled={isSaving}
+            className="px-4 py-1.5 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             type="button"
           >
-            Export JSON
-          </button>
-          <button
-            onClick={handleCopy}
-            className="px-4 py-1.5 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-            type="button"
-          >
-            Copy JSON
+            {isSaving && (
+              <svg
+                className="animate-spin h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            )}
+            {isSaving ? 'Saving...' : 'Save'}
           </button>
         </div>
       </div>
