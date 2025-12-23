@@ -5,53 +5,45 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 
-interface Top40Data {
+interface YearConfig {
   year: number;
-  coverImage?: string;
-  description: string;
-  lyrics?: Array<{ artist: string; song: string; text: string }>;
-  playlists?: {
-    spotify?: { embed?: string };
-    youtube?: { embed?: string };
-  };
+  coverImage: string | null;
+  enabled: boolean;
 }
 
-function getTop40Data(year: number): Top40Data | null {
+interface Top40IndexConfig {
+  years: YearConfig[];
+}
+
+function getIndexConfig(): Top40IndexConfig | null {
   try {
     const filePath = path.join(
       process.cwd(),
       'app',
       'data',
       'top40',
-      `${year}.json`
+      'index.json'
     );
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(fileContents) as Top40Data;
+    return JSON.parse(fileContents) as Top40IndexConfig;
   } catch (error) {
+    console.error('Failed to load index config:', error);
     return null;
   }
 }
 
-function extractImageSrc(htmlString: string): string | null {
-  if (!htmlString) return null;
-  const match = htmlString.match(/src=["']([^"']+)["']/);
-  return match ? match[1] : null;
-}
-
 export default function Top40Index() {
-  const years = Array.from({ length: 6 }, (_, i) => 2025 - i); // 2025 to 2020
-  const enabledYear = 2025;
-
-  // Load data for all years
-  const yearsData = years.map((year) => {
-    const data = getTop40Data(year);
-    const coverImageSrc = data?.coverImage ? extractImageSrc(data.coverImage) : null;
-    return {
-      year,
-      coverImageSrc,
-      isEnabled: year === enabledYear,
-    };
-  });
+  const config = getIndexConfig();
+  
+  // Fallback if config file doesn't exist
+  const yearsData = config?.years || [
+    { year: 2025, coverImage: null, enabled: true },
+    { year: 2024, coverImage: null, enabled: false },
+    { year: 2023, coverImage: null, enabled: false },
+    { year: 2022, coverImage: null, enabled: false },
+    { year: 2021, coverImage: null, enabled: false },
+    { year: 2020, coverImage: null, enabled: false },
+  ];
 
   return (
     <div className="font-display text-gray-800 dark:text-gray-200">
@@ -67,19 +59,19 @@ export default function Top40Index() {
                 Explore my favorite songs from each year.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {yearsData.map(({ year, coverImageSrc, isEnabled }) => {
+                {yearsData.map(({ year, coverImage, enabled }) => {
                   const baseClassName = `block bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden ${
-                    isEnabled
+                    enabled
                       ? 'hover:border-primary dark:hover:border-primary transition-colors'
                       : 'cursor-not-allowed opacity-50'
                   }`;
 
                   const content = (
                     <>
-                      {coverImageSrc ? (
+                      {coverImage ? (
                         <div className="relative w-full aspect-square">
                           <Image
-                            src={coverImageSrc}
+                            src={coverImage}
                             alt={`Top 40 ${year} Cover`}
                             fill
                             className="object-cover"
@@ -101,7 +93,7 @@ export default function Top40Index() {
                     </>
                   );
 
-                  if (isEnabled) {
+                  if (enabled) {
                     return (
                       <Link
                         key={year}

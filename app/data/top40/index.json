@@ -1,0 +1,48 @@
+{
+  "years": [
+    {
+      "year": 2025,
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8466d8e4ed90c88053dc47eaa1",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/32gNZnWdi67mMKmOo60YfV?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/QuvqzlxEO6g?si=X7pgxx-4blWyo1-G\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "coverImage": null,
+      "enabled": false,
+      "playlists": null
+    },
+    {
+      "year": 2023,
+      "coverImage": null,
+      "enabled": false,
+      "playlists": null
+    },
+    {
+      "year": 2022,
+      "coverImage": null,
+      "enabled": false,
+      "playlists": null
+    },
+    {
+      "year": 2021,
+      "coverImage": null,
+      "enabled": false,
+      "playlists": null
+    },
+    {
+      "year": 2020,
+      "coverImage": null,
+      "enabled": false,
+      "playlists": null
+    }
+  ]
+}
+

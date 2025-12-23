@@ -91,12 +91,13 @@ export default function Top40({ data, originalData }: Top40Props) {
     localStorage.setItem(descriptionKey, content);
     setDescription(content);
     
-    // Save to Redis via API
+    // Save to Redis via API (exclude playlists - they come from index.json)
     try {
       const mergedData = {
-        ...originalData,
+        year: originalData.year,
         description: content,
         lyrics: lyrics,
+        // Don't include coverImage or playlists - they come from index.json
       };
       const response = await fetch(`/api/top40/${data.year}`, {
         method: 'PUT',
@@ -129,12 +130,13 @@ export default function Top40({ data, originalData }: Top40Props) {
     localStorage.setItem(lyricsKey, JSON.stringify(updatedLyrics));
     setLyrics(updatedLyrics);
     
-    // Save to Redis via API
+    // Save to Redis via API (exclude playlists - they come from index.json)
     try {
       const mergedData = {
-        ...originalData,
+        year: originalData.year,
         description: description,
         lyrics: updatedLyrics,
+        // Don't include coverImage or playlists - they come from index.json
       };
       const response = await fetch(`/api/top40/${data.year}`, {
         method: 'PUT',

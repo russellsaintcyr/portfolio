@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Top40 from '../../components/Top40';
+import { getYearMetadata } from '@/lib/top40-index';
 
 interface Lyric {
   artist: string;
@@ -26,32 +27,56 @@ interface Top40Data {
 
 async function getTop40Data(year: number): Promise<Top40Data | null> {
   try {
-    // Try Redis first, then fallback to file
+    // Get metadata from index.json (coverImage, playlists)
+    const metadata = getYearMetadata(year);
+    
+    // Try Redis first for content (description, lyrics)
+    let contentData: Partial<Top40Data> | null = null;
     try {
       const { getRedisClient } = await import('@/lib/redis');
       const redis = await getRedisClient();
       const key = `top40:${year}`;
       const dataStr = await redis.get(key);
       if (dataStr) {
-        return JSON.parse(dataStr) as Top40Data;
+        contentData = JSON.parse(dataStr) as Partial<Top40Data>;
       }
     } catch (redisError) {
       // Redis not configured or error, fallback to file
       console.log('Redis not available, using file fallback');
     }
     
-    // Fallback to JSON file
-    const fs = await import('fs');
-    const path = await import('path');
-    const filePath = path.join(
-      process.cwd(),
-      'app',
-      'data',
-      'top40',
-      `${year}.json`
-    );
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(fileContents) as Top40Data;
+    // Fallback to JSON file if Redis doesn't have data
+    if (!contentData) {
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        const filePath = path.join(
+          process.cwd(),
+          'app',
+          'data',
+          'top40',
+          `${year}.json`
+        );
+        const fileContents = fs.readFileSync(filePath, 'utf8');
+        contentData = JSON.parse(fileContents) as Partial<Top40Data>;
+      } catch (fileError) {
+        // No file fallback either
+      }
+    }
+    
+    // Merge metadata (from index.json) with content (from Redis/file)
+    // Metadata takes precedence for coverImage and playlists
+    const mergedData: Top40Data = {
+      year,
+      coverImage: metadata?.coverImage 
+        ? `<img src="${metadata.coverImage}" alt="Top 40 ${year} Cover" />`
+        : contentData?.coverImage,
+      description: contentData?.description || '',
+      lyrics: contentData?.lyrics || [],
+      playlists: metadata?.playlists || contentData?.playlists,
+    };
+    
+    return mergedData;
   } catch (error) {
     console.error('Error fetching Top40 data:', error);
     return null;
