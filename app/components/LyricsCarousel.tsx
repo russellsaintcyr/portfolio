@@ -1,3 +1,11 @@
+'use client';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 interface Lyric {
   artist: string;
   song: string;
@@ -18,32 +26,39 @@ export default function LyricsCarousel({ lyrics }: LyricsCarouselProps) {
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
         Special Lyrics
       </h2>
-      <div className="overflow-x-auto">
-        <div className="flex gap-4 pb-4" style={{ scrollSnapType: 'x mandatory' }}>
-          {lyrics.map((lyric, idx) => (
-            <div
-              key={idx}
-              className="flex-shrink-0 w-80 p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
-              style={{ scrollSnapAlign: 'start' }}
-            >
-              {lyric.song && lyric.artist && (
-                <div className="mb-3">
-                  <div className="font-semibold text-lg text-gray-900 dark:text-white">
-                    {lyric.song}
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {lyric.artist}
-                  </div>
-                </div>
-              )}
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={20}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+        autoplay={{
+          delay: 10000,
+          disableOnInteraction: false,
+        }}
+        className="pb-12"
+      >
+        {lyrics.map((lyric, idx) => (
+          <SwiperSlide key={idx}>
+            <div className="h-full p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col items-center justify-center text-center">
               <div
-                className="text-gray-700 dark:text-gray-300 whitespace-pre-line"
+                className="text-gray-700 dark:text-gray-300 whitespace-pre-line italic mb-4"
                 dangerouslySetInnerHTML={{ __html: lyric.text }}
               />
+              {lyric.artist && (
+                <div className="text-gray-600 dark:text-gray-400">
+                  by {lyric.artist}
+                </div>
+              )}
+              {lyric.song && (
+                <div className="text-gray-600 dark:text-gray-400">
+                  from {lyric.song}
+                </div>
+              )}
             </div>
-          ))}
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 }

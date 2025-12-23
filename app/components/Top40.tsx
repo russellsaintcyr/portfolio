@@ -195,38 +195,33 @@ export default function Top40({ data, originalData }: Top40Props) {
         )}
 
         {data.playlists && (
-          <div className="mt-12 space-y-6">
+          <div className="mt-12">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Playlists
             </h2>
-
-            {data.playlists.spotify?.embed && (
-              <div>
+            {data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '' && (
+              <div className="mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Spotify
                 </h3>
-                <div className="aspect-video">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.playlists.spotify.embed,
-                    }}
-                  />
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.playlists.spotify.embed,
+                  }}
+                />
               </div>
             )}
 
-            {data.playlists.youtube?.embed && (
+            {data.playlists.youtube?.embed && data.playlists.youtube.embed.trim() !== '' && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   YouTube
                 </h3>
-                <div className="aspect-video">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.playlists.youtube.embed,
-                    }}
-                  />
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.playlists.youtube.embed,
+                  }}
+                />
               </div>
             )}
           </div>
