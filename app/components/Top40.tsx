@@ -32,11 +32,16 @@ interface Top40Props {
   originalData: Top40Data;
 }
 
+// Replace &nbsp; entities with regular spaces
+const cleanHtml = (html: string): string => {
+  return html.replace(/&nbsp;/g, ' ');
+};
+
 export default function Top40({ data, originalData }: Top40Props) {
   const [isLocalhost, setIsLocalhost] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingLyrics, setIsEditingLyrics] = useState(false);
-  const [description, setDescription] = useState(data.description);
+  const [description, setDescription] = useState(cleanHtml(data.description));
   const [lyrics, setLyrics] = useState<Lyric[]>(data.lyrics || []);
   const [descriptionKey] = useState(`top40-${data.year}-description`);
   const [lyricsKey] = useState(`top40-${data.year}-lyrics`);
@@ -51,7 +56,7 @@ export default function Top40({ data, originalData }: Top40Props) {
 
       // Always use JSON file data on initial load
       // localStorage is only used as temporary buffer during active editing
-      setDescription(data.description);
+      setDescription(cleanHtml(data.description));
       setLyrics(data.lyrics || []);
 
       // Check if data exists in Redis
@@ -200,7 +205,7 @@ export default function Top40({ data, originalData }: Top40Props) {
           ) : (
             <div
               className="text-gray-900 dark:text-gray-100 [&_*]:max-w-full [&_p]:mb-4 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4 [&_li]:mb-2 [&_strong]:font-bold [&_a]:text-primary [&_a]:underline"
-              dangerouslySetInnerHTML={{ __html: description }}
+              dangerouslySetInnerHTML={{ __html: cleanHtml(description) }}
             />
           )}
         </div>

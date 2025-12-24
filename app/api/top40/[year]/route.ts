@@ -37,12 +37,28 @@ export async function GET(
 
     const key = `top40:${yearNum}`;
 
+    // Replace &nbsp; entities with regular spaces
+    const cleanHtml = (html: string): string => {
+      return html.replace(/&nbsp;/g, ' ');
+    };
+
     // Get from Redis
     try {
       const redis = await getRedisClient();
       const dataStr = await redis.get(key);
       if (dataStr) {
         const data = JSON.parse(dataStr) as Top40Data;
+        // Clean &nbsp; from description
+        if (data.description) {
+          data.description = cleanHtml(data.description);
+        }
+        // Clean &nbsp; from lyrics text
+        if (data.lyrics) {
+          data.lyrics = data.lyrics.map(lyric => ({
+            ...lyric,
+            text: cleanHtml(lyric.text)
+          }));
+        }
         console.log(`✅ GET /api/top40/${yearNum}: Data loaded from Redis`);
         return NextResponse.json(data, {
           headers: {
@@ -94,6 +110,23 @@ export async function PUT(
         { error: 'Year mismatch' },
         { status: 400 }
       );
+    }
+
+    // Replace &nbsp; entities with regular spaces before saving
+    const cleanHtml = (html: string): string => {
+      return html.replace(/&nbsp;/g, ' ');
+    };
+
+    // Clean &nbsp; from description
+    if (data.description) {
+      data.description = cleanHtml(data.description);
+    }
+    // Clean &nbsp; from lyrics text
+    if (data.lyrics) {
+      data.lyrics = data.lyrics.map(lyric => ({
+        ...lyric,
+        text: cleanHtml(lyric.text)
+      }));
     }
 
     const key = `top40:${yearNum}`;

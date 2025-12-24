@@ -27,14 +27,19 @@ export default function Top40Editor({
   const [hasChanges, setHasChanges] = useState(false);
   const localStorageKey = `top40-${year}-description`;
 
+  // Replace &nbsp; entities with regular spaces
+  const cleanHtml = (html: string): string => {
+    return html.replace(/&nbsp;/g, ' ');
+  };
+
   useEffect(() => {
     // Load from localStorage if available (for unsaved edits during editing session)
     // Otherwise use the initial content from JSON file
     const saved = localStorage.getItem(localStorageKey);
     if (saved) {
-      setContent(saved);
+      setContent(cleanHtml(saved));
     } else {
-      setContent(initialContent);
+      setContent(cleanHtml(initialContent));
     }
   }, [localStorageKey, initialContent]);
 
@@ -44,14 +49,16 @@ export default function Top40Editor({
   };
 
   const handlePreview = () => {
-    localStorage.setItem(localStorageKey, content);
-    onPreview(content);
+    const cleanedContent = cleanHtml(content);
+    localStorage.setItem(localStorageKey, cleanedContent);
+    onPreview(cleanedContent);
     setHasChanges(false);
   };
 
   const handleSave = () => {
-    localStorage.setItem(localStorageKey, content);
-    onSave(content);
+    const cleanedContent = cleanHtml(content);
+    localStorage.setItem(localStorageKey, cleanedContent);
+    onSave(cleanedContent);
     setHasChanges(false);
   };
 

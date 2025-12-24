@@ -30,6 +30,11 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
     // Get metadata from index.json (coverImage, playlists)
     const metadata = getYearMetadata(year);
     
+    // Replace &nbsp; entities with regular spaces
+    const cleanHtml = (html: string): string => {
+      return html.replace(/&nbsp;/g, ' ');
+    };
+
     // Get content from Redis (description, lyrics)
     let contentData: Partial<Top40Data> | null = null;
     try {
@@ -39,6 +44,17 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
       const dataStr = await redis.get(key);
       if (dataStr) {
         contentData = JSON.parse(dataStr) as Partial<Top40Data>;
+        // Clean &nbsp; from description
+        if (contentData.description) {
+          contentData.description = cleanHtml(contentData.description);
+        }
+        // Clean &nbsp; from lyrics text
+        if (contentData.lyrics) {
+          contentData.lyrics = contentData.lyrics.map(lyric => ({
+            ...lyric,
+            text: cleanHtml(lyric.text)
+          }));
+        }
       }
     } catch (redisError) {
       console.error('Redis read error:', redisError);
