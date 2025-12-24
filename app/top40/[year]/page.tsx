@@ -115,6 +115,18 @@ export async function generateMetadata({
 
 function validateEditToken(token: string | null): boolean {
   const validToken = process.env.EDIT_TOKEN;
+  
+  // Debug logging (remove in production if needed)
+  if (token) {
+    console.log('Server-side token validation:', {
+      hasToken: !!token,
+      hasValidToken: !!validToken,
+      tokenLength: token.length,
+      validTokenLength: validToken?.length,
+      tokensMatch: token === validToken,
+    });
+  }
+  
   if (!validToken || !token) {
     return false;
   }

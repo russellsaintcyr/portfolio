@@ -56,7 +56,13 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Check for token in URL query string
+      // If server already validated the token, trust it
+      if (serverCanEdit) {
+        setCanEdit(true);
+        return;
+      }
+      
+      // Otherwise, check for token in URL query string and validate client-side
       const searchParams = new URLSearchParams(window.location.search);
       const token = searchParams.get('token');
       
@@ -71,7 +77,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
             setCanEdit(false);
           });
       } else {
-        // Fallback to server-side canEdit value
+        // No token, use server-side canEdit value
         setCanEdit(serverCanEdit);
       }
 

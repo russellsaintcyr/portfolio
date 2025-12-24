@@ -9,7 +9,17 @@ export async function GET(request: NextRequest) {
 
   const validToken = process.env.EDIT_TOKEN;
 
+  // Debug logging (remove in production if needed)
+  console.log('Token validation check:', {
+    hasToken: !!token,
+    hasValidToken: !!validToken,
+    tokenLength: token?.length,
+    validTokenLength: validToken?.length,
+    tokensMatch: token === validToken,
+  });
+
   if (!validToken) {
+    console.error('EDIT_TOKEN environment variable is not set');
     return NextResponse.json(
       { valid: false, error: 'Edit token not configured' },
       { status: 500 }
