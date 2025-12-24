@@ -43,5 +43,27 @@ export function getYearMetadata(year: number): YearConfig | null {
   return config.years.find((y) => y.year === year) || null;
 }
 
+export function getAdjacentYears(currentYear: number): { prev: number | null; next: number | null } {
+  const config = getIndexConfig();
+  if (!config) return { prev: null, next: null };
+  
+  // Get all enabled years, sorted
+  const enabledYears = config.years
+    .filter((y) => y.enabled)
+    .map((y) => y.year)
+    .sort((a, b) => a - b);
+  
+  const currentIndex = enabledYears.indexOf(currentYear);
+  
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+  
+  return {
+    prev: currentIndex > 0 ? enabledYears[currentIndex - 1] : null,
+    next: currentIndex < enabledYears.length - 1 ? enabledYears[currentIndex + 1] : null,
+  };
+}
+
 
 

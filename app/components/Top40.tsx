@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
@@ -31,6 +32,9 @@ interface Top40Props {
   data: Top40Data;
   originalData: Top40Data;
   canEdit?: boolean;
+  prevYear?: number | null;
+  nextYear?: number | null;
+  tokenParam?: string;
 }
 
 // Replace &nbsp; entities with regular spaces
@@ -38,7 +42,7 @@ const cleanHtml = (html: string): string => {
   return html.replace(/&nbsp;/g, ' ');
 };
 
-export default function Top40({ data, originalData, canEdit: serverCanEdit = false }: Top40Props) {
+export default function Top40({ data, originalData, canEdit: serverCanEdit = false, prevYear = null, nextYear = null, tokenParam = '' }: Top40Props) {
   const [canEdit, setCanEdit] = useState(serverCanEdit);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingLyrics, setIsEditingLyrics] = useState(false);
@@ -307,6 +311,34 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   }}
                 />
               </div>
+            )}
+          </div>
+        )}
+
+        {/* Year Navigation */}
+        {(prevYear || nextYear) && (
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
+            {prevYear ? (
+              <Link
+                href={`/top40/${prevYear}${tokenParam}`}
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+              >
+                <span className="text-xl">←</span>
+                <span className="font-medium">{prevYear}</span>
+              </Link>
+            ) : (
+              <div></div>
+            )}
+            {nextYear ? (
+              <Link
+                href={`/top40/${nextYear}${tokenParam}`}
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+              >
+                <span className="font-medium">{nextYear}</span>
+                <span className="text-xl">→</span>
+              </Link>
+            ) : (
+              <div></div>
             )}
           </div>
         )}

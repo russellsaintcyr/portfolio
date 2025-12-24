@@ -4,6 +4,7 @@ import path from 'path';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
 interface YearConfig {
   year: number;
@@ -14,6 +15,11 @@ interface YearConfig {
 interface Top40IndexConfig {
   years: YearConfig[];
 }
+
+export const metadata: Metadata = {
+  title: 'Top 40 - Russell Saint Cyr',
+  description: 'Explore my favorite songs from each year.',
+};
 
 function getIndexConfig(): Top40IndexConfig | null {
   try {
@@ -34,16 +40,7 @@ function getIndexConfig(): Top40IndexConfig | null {
 
 export default function Top40Index() {
   const config = getIndexConfig();
-  
-  // Fallback if config file doesn't exist
-  const yearsData = config?.years || [
-    { year: 2025, coverImage: null, enabled: true },
-    { year: 2024, coverImage: null, enabled: false },
-    { year: 2023, coverImage: null, enabled: false },
-    { year: 2022, coverImage: null, enabled: false },
-    { year: 2021, coverImage: null, enabled: false },
-    { year: 2020, coverImage: null, enabled: false },
-  ];
+  const yearsData = config?.years || [];
 
   return (
     <div className="font-display text-gray-800 dark:text-gray-200">

@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Top40 from '../../components/Top40';
-import { getYearMetadata } from '@/lib/top40-index';
+import { getYearMetadata, getAdjacentYears } from '@/lib/top40-index';
+import type { Metadata } from 'next';
 
 interface Lyric {
   artist: string;
@@ -98,6 +99,20 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ year: string }>;
+}): Promise<Metadata> {
+  const { year } = await params;
+  const yearNum = parseInt(year, 10);
+  
+  return {
+    title: `Top 40 of ${yearNum} - Russell Saint Cyr`,
+    description: `My favorite songs from ${yearNum}.`,
+  };
+}
+
 function validateEditToken(token: string | null): boolean {
   const validToken = process.env.EDIT_TOKEN;
   if (!validToken || !token) {
@@ -134,12 +149,22 @@ export default async function Top40YearPage({
     notFound();
   }
 
+  const { prev, next } = getAdjacentYears(yearNum);
+  const tokenParam = token ? `?token=${encodeURIComponent(token)}` : '';
+
   return (
     <div className="font-display text-gray-800 dark:text-gray-200">
       <div className="relative w-full">
         <Header />
         <main className="min-h-screen">
-          <Top40 data={data} originalData={data} canEdit={canEdit} />
+          <Top40 
+            data={data} 
+            originalData={data} 
+            canEdit={canEdit}
+            prevYear={prev}
+            nextYear={next}
+            tokenParam={tokenParam}
+          />
         </main>
         <Footer />
       </div>
