@@ -43,3 +43,5 @@ export function getYearMetadata(year: number): YearConfig | null {
   return config.years.find((y) => y.year === year) || null;
 }
 
+
+

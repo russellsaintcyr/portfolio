@@ -30,6 +30,7 @@ interface Top40Data {
 interface Top40Props {
   data: Top40Data;
   originalData: Top40Data;
+  canEdit?: boolean;
 }
 
 // Replace &nbsp; entities with regular spaces
@@ -37,8 +38,8 @@ const cleanHtml = (html: string): string => {
   return html.replace(/&nbsp;/g, ' ');
 };
 
-export default function Top40({ data, originalData }: Top40Props) {
-  const [isLocalhost, setIsLocalhost] = useState(false);
+export default function Top40({ data, originalData, canEdit: serverCanEdit = false }: Top40Props) {
+  const [canEdit, setCanEdit] = useState(serverCanEdit);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingLyrics, setIsEditingLyrics] = useState(false);
   const [description, setDescription] = useState(cleanHtml(data.description));
@@ -51,8 +52,24 @@ export default function Top40({ data, originalData }: Top40Props) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const hostname = window.location.hostname;
-      setIsLocalhost(hostname === 'localhost' || hostname === '127.0.0.1');
+      // Check for token in URL query string
+      const searchParams = new URLSearchParams(window.location.search);
+      const token = searchParams.get('token');
+      
+      if (token) {
+        // Validate token with API
+        fetch(`/api/auth/edit-token?token=${encodeURIComponent(token)}`)
+          .then((response) => response.json())
+          .then((result) => {
+            setCanEdit(result.valid === true);
+          })
+          .catch(() => {
+            setCanEdit(false);
+          });
+      } else {
+        // Fallback to server-side canEdit value
+        setCanEdit(serverCanEdit);
+      }
 
       // Always use JSON file data on initial load
       // localStorage is only used as temporary buffer during active editing
@@ -83,7 +100,7 @@ export default function Top40({ data, originalData }: Top40Props) {
           console.log(`⚠️ Top40 ${data.year} Redis check failed:`, error);
         });
     }
-  }, [data.description, data.lyrics, data.year]);
+  }, [data.description, data.lyrics, data.year, serverCanEdit]);
 
   const handleDescriptionPreview = (content: string) => {
     localStorage.setItem(descriptionKey, content);
@@ -104,7 +121,14 @@ export default function Top40({ data, originalData }: Top40Props) {
         lyrics: lyrics,
         // Don't include coverImage or playlists - they come from index.json
       };
-      const response = await fetch(`/api/top40/${data.year}`, {
+      // Get token from URL
+      const searchParams = new URLSearchParams(window.location.search);
+      const token = searchParams.get('token');
+      const url = token 
+        ? `/api/top40/${data.year}?token=${encodeURIComponent(token)}`
+        : `/api/top40/${data.year}`;
+      
+      const response = await fetch(url, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mergedData),
@@ -143,7 +167,14 @@ export default function Top40({ data, originalData }: Top40Props) {
         lyrics: updatedLyrics,
         // Don't include coverImage or playlists - they come from index.json
       };
-      const response = await fetch(`/api/top40/${data.year}`, {
+      // Get token from URL
+      const searchParams = new URLSearchParams(window.location.search);
+      const token = searchParams.get('token');
+      const url = token 
+        ? `/api/top40/${data.year}?token=${encodeURIComponent(token)}`
+        : `/api/top40/${data.year}`;
+      
+      const response = await fetch(url, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mergedData),
@@ -185,7 +216,7 @@ export default function Top40({ data, originalData }: Top40Props) {
         )}
 
         <div className="mb-8">
-          {isLocalhost && !isEditingDescription && (
+          {canEdit && !isEditingDescription && (
             <button
               onClick={() => setIsEditingDescription(true)}
               className="mb-4 px-4 py-2 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
@@ -194,7 +225,7 @@ export default function Top40({ data, originalData }: Top40Props) {
             </button>
           )}
 
-          {isLocalhost && isEditingDescription ? (
+          {canEdit && isEditingDescription ? (
             <Top40Editor
               initialContent={description}
               year={data.year}
@@ -210,7 +241,7 @@ export default function Top40({ data, originalData }: Top40Props) {
           )}
         </div>
 
-        {isLocalhost && (
+        {canEdit && (
           <div className="mb-8">
             {!isEditingLyrics && (
               <button

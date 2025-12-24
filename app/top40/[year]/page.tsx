@@ -30,6 +30,11 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
     // Get metadata from index.json (coverImage, playlists)
     const metadata = getYearMetadata(year);
     
+    // If year is not in index.json or not enabled, return null (404)
+    if (!metadata || !metadata.enabled) {
+      return null;
+    }
+    
     // Replace &nbsp; entities with regular spaces
     const cleanHtml = (html: string): string => {
       return html.replace(/&nbsp;/g, ' ');
@@ -58,24 +63,20 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
       }
     } catch (redisError) {
       console.error('Redis read error:', redisError);
-      // If Redis fails, return null - no fallback
-      return null;
-    }
-    
-    // If no data in Redis, return null
-    if (!contentData) {
-      return null;
+      // If Redis fails, we'll still allow the page to render with empty content
+      // as long as the year is enabled in index.json
     }
     
     // Merge metadata (from index.json) with content (from Redis)
     // Metadata takes precedence for coverImage and playlists
+    // If no Redis data exists, use empty defaults
     const mergedData: Top40Data = {
       year,
       coverImage: metadata?.coverImage 
         ? `<img src="${metadata.coverImage}" alt="Top 40 ${year} Cover" />`
         : undefined,
-      description: contentData.description || '',
-      lyrics: contentData.lyrics || [],
+      description: contentData?.description || '',
+      lyrics: contentData?.lyrics || [],
       playlists: metadata?.playlists || undefined,
     };
     
@@ -97,12 +98,29 @@ export async function generateStaticParams() {
   }));
 }
 
+function validateEditToken(token: string | null): boolean {
+  const validToken = process.env.EDIT_TOKEN;
+  if (!validToken || !token) {
+    return false;
+  }
+  // Constant-time comparison to prevent timing attacks
+  return token === validToken;
+}
+
 export default async function Top40YearPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ year: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { year } = await params;
+  const resolvedSearchParams = await searchParams;
+  const token = Array.isArray(resolvedSearchParams.token)
+    ? resolvedSearchParams.token[0]
+    : resolvedSearchParams.token || null;
+  
+  const canEdit = validateEditToken(token);
   const yearNum = parseInt(year, 10);
 
   // Validate year is between 2020-2026
@@ -121,7 +139,7 @@ export default async function Top40YearPage({
       <div className="relative w-full">
         <Header />
         <main className="min-h-screen">
-          <Top40 data={data} originalData={data} />
+          <Top40 data={data} originalData={data} canEdit={canEdit} />
         </main>
         <Footer />
       </div>

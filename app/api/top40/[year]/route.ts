@@ -88,6 +88,15 @@ export async function GET(
   }
 }
 
+function validateEditToken(token: string | null): boolean {
+  const validToken = process.env.EDIT_TOKEN;
+  if (!validToken || !token) {
+    return false;
+  }
+  // Constant-time comparison to prevent timing attacks
+  return token === validToken;
+}
+
 // PUT - Save data to KV
 export async function PUT(
   request: NextRequest,
@@ -99,6 +108,17 @@ export async function PUT(
 
     if (isNaN(yearNum) || yearNum < 2020 || yearNum > 2026) {
       return NextResponse.json({ error: 'Invalid year' }, { status: 400 });
+    }
+
+    // Validate edit token
+    const searchParams = request.nextUrl.searchParams;
+    const token = searchParams.get('token') || request.headers.get('x-edit-token');
+    
+    if (!validateEditToken(token)) {
+      return NextResponse.json(
+        { error: 'Unauthorized: Invalid or missing edit token' },
+        { status: 401 }
+      );
     }
 
     const body = await request.json();

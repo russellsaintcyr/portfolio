@@ -15,33 +15,33 @@
     },
     {
       "year": 2024,
-      "coverImage": null,
-      "enabled": false,
-      "playlists": null
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da843d9bc4370e31c1a8822f5352",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/0pqyzLEpqtt1AzHB0RGdvQ?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
     },
     {
       "year": 2023,
-      "coverImage": null,
-      "enabled": false,
-      "playlists": null
+      "coverImage": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84b8e462ab818aa4a5cac39e5a",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/7xQIQYZZJ6Eu4SFbO0x64A?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
     },
     {
       "year": 2022,
-      "coverImage": null,
-      "enabled": false,
-      "playlists": null
-    },
-    {
-      "year": 2021,
-      "coverImage": null,
-      "enabled": false,
-      "playlists": null
-    },
-    {
-      "year": 2020,
-      "coverImage": null,
-      "enabled": false,
-      "playlists": null
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e0234bcf8eb3912d9f2312d6232ab67616d00001e027b107c478f006855e81af6b9ab67616d00001e028d364fc5e020e35bd1e4a57bab67616d00001e0290e72fba2f3f0f9889091c15",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6aOFbZYZTUO1qzsp5JS9v4?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
     }
   ]
 }
