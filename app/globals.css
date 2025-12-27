@@ -43,3 +43,49 @@ body {
     'GRAD' 0,
     'opsz' 24;
 }
+
+/* Lyrics Carousel - Position pagination inside container */
+.lyrics-carousel {
+  padding-bottom: 3rem;
+}
+
+.lyrics-carousel .swiper-pagination {
+  bottom: 0.75rem !important;
+  position: absolute;
+}
+
+.lyrics-carousel .swiper-pagination-bullet {
+  background-color: rgb(59 130 246);
+}
+
+.lyrics-carousel .swiper-pagination-bullet-active {
+  background-color: rgb(59 130 246);
+}
+
+/* Mobile: Smaller arrows positioned near pagination */
+@media (max-width: 768px) {
+  .lyrics-carousel .swiper-button-next,
+  .lyrics-carousel .swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+    bottom: 0.5rem !important;
+    top: auto !important;
+    margin-top: 0 !important;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+  
+  .lyrics-carousel .swiper-button-next::after,
+  .lyrics-carousel .swiper-button-prev::after {
+    font-size: 16px !important;
+  }
+  
+  .lyrics-carousel .swiper-button-prev {
+    left: 1rem !important;
+  }
+  
+  .lyrics-carousel .swiper-button-next {
+    right: 1rem !important;
+  }
+}
