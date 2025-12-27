@@ -118,3 +118,11 @@ body {
     right: 1rem !important;
   }
 }
+
+/* Center cover images in Top40 */
+.top40-cover-image img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}

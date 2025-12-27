@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { FaSpotify, FaYoutube } from 'react-icons/fa';
+import { SiYoutubemusic } from 'react-icons/si';
 import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
@@ -24,6 +26,13 @@ interface Top40Data {
     };
     youtube?: {
       embed?: string;
+      url?: string;
+    };
+    youtubeMusic?: {
+      embed?: string;
+    };
+    youtubeVideo?: {
+      url?: string;
     };
   };
 }
@@ -71,6 +80,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
   const [isSavingDescription, setIsSavingDescription] = useState(false);
   const [isSavingLyrics, setIsSavingLyrics] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [selectedPlaylist, setSelectedPlaylist] = useState<'spotify' | 'youtubeMusic' | 'youtubeVideo' | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -129,6 +139,29 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
         });
     }
   }, [data.description, data.lyrics, data.year, serverCanEdit]);
+
+  // Auto-select Spotify by default if available
+  useEffect(() => {
+    if (data.playlists && selectedPlaylist === null) {
+      const hasSpotify = data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '';
+      
+      // Always select Spotify by default if available
+      if (hasSpotify) {
+        setSelectedPlaylist('spotify');
+      }
+    }
+  }, [data.playlists, selectedPlaylist]);
+
+  // Helper function to check if YouTube Video has a URL
+  const hasYouTubeVideo = () => {
+    return (data.playlists?.youtubeVideo?.url && data.playlists.youtubeVideo.url.trim() !== '') ||
+           (data.playlists?.youtube?.url && data.playlists.youtube.url.trim() !== '');
+  };
+
+  // Helper function to get YouTube Video URL
+  const getYouTubeVideoUrl = () => {
+    return data.playlists?.youtubeVideo?.url || data.playlists?.youtube?.url || '';
+  };
 
   const handleDescriptionPreview = (content: string) => {
     localStorage.setItem(descriptionKey, content);
@@ -234,12 +267,12 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
       )}
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-          My Top 40 of {data.year}
+          My Top Songs of {data.year}
         </h1>
 
         {data.coverImage && (
-          <div className="mb-8 rounded-lg overflow-hidden flex justify-center">
-            <div dangerouslySetInnerHTML={{ __html: data.coverImage }} />
+          <div className="mb-8 rounded-lg overflow-hidden flex justify-center items-center">
+            <div className="max-w-[500px] w-full top40-cover-image" dangerouslySetInnerHTML={{ __html: data.coverImage }} />
           </div>
         )}
 
@@ -318,14 +351,52 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
 
         {data.playlists && (
           <div className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
               Playlists
             </h2>
-            {data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '' && (
+            <div className="flex justify-center gap-6 mb-6">
+              {data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '' && (
+                <button
+                  onClick={() => setSelectedPlaylist(selectedPlaylist === 'spotify' ? null : 'spotify')}
+                  className={`p-3 rounded-full transition-all ${
+                    selectedPlaylist === 'spotify'
+                      ? 'bg-green-500 text-white scale-110'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                  aria-label="Spotify"
+                >
+                  <FaSpotify size={32} />
+                </button>
+              )}
+              {data.playlists.youtubeMusic?.embed && data.playlists.youtubeMusic.embed.trim() !== '' && (
+                <button
+                  onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeMusic' ? null : 'youtubeMusic')}
+                  className={`p-3 rounded-full transition-all ${
+                    selectedPlaylist === 'youtubeMusic'
+                      ? 'bg-red-500 text-white scale-110'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                  aria-label="YouTube Music"
+                >
+                  <SiYoutubemusic size={32} />
+                </button>
+              )}
+              {hasYouTubeVideo() && (
+                <button
+                  onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeVideo' ? null : 'youtubeVideo')}
+                  className={`p-3 rounded-full transition-all ${
+                    selectedPlaylist === 'youtubeVideo'
+                      ? 'bg-red-500 text-white scale-110'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                  aria-label="YouTube Video"
+                >
+                  <FaYoutube size={32} />
+                </button>
+              )}
+            </div>
+            {selectedPlaylist === 'spotify' && data.playlists.spotify?.embed && (
               <div className="mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Spotify
-                </h3>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: data.playlists.spotify.embed,
@@ -333,17 +404,29 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                 />
               </div>
             )}
-
-            {data.playlists.youtube?.embed && data.playlists.youtube.embed.trim() !== '' && (
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  YouTube
-                </h3>
+            {selectedPlaylist === 'youtubeMusic' && data.playlists.youtubeMusic?.embed && (
+              <div className="mb-4">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: data.playlists.youtube.embed,
+                    __html: data.playlists.youtubeMusic.embed,
                   }}
                 />
+              </div>
+            )}
+            {selectedPlaylist === 'youtubeVideo' && hasYouTubeVideo() && (
+              <div className="mb-4 text-center">
+                <a
+                  href={getYouTubeVideoUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  <FaYoutube size={20} />
+                  <span>Open YouTube Playlist</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
               </div>
             )}
           </div>
@@ -355,7 +438,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
             {prevYear ? (
               <Link
                 href={`/top40/${prevYear}${tokenParam}`}
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
               >
                 <span className="text-xl">←</span>
                 <span className="font-medium">{prevYear}</span>
@@ -363,10 +446,16 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
             ) : (
               <div></div>
             )}
+            <Link
+              href="/top40"
+              className="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+            >
+              <span className="font-medium">All Top 40</span>
+            </Link>
             {nextYear ? (
               <Link
                 href={`/top40/${nextYear}${tokenParam}`}
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
               >
                 <span className="font-medium">{nextYear}</span>
                 <span className="text-xl">→</span>

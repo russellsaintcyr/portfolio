@@ -22,6 +22,16 @@ interface Top40Data {
     };
     youtube?: {
       embed?: string;
+      url?: string;
+    };
+    youtubeMusic?: {
+      embed?: string;
+    };
+    youtubeVideo?: {
+      url?: string;
+    };
+    youtubeVideo?: {
+      embed?: string;
     };
   };
 }
@@ -108,7 +118,7 @@ export async function generateMetadata({
   const yearNum = parseInt(year, 10);
   
   return {
-    title: `My Top 40 of ${yearNum} - Russell Saint Cyr`,
+    title: `My Top Songs of ${yearNum} - Russell Saint Cyr`,
     description: `My favorite songs from ${yearNum}.`,
   };
 }

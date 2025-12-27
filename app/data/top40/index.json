@@ -9,7 +9,7 @@
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/32gNZnWdi67mMKmOo60YfV?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
         },
         "youtube": {
-          "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/QuvqzlxEO6g?si=X7pgxx-4blWyo1-G\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+          "url": "https://www.youtube.com/watch?v=s7vH2qySsLQ&list=PLAOpNCH56R9l78l7heBAgTBcHeVk2iQ5c"
         }
       }
     },
@@ -20,6 +20,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/0pqyzLEpqtt1AzHB0RGdvQ?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=yEBO_xKfwN4&list=PLAOpNCH56R9lUw-2pXtiRhQPZQJcGwNot"
         }
       }
     },
@@ -30,6 +33,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/7xQIQYZZJ6Eu4SFbO0x64A?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=egwhbv2eKWs&list=PLAOpNCH56R9n2nTxDsN7mCVpH9_drfxGn"
         }
       }
     },
@@ -40,6 +46,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6aOFbZYZTUO1qzsp5JS9v4?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=LAQPoyoIlZk&list=PLAOpNCH56R9k8sGQykGpe-VXkDGWwe4QC"
         }
       }
     },
@@ -50,6 +59,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2o3Wbf3FYAyrApvzMfmz4d?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=2Ez9LcaTMeU&list=PLAOpNCH56R9m_sZb4o8rDaVQwAMqLdeUL"
         }
       }
     },
@@ -60,6 +72,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/0HIkuOQI4B0IIvj9fi65WP?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=fIWOq8CPLk8&list=PLAOpNCH56R9lUJPzALBNmpIf-hxMrQwYM"
         }
       }
     },
@@ -70,6 +85,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/7FCJyM9RVxYYRYOlSffNrF?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=ZD6rXLXZOEI&list=PLAOpNCH56R9mlme33CLjz-50OhxqiainG"
         }
       }
     },
@@ -80,6 +98,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/51wSFAsnu0LS7Z53Gy9L03?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=4hojZxybVkM&list=PLAOpNCH56R9kprOGWIAgt_VBLZvBqiO1M"
         }
       }
     },
@@ -90,6 +111,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2QNzk2n6iahh5kit6fQ2NM?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=OyPtGLWzDww&list=PLAOpNCH56R9lzT8MteIsykG8Vw4cRxXTn"
         }
       }
     },
@@ -99,6 +123,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2nee9R2EYwhYEBInCaV0qL?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=VamPNRm_AZI&list=PLAOpNCH56R9lJAvJGVnGAJwzrHFncgDKJ"
         }
       }
     },
@@ -109,6 +136,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6NIFYeNlTFPbL4HMDDOhvc?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=LkOdDUwtso0&list=PLAOpNCH56R9mdXjfz4AV--DrJfG5stvhc"
         }
       }
     },
@@ -119,6 +149,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6lXdPDWvlq8uKOoYfOXG7q?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=5H4366ApcrE&list=PLAOpNCH56R9mm0mt2zDz7P6TsInAQx09t"
         }
       }
     },
@@ -129,6 +162,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2aIV326Fpta20HKB7QG3P5?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=YL4AakRygU8&list=PLAOpNCH56R9kawuc2oNZxIE1jChisciQE"
         }
       }
     },
@@ -139,6 +175,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/0ZL8zgdFUwhZVzhTGaLCe2?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=u0fk6syQ7iY&list=PLAOpNCH56R9nDjPnL0YfXF5HL33UR1HV7"
         }
       }
     },
@@ -149,6 +188,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/1tyWBxoSdNREWZGeKuUe3y?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=2j5w0g0yJE4&list=PLAOpNCH56R9ng_4lvhoVZEyLafqfVkuxr"
         }
       }
     },
@@ -159,6 +201,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/7srrVpTBXK2FYUylCDxqGG?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=Olb6bMN2flE&list=PLAOpNCH56R9ne7NOc0hqfaMQP460yQoJd"
         }
       }
     },
@@ -169,6 +214,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/1rbt7sLjbBfDRyX5mEQoCu?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=oI53ICII2nY&list=PLAOpNCH56R9kbzTWZu_8gdRrDOZdOfB2l"
         }
       }
     },
@@ -179,6 +227,9 @@
       "playlists": {
         "spotify": {
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/4COFWht2eaTHXblyaPGfFl?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        },
+        "youtube": {
+          "url": "https://www.youtube.com/watch?v=kM9oCELqaSY&list=PLAOpNCH56R9ms9fUdn41w4FM5zAgo621o"
         }
       }
     }

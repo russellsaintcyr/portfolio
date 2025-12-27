@@ -53,7 +53,7 @@ export default function Top40Index() {
                 Top 40
               </h1>
               <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
-                Explore my favorite songs from each year.
+                Explore my favorite songs from the past two decades.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {yearsData.map(({ year, coverImage, enabled }) => {
