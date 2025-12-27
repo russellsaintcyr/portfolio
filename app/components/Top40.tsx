@@ -271,7 +271,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
         </h1>
 
         {data.coverImage && (
-          <div className="mb-8 rounded-lg overflow-hidden flex justify-center items-center">
+          <div className="mb-8 flex justify-center items-center px-4 py-4">
             <div className="max-w-[500px] w-full top40-cover-image" dangerouslySetInnerHTML={{ __html: data.coverImage }} />
           </div>
         )}
