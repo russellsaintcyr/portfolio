@@ -1,16 +1,49 @@
 {
   "yearOfRelease": [
-    { "year": 2025, "count": 20 },
-    { "year": 2024, "count": 10 },
-    { "year": 2023, "count": 5 },
-    { "year": 1982, "count": 2 },
-    { "year": 2022, "count": 1 },
-    { "year": 2020, "count": 1 },
-    { "year": 2017, "count": 1 },
-    { "year": 2013, "count": 1 },
-    { "year": 2003, "count": 1 },
-    { "year": 1998, "count": 1 },
-    { "year": 1980, "count": 1 }
+    {
+      "year": 2025,
+      "count": 19
+    },
+    {
+      "year": 2024,
+      "count": 10
+    },
+    {
+      "year": 2023,
+      "count": 2
+    },
+    {
+      "year": 1982,
+      "count": 2
+    },
+    {
+      "year": 2022,
+      "count": 1
+    },
+    {
+      "year": 2020,
+      "count": 1
+    },
+    {
+      "year": 2017,
+      "count": 1
+    },
+    {
+      "year": 2013,
+      "count": 1
+    },
+    {
+      "year": 2003,
+      "count": 1
+    },
+    {
+      "year": 1989,
+      "count": 1
+    },
+    {
+      "year": 1980,
+      "count": 1
+    }
   ],
   "artistsByCountry": [
     {
@@ -61,8 +94,7 @@
         "Men Without Hats",
         "Reuben and the Bullhorn Singers",
         "Toronto",
-        "bbno$",
-        "Unknown"
+        "bbno$"
       ]
     },
     {
@@ -103,7 +135,7 @@
       "count": 1,
       "flag": "https://flagcdn.com/w40/is.png",
       "artists": [
-        "Olafur Arnalds"
+        "Ólafur Arnalds"
       ]
     },
     {
@@ -123,7 +155,969 @@
       ]
     }
   ],
-  "artistsByRegion": [],
-  "artistsByGenre": []
+  "artistsByRegion": [
+    {
+      "region": "Americas",
+      "count": 20,
+      "artists": [
+        "Altered by Mom",
+        "Bad Bunny",
+        "Beyries",
+        "Bodeans",
+        "Chalk Circle",
+        "HAIM",
+        "Julianna Barwick",
+        "Kesha",
+        "Loud",
+        "Men Without Hats",
+        "Ministry",
+        "My Morning Jacket",
+        "Nathaniel Rateliff & The Night Sweats",
+        "Reuben and the Bullhorn Singers",
+        "Sofi Tukker",
+        "The Bad Plus",
+        "The Black Keys",
+        "Toronto",
+        "bbno$"
+      ]
+    },
+    {
+      "region": "Europe",
+      "count": 16,
+      "artists": [
+        "Above & Beyond",
+        "Blood Orange",
+        "Caravan Palace",
+        "Electric Callboy",
+        "Fatboy Slim",
+        "Geordie Greep",
+        "Jamie xx",
+        "Lola Young",
+        "Peter Godwin",
+        "Puma Blue",
+        "The Cure",
+        "The Wildhearts",
+        "Tom Odell",
+        "Wet Leg",
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "region": "Asia",
+      "count": 3,
+      "artists": [
+        "CHANMINA",
+        "ROSÉ",
+        "Saja Boys"
+      ]
+    },
+    {
+      "region": "Oceania",
+      "count": 1,
+      "artists": [
+        "Girl and Girl"
+      ]
+    }
+  ],
+  "artistsByGenre": [
+    {
+      "genre": "alternative rock",
+      "count": 7,
+      "artists": [
+        "Altered by Mom",
+        "Bodeans",
+        "Chalk Circle",
+        "HAIM",
+        "My Morning Jacket",
+        "The Black Keys",
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "electronic",
+      "count": 7,
+      "artists": [
+        "Above & Beyond",
+        "Electric Callboy",
+        "Fatboy Slim",
+        "Jamie xx",
+        "Kesha",
+        "Men Without Hats",
+        "Sofi Tukker"
+      ]
+    },
+    {
+      "genre": "indie pop",
+      "count": 6,
+      "artists": [
+        "Altered by Mom",
+        "Blood Orange",
+        "HAIM",
+        "Kesha",
+        "Tom Odell",
+        "Wet Leg"
+      ]
+    },
+    {
+      "genre": "indie rock",
+      "count": 5,
+      "artists": [
+        "Altered by Mom",
+        "HAIM",
+        "My Morning Jacket",
+        "The Black Keys",
+        "Wet Leg"
+      ]
+    },
+    {
+      "genre": "pop",
+      "count": 5,
+      "artists": [
+        "HAIM",
+        "Lola Young",
+        "Men Without Hats",
+        "Puma Blue",
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "hip hop",
+      "count": 4,
+      "artists": [
+        "Bad Bunny",
+        "Loud",
+        "bbno$"
+      ]
+    },
+    {
+      "genre": "rock",
+      "count": 4,
+      "artists": [
+        "HAIM",
+        "The Black Keys",
+        "The Cure",
+        "The Wildhearts"
+      ]
+    },
+    {
+      "genre": "new wave",
+      "count": 3,
+      "artists": [
+        "Men Without Hats",
+        "Ministry",
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "pop rap",
+      "count": 3,
+      "artists": [
+        "Jamie xx",
+        "bbno$"
+      ]
+    },
+    {
+      "genre": "synthpop",
+      "count": 3,
+      "artists": [
+        "Men Without Hats",
+        "Ministry",
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "2020s",
+      "count": 2,
+      "artists": [
+        "Lola Young",
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "ambient",
+      "count": 2,
+      "artists": [
+        "Julianna Barwick",
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "british",
+      "count": 2,
+      "artists": [
+        "Fatboy Slim",
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "cloud rap",
+      "count": 2,
+      "artists": [
+        "bbno$"
+      ]
+    },
+    {
+      "genre": "dance-pop",
+      "count": 2,
+      "artists": [
+        "Kesha",
+        "Sofi Tukker"
+      ]
+    },
+    {
+      "genre": "electro house",
+      "count": 2,
+      "artists": [
+        "Caravan Palace"
+      ]
+    },
+    {
+      "genre": "electro swing",
+      "count": 2,
+      "artists": [
+        "Caravan Palace"
+      ]
+    },
+    {
+      "genre": "experimental",
+      "count": 2,
+      "artists": [
+        "Electric Callboy",
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "fidget house",
+      "count": 2,
+      "artists": [
+        "Caravan Palace"
+      ]
+    },
+    {
+      "genre": "france",
+      "count": 2,
+      "artists": [
+        "Caravan Palace"
+      ]
+    },
+    {
+      "genre": "french",
+      "count": 2,
+      "artists": [
+        "Caravan Palace"
+      ]
+    },
+    {
+      "genre": "gen z",
+      "count": 2,
+      "artists": [
+        "Lola Young",
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "hard rock",
+      "count": 2,
+      "artists": [
+        "The Wildhearts",
+        "Toronto"
+      ]
+    },
+    {
+      "genre": "hyphy",
+      "count": 2,
+      "artists": [
+        "bbno$"
+      ]
+    },
+    {
+      "genre": "pop rock",
+      "count": 2,
+      "artists": [
+        "Kesha",
+        "Lola Young"
+      ]
+    },
+    {
+      "genre": "post-hardcore",
+      "count": 2,
+      "artists": [
+        "Blood Orange",
+        "Electric Callboy"
+      ]
+    },
+    {
+      "genre": "singer-songwriter",
+      "count": 2,
+      "artists": [
+        "Blood Orange",
+        "Tom Odell"
+      ]
+    },
+    {
+      "genre": "trap",
+      "count": 2,
+      "artists": [
+        "bbno$"
+      ]
+    },
+    {
+      "genre": "2010s",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "3rd gen k-pop",
+      "count": 1,
+      "artists": [
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "80s",
+      "count": 1,
+      "artists": [
+        "Men Without Hats"
+      ]
+    },
+    {
+      "genre": "90s",
+      "count": 1,
+      "artists": [
+        "Men Without Hats"
+      ]
+    },
+    {
+      "genre": "alternative",
+      "count": 1,
+      "artists": [
+        "Men Without Hats"
+      ]
+    },
+    {
+      "genre": "alternative country",
+      "count": 1,
+      "artists": [
+        "My Morning Jacket"
+      ]
+    },
+    {
+      "genre": "alternative metal",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "alternative pop",
+      "count": 1,
+      "artists": [
+        "Lola Young"
+      ]
+    },
+    {
+      "genre": "alternative/indie rock",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "ambient trance",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "ballad",
+      "count": 1,
+      "artists": [
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "baroque pop",
+      "count": 1,
+      "artists": [
+        "Blood Orange"
+      ]
+    },
+    {
+      "genre": "big beat",
+      "count": 1,
+      "artists": [
+        "Fatboy Slim"
+      ]
+    },
+    {
+      "genre": "blues",
+      "count": 1,
+      "artists": [
+        "The Black Keys"
+      ]
+    },
+    {
+      "genre": "blues rock",
+      "count": 1,
+      "artists": [
+        "The Black Keys"
+      ]
+    },
+    {
+      "genre": "canada",
+      "count": 1,
+      "artists": [
+        "Men Without Hats"
+      ]
+    },
+    {
+      "genre": "canadian",
+      "count": 1,
+      "artists": [
+        "Men Without Hats"
+      ]
+    },
+    {
+      "genre": "classical",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "contemporary classical",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "country",
+      "count": 1,
+      "artists": [
+        "Blood Orange"
+      ]
+    },
+    {
+      "genre": "crunkcore",
+      "count": 1,
+      "artists": [
+        "Kesha"
+      ]
+    },
+    {
+      "genre": "dance",
+      "count": 1,
+      "artists": [
+        "Sofi Tukker"
+      ]
+    },
+    {
+      "genre": "dance and electronica",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "dark",
+      "count": 1,
+      "artists": [
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "deep house",
+      "count": 1,
+      "artists": [
+        "Jamie xx"
+      ]
+    },
+    {
+      "genre": "ebm",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "edm",
+      "count": 1,
+      "artists": [
+        "Sofi Tukker"
+      ]
+    },
+    {
+      "genre": "electro-industrial",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "electronica",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "electronicore",
+      "count": 1,
+      "artists": [
+        "Electric Callboy"
+      ]
+    },
+    {
+      "genre": "english",
+      "count": 1,
+      "artists": [
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "ethereal",
+      "count": 1,
+      "artists": [
+        "Julianna Barwick"
+      ]
+    },
+    {
+      "genre": "europop",
+      "count": 1,
+      "artists": [
+        "Kesha"
+      ]
+    },
+    {
+      "genre": "film score",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "folk",
+      "count": 1,
+      "artists": [
+        "Blood Orange"
+      ]
+    },
+    {
+      "genre": "folk rock",
+      "count": 1,
+      "artists": [
+        "Nathaniel Rateliff & The Night Sweats"
+      ]
+    },
+    {
+      "genre": "funk",
+      "count": 1,
+      "artists": [
+        "Blood Orange"
+      ]
+    },
+    {
+      "genre": "future garage",
+      "count": 1,
+      "artists": [
+        "Jamie xx"
+      ]
+    },
+    {
+      "genre": "garage rock",
+      "count": 1,
+      "artists": [
+        "The Black Keys"
+      ]
+    },
+    {
+      "genre": "garage rock revival",
+      "count": 1,
+      "artists": [
+        "The Black Keys"
+      ]
+    },
+    {
+      "genre": "goth",
+      "count": 1,
+      "artists": [
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "gothic",
+      "count": 1,
+      "artists": [
+        "Puma Blue"
+      ]
+    },
+    {
+      "genre": "gothic rock",
+      "count": 1,
+      "artists": [
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "heartland rock",
+      "count": 1,
+      "artists": [
+        "Bodeans"
+      ]
+    },
+    {
+      "genre": "house",
+      "count": 1,
+      "artists": [
+        "Jamie xx"
+      ]
+    },
+    {
+      "genre": "indie folk",
+      "count": 1,
+      "artists": [
+        "Tom Odell"
+      ]
+    },
+    {
+      "genre": "industrial",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "industrial metal",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "industrial rock",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "jam rock",
+      "count": 1,
+      "artists": [
+        "My Morning Jacket"
+      ]
+    },
+    {
+      "genre": "jazz",
+      "count": 1,
+      "artists": [
+        "The Bad Plus"
+      ]
+    },
+    {
+      "genre": "jazz and blues",
+      "count": 1,
+      "artists": [
+        "The Bad Plus"
+      ]
+    },
+    {
+      "genre": "jazz pop",
+      "count": 1,
+      "artists": [
+        "Puma Blue"
+      ]
+    },
+    {
+      "genre": "k-pop",
+      "count": 1,
+      "artists": [
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "korean ballad",
+      "count": 1,
+      "artists": [
+        "ROSÉ"
+      ]
+    },
+    {
+      "genre": "latin",
+      "count": 1,
+      "artists": [
+        "Bad Bunny"
+      ]
+    },
+    {
+      "genre": "latin trap",
+      "count": 1,
+      "artists": [
+        "Bad Bunny"
+      ]
+    },
+    {
+      "genre": "leftfield",
+      "count": 1,
+      "artists": [
+        "HAIM"
+      ]
+    },
+    {
+      "genre": "lgbtq",
+      "count": 1,
+      "artists": [
+        "Kesha"
+      ]
+    },
+    {
+      "genre": "metal",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "metalcore",
+      "count": 1,
+      "artists": [
+        "Electric Callboy"
+      ]
+    },
+    {
+      "genre": "modern classical",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "neo soul",
+      "count": 1,
+      "artists": [
+        "Lola Young"
+      ]
+    },
+    {
+      "genre": "neo-classical",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "neoclassical new age",
+      "count": 1,
+      "artists": [
+        "Julianna Barwick"
+      ]
+    },
+    {
+      "genre": "new age",
+      "count": 1,
+      "artists": [
+        "Julianna Barwick"
+      ]
+    },
+    {
+      "genre": "pop soul",
+      "count": 1,
+      "artists": [
+        "Puma Blue"
+      ]
+    },
+    {
+      "genre": "post-bop",
+      "count": 1,
+      "artists": [
+        "The Bad Plus"
+      ]
+    },
+    {
+      "genre": "post-dubstep",
+      "count": 1,
+      "artists": [
+        "Jamie xx"
+      ]
+    },
+    {
+      "genre": "post-punk",
+      "count": 1,
+      "artists": [
+        "The Cure"
+      ]
+    },
+    {
+      "genre": "post-punk 2k",
+      "count": 1,
+      "artists": [
+        "Wet Leg"
+      ]
+    },
+    {
+      "genre": "post-punk revival",
+      "count": 1,
+      "artists": [
+        "Wet Leg"
+      ]
+    },
+    {
+      "genre": "post-rock",
+      "count": 1,
+      "artists": [
+        "Ólafur Arnalds"
+      ]
+    },
+    {
+      "genre": "power pop",
+      "count": 1,
+      "artists": [
+        "The Wildhearts"
+      ]
+    },
+    {
+      "genre": "progressive electronic",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "progressive house",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "progressive trance",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "psychedelic rock",
+      "count": 1,
+      "artists": [
+        "My Morning Jacket"
+      ]
+    },
+    {
+      "genre": "punk rock",
+      "count": 1,
+      "artists": [
+        "The Wildhearts"
+      ]
+    },
+    {
+      "genre": "r&b",
+      "count": 1,
+      "artists": [
+        "Lola Young"
+      ]
+    },
+    {
+      "genre": "rap québ",
+      "count": 1,
+      "artists": [
+        "Loud"
+      ]
+    },
+    {
+      "genre": "reggaeton",
+      "count": 1,
+      "artists": [
+        "Bad Bunny"
+      ]
+    },
+    {
+      "genre": "rock and indie",
+      "count": 1,
+      "artists": [
+        "My Morning Jacket"
+      ]
+    },
+    {
+      "genre": "soul",
+      "count": 1,
+      "artists": [
+        "Blood Orange"
+      ]
+    },
+    {
+      "genre": "synth pop",
+      "count": 1,
+      "artists": [
+        "Men Without Hats"
+      ]
+    },
+    {
+      "genre": "synth-pop",
+      "count": 1,
+      "artists": [
+        "Ministry"
+      ]
+    },
+    {
+      "genre": "trance",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "trancecore",
+      "count": 1,
+      "artists": [
+        "Electric Callboy"
+      ]
+    },
+    {
+      "genre": "trap latino",
+      "count": 1,
+      "artists": [
+        "Bad Bunny"
+      ]
+    },
+    {
+      "genre": "uk",
+      "count": 1,
+      "artists": [
+        "Fatboy Slim"
+      ]
+    },
+    {
+      "genre": "uk bass",
+      "count": 1,
+      "artists": [
+        "Jamie xx"
+      ]
+    },
+    {
+      "genre": "uk funky",
+      "count": 1,
+      "artists": [
+        "Jamie xx"
+      ]
+    },
+    {
+      "genre": "vocal trance",
+      "count": 1,
+      "artists": [
+        "Above & Beyond"
+      ]
+    },
+    {
+      "genre": "windmill scene",
+      "count": 1,
+      "artists": [
+        "Wet Leg"
+      ]
+    }
+  ]
 }
-

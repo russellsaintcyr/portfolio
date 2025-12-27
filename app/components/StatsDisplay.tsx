@@ -340,76 +340,28 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
               Artists by Genre
             </h3>
-            {(() => {
-              const pieData = formatPieData(stats.artistsByGenre, 'genre');
-              
-              return (
-                <>
-                  <div className="mb-6">
-                    <ResponsiveContainer width="100%" height={350}>
-                      <PieChart>
-                        <Pie
-                          data={pieData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={120}
-                          paddingAngle={2}
-                          dataKey="value"
-                        >
-                          {pieData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          contentStyle={{
-                            backgroundColor: isDark ? '#1f2937' : '#ffffff',
-                            border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
-                            borderRadius: '8px',
-                            color: isDark ? '#f3f4f6' : '#111827',
-                          }}
-                          formatter={(value: number | undefined, name: string | undefined, props: any) => {
-                            const val = value || 0;
-                            const percentage = props?.payload?.percentage || 0;
-                            return [`${val} (${percentage}%)`, name || ''];
-                          }}
-                        />
-                        <Legend
-                          wrapperStyle={{ paddingTop: '20px' }}
-                          formatter={(value, entry: any) => (
-                            <span style={{ color: isDark ? '#f3f4f6' : '#111827' }}>
-                              {value}: {entry.payload.value} ({entry.payload.percentage}%)
-                            </span>
-                          )}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="border-b border-gray-200 dark:border-gray-700">
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Genre</th>
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Artists</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {stats.artistsByGenre
-                          .sort((a, b) => b.count - a.count)
-                          .map((item, index) => (
-                            <tr key={index} className="border-b border-gray-100 dark:border-gray-800">
-                              <td className="p-2 text-gray-900 dark:text-white font-medium">{item.genre}</td>
-                              <td className="p-2 text-gray-700 dark:text-gray-300">
-                                {item.artists.join(', ')}
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </>
-              );
-            })()}
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                    <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Genre</th>
+                    <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Artists</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.artistsByGenre
+                    .sort((a, b) => b.count - a.count)
+                    .map((item, index) => (
+                      <tr key={index} className="border-b border-gray-100 dark:border-gray-800">
+                        <td className="p-2 text-gray-900 dark:text-white font-medium">{item.genre}</td>
+                        <td className="p-2 text-gray-700 dark:text-gray-300">
+                          {item.artists.join(', ')}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
             </div>
           </>
         )}
