@@ -35,6 +35,17 @@ interface Top40Data {
       url?: string;
     };
   };
+  stats?: {
+    artistCountries?: Array<{
+      country: string;
+      count: number;
+      flag?: string;
+    }>;
+    languages?: Array<{
+      language: string;
+      count: number;
+    }>;
+  };
 }
 
 interface Top40Props {
@@ -312,86 +323,49 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
           </div>
         )}
 
-        {canEdit && (
-          <div className="mb-8">
-            {!isEditingLyrics && (
-              <button
-                onClick={() => setIsEditingLyrics(true)}
-                className="mb-4 px-4 py-2 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
-              >
-                Edit Lyrics
-              </button>
-            )}
-            {isEditingLyrics && (
-              <div>
-                <button
-                  onClick={() => setIsEditingLyrics(false)}
-                  className="mb-4 px-4 py-2 text-sm font-medium bg-gray-600 dark:bg-gray-700 text-white rounded hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
-                >
-                  Close Lyrics Editor
-                </button>
-                <LyricsEditor
-                  initialLyrics={lyrics}
-                  year={data.year}
-                  onPreview={handleLyricsPreview}
-                  onSave={handleLyricsSave}
-                  onCancel={() => setIsEditingLyrics(false)}
-                  isSaving={isSavingLyrics}
-                />
-              </div>
-            )}
-          </div>
-        )}
-
-        {lyrics && lyrics.length > 0 && (
-          <div className="mb-8">
-            <LyricsCarousel lyrics={lyrics} />
-          </div>
-        )}
-
         {data.playlists && (
           <div className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+            {/* <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
               Playlists
-            </h2>
+            </h2> */}
             <div className="flex justify-center gap-6 mb-6">
               {data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '' && (
                 <button
                   onClick={() => setSelectedPlaylist(selectedPlaylist === 'spotify' ? null : 'spotify')}
-                  className={`p-3 rounded-full transition-all ${
+                  className={`p-3 rounded-full transition-all group ${
                     selectedPlaylist === 'spotify'
                       ? 'bg-green-500 text-white scale-110'
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                   aria-label="Spotify"
                 >
-                  <FaSpotify size={32} />
+                  <FaSpotify size={32} className={selectedPlaylist !== 'spotify' ? 'group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors' : ''} />
                 </button>
               )}
               {data.playlists.youtubeMusic?.embed && data.playlists.youtubeMusic.embed.trim() !== '' && (
                 <button
                   onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeMusic' ? null : 'youtubeMusic')}
-                  className={`p-3 rounded-full transition-all ${
+                  className={`p-3 rounded-full transition-all group ${
                     selectedPlaylist === 'youtubeMusic'
                       ? 'bg-red-500 text-white scale-110'
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                   aria-label="YouTube Music"
                 >
-                  <SiYoutubemusic size={32} />
+                  <SiYoutubemusic size={32} className={selectedPlaylist !== 'youtubeMusic' ? 'group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors' : ''} />
                 </button>
               )}
               {hasYouTubeVideo() && (
                 <button
                   onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeVideo' ? null : 'youtubeVideo')}
-                  className={`p-3 rounded-full transition-all ${
+                  className={`p-3 rounded-full transition-all group ${
                     selectedPlaylist === 'youtubeVideo'
                       ? 'bg-red-500 text-white scale-110'
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                   aria-label="YouTube Video"
                 >
-                  <FaYoutube size={32} />
+                  <FaYoutube size={32} className={selectedPlaylist !== 'youtubeVideo' ? 'group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors' : ''} />
                 </button>
               )}
             </div>
@@ -429,6 +403,107 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                 </a>
               </div>
             )}
+          </div>
+        )}
+
+        {canEdit && (
+          <div className="mb-8">
+            {!isEditingLyrics && (
+              <button
+                onClick={() => setIsEditingLyrics(true)}
+                className="mb-4 px-4 py-2 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+              >
+                Edit Lyrics
+              </button>
+            )}
+            {isEditingLyrics && (
+              <div>
+                <button
+                  onClick={() => setIsEditingLyrics(false)}
+                  className="mb-4 px-4 py-2 text-sm font-medium bg-gray-600 dark:bg-gray-700 text-white rounded hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+                >
+                  Close Lyrics Editor
+                </button>
+                <LyricsEditor
+                  initialLyrics={lyrics}
+                  year={data.year}
+                  onPreview={handleLyricsPreview}
+                  onSave={handleLyricsSave}
+                  onCancel={() => setIsEditingLyrics(false)}
+                  isSaving={isSavingLyrics}
+                />
+              </div>
+            )}
+          </div>
+        )}
+
+        {lyrics && lyrics.length > 0 && (
+          <div className="mb-8">
+            <LyricsCarousel lyrics={lyrics} />
+          </div>
+        )}
+
+        {/* Stats Section */}
+        {data.stats && (
+          <div className="mt-12 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              Stats
+            </h2>
+            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6">
+              {data.stats.artistCountries && data.stats.artistCountries.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                    Artist Countries
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {data.stats.artistCountries.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                      >
+                        {item.flag && (
+                          <img
+                            src={item.flag}
+                            alt={item.country}
+                            className="w-8 h-8 object-cover rounded"
+                          />
+                        )}
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900 dark:text-white">
+                            {item.country}
+                          </div>
+                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                            {item.count} {item.count === 1 ? 'artist' : 'artists'}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {data.stats.languages && data.stats.languages.length > 0 && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                    Languages
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {data.stats.languages.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                      >
+                        <div className="font-medium text-gray-900 dark:text-white">
+                          {item.language}
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          {item.count} {item.count === 1 ? 'song' : 'songs'}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
 

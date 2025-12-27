@@ -30,9 +30,17 @@ interface Top40Data {
     youtubeVideo?: {
       url?: string;
     };
-    youtubeVideo?: {
-      embed?: string;
-    };
+  };
+  stats?: {
+    artistCountries?: Array<{
+      country: string;
+      count: number;
+      flag?: string;
+    }>;
+    languages?: Array<{
+      language: string;
+      count: number;
+    }>;
   };
 }
 
