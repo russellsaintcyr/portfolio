@@ -71,20 +71,10 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
 
   const colors = getChartColors(isDark);
 
-  // Calculate average and median for Year of Release
+  // Calculate total for Year of Release
   const calculateYearStats = (years: YearOfRelease[]) => {
     const total = years.reduce((sum, item) => sum + item.count, 0);
-    const weightedSum = years.reduce((sum, item) => sum + (item.year * item.count), 0);
-    const average = Math.round(weightedSum / total);
-    
-    const sortedYears = years.flatMap(item => 
-      Array(item.count).fill(item.year)
-    ).sort((a, b) => a - b);
-    const median = sortedYears.length % 2 === 0
-      ? Math.round((sortedYears[sortedYears.length / 2 - 1] + sortedYears[sortedYears.length / 2]) / 2)
-      : sortedYears[Math.floor(sortedYears.length / 2)];
-    
-    return { average, median, total };
+    return { total };
   };
 
   // Calculate percentage for each item
@@ -106,9 +96,9 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
   return (
     <div className="mt-12 mb-8">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-        Stats
+        Nerdy Stats
       </h2>
-      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 space-y-8">
+      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 space-y-12">
         {/* Year of Release */}
         {stats.yearOfRelease && stats.yearOfRelease.length > 0 && (
           <div>
@@ -136,6 +126,10 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                           outerRadius={120}
                           paddingAngle={2}
                           dataKey="value"
+                          label={({ name, payload }) => {
+                            const percentage = payload?.percentage || 0;
+                            return `${name}: ${percentage}%`;
+                          }}
                         >
                           {pieData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -148,50 +142,17 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             borderRadius: '8px',
                             color: isDark ? '#f3f4f6' : '#111827',
                           }}
-                          formatter={(value: number, name: string, props: any) => [
-                            `${value} (${props.payload.percentage}%)`,
-                            name,
-                          ]}
+                          formatter={(value: number | undefined, name: string | undefined, props: any) => {
+                            const val = value || 0;
+                            const percentage = props?.payload?.percentage || 0;
+                            return [`${val} (${percentage}%)`, name || ''];
+                          }}
                         />
                       </PieChart>
                     </ResponsiveContainer>
-                    <div className="text-center mt-4">
-                      <div className="text-3xl font-bold text-gray-900 dark:text-white">
-                        {yearStats.average}
-                      </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">Avg Year</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Median: {yearStats.median}
-                      </div>
-                    </div>
                     <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
                       Past 3 Years (2023-2025): {recentYears} ({recentPercentage}%)
                     </div>
-                  </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="border-b border-gray-200 dark:border-gray-700">
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Year</th>
-                          <th className="text-right p-2 text-gray-900 dark:text-white font-semibold">Count</th>
-                          <th className="text-right p-2 text-gray-900 dark:text-white font-semibold">%</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {stats.yearOfRelease
-                          .sort((a, b) => b.year - a.year)
-                          .map((item, index) => {
-                            const percentage = calculatePercentage(item.count, yearStats.total);
-                            return (
-                              <tr key={index} className="border-b border-gray-100 dark:border-gray-800">
-                                <td className="p-2 text-gray-900 dark:text-white">{item.year}</td>
-                                <td className="p-2 text-right text-gray-700 dark:text-gray-300">{item.count}</td>
-                                <td className="p-2 text-right text-gray-700 dark:text-gray-300">{percentage}%</td>
-                              </tr>
-                            );
-                          })}
-                      </tbody>
-                    </table>
                   </div>
                 </>
               );
@@ -201,7 +162,9 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
 
         {/* Artists by Country */}
         {stats.artistsByCountry && stats.artistsByCountry.length > 0 && (
-          <div>
+          <>
+            <hr className="border-gray-200 dark:border-gray-700 my-8" />
+            <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
               Artists by Country
             </h3>
@@ -212,9 +175,6 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
               return (
                 <>
                   <div className="mb-6">
-                    <div className="text-center mb-2 text-sm text-gray-600 dark:text-gray-400">
-                      {total} of {total} artists have country data
-                    </div>
                     <ResponsiveContainer width="100%" height={350}>
                       <PieChart>
                         <Pie
@@ -225,7 +185,10 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                           outerRadius={120}
                           paddingAngle={2}
                           dataKey="value"
-                          label={({ name, percentage }) => `${name}: ${percentage}%`}
+                          label={({ name, payload }) => {
+                            const percentage = payload?.percentage || 0;
+                            return `${name}: ${percentage}%`;
+                          }}
                         >
                           {pieData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -238,18 +201,11 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             borderRadius: '8px',
                             color: isDark ? '#f3f4f6' : '#111827',
                           }}
-                          formatter={(value: number, name: string, props: any) => [
-                            `${value} (${props.payload.percentage}%)`,
-                            name,
-                          ]}
-                        />
-                        <Legend
-                          wrapperStyle={{ paddingTop: '20px' }}
-                          formatter={(value, entry: any) => (
-                            <span style={{ color: isDark ? '#f3f4f6' : '#111827' }}>
-                              {value}: {entry.payload.value} ({entry.payload.percentage}%)
-                            </span>
-                          )}
+                          formatter={(value: number | undefined, name: string | undefined, props: any) => {
+                            const val = value || 0;
+                            const percentage = props?.payload?.percentage || 0;
+                            return [`${val} (${percentage}%)`, name || ''];
+                          }}
                         />
                       </PieChart>
                     </ResponsiveContainer>
@@ -290,12 +246,15 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                 </>
               );
             })()}
-          </div>
+            </div>
+          </>
         )}
 
         {/* Artists by Region */}
         {stats.artistsByRegion && stats.artistsByRegion.length > 0 && (
-          <div>
+          <>
+            <hr className="border-gray-200 dark:border-gray-700 my-8" />
+            <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
               Artists by Region
             </h3>
@@ -327,10 +286,11 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             borderRadius: '8px',
                             color: isDark ? '#f3f4f6' : '#111827',
                           }}
-                          formatter={(value: number, name: string, props: any) => [
-                            `${value} (${props.payload.percentage}%)`,
-                            name,
-                          ]}
+                          formatter={(value: number | undefined, name: string | undefined, props: any) => {
+                            const val = value || 0;
+                            const percentage = props?.payload?.percentage || 0;
+                            return [`${val} (${percentage}%)`, name || ''];
+                          }}
                         />
                         <Legend
                           wrapperStyle={{ paddingTop: '20px' }}
@@ -368,12 +328,15 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                 </>
               );
             })()}
-          </div>
+            </div>
+          </>
         )}
 
         {/* Artists by Genre */}
         {stats.artistsByGenre && stats.artistsByGenre.length > 0 && (
-          <div>
+          <>
+            <hr className="border-gray-200 dark:border-gray-700 my-8" />
+            <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
               Artists by Genre
             </h3>
@@ -405,10 +368,11 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             borderRadius: '8px',
                             color: isDark ? '#f3f4f6' : '#111827',
                           }}
-                          formatter={(value: number, name: string, props: any) => [
-                            `${value} (${props.payload.percentage}%)`,
-                            name,
-                          ]}
+                          formatter={(value: number | undefined, name: string | undefined, props: any) => {
+                            const val = value || 0;
+                            const percentage = props?.payload?.percentage || 0;
+                            return [`${val} (${percentage}%)`, name || ''];
+                          }}
                         />
                         <Legend
                           wrapperStyle={{ paddingTop: '20px' }}
@@ -446,7 +410,8 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                 </>
               );
             })()}
-          </div>
+            </div>
+          </>
         )}
       </div>
     </div>
