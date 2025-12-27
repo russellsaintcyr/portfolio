@@ -138,8 +138,8 @@ export default async function Top40YearPage({
   const canEdit = validateEditToken(token);
   const yearNum = parseInt(year, 10);
 
-  // Validate year is between 2020-2026
-  if (isNaN(yearNum) || yearNum < 2020 || yearNum > 2026) {
+  // Validate year is a valid number
+  if (isNaN(yearNum)) {
     notFound();
   }
 

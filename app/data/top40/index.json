@@ -42,6 +42,145 @@
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6aOFbZYZTUO1qzsp5JS9v4?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
         }
       }
+    },
+    {
+      "year": 2021,
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da841777da6db3ab49a5afc242be",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2o3Wbf3FYAyrApvzMfmz4d?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84cb76f36ee7854bdfd08a47b6",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/0HIkuOQI4B0IIvj9fi65WP?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2019,
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da848f68432c3be1396093a47ebf",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/7FCJyM9RVxYYRYOlSffNrF?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2018,
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8458c847e11914e88314cc093d",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/51wSFAsnu0LS7Z53Gy9L03?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84dae69c07f81fdfa3843a94bb",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2QNzk2n6iahh5kit6fQ2NM?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    { "year": 2016,
+      "coverImage": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da842f882fff0b20a01190fdff33",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2nee9R2EYwhYEBInCaV0qL?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2015,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e022885f3086a25eb3cc52eb785ab67616d00001e023303a842ee1bc0b23204333dab67616d00001e02a260f590ea3fe63473ac3ac0ab67616d00001e02a713b5c130775fe003e76c11",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6NIFYeNlTFPbL4HMDDOhvc?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2014,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e025d199c9f6e6562aafa5aa357ab67616d00001e02c41c18bafa291f105b331ce7ab67616d00001e02d819c9e7aeb8910d69a596d8ab67616d00001e02ed12d34e14ea6789734ff2cd",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/6lXdPDWvlq8uKOoYfOXG7q?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2013,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e02767b6fb2ca6416973d8a2867ab67616d00001e02ab580fab750cc9baf0d52b5cab67616d00001e02b135a1451936b0d93cd8c988ab67616d00001e02c65c20ed27aa2877070f4eea",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/2aIV326Fpta20HKB7QG3P5?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2012,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e0200fc05dd845fe011ae13901bab67616d00001e0249ef99395d66007c89df1a8dab67616d00001e028d0cb2fc1d6ed82ff673cfa7ab67616d00001e02f1d0735df947d25886f07278",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/0ZL8zgdFUwhZVzhTGaLCe2?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2011,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e022055e87fe0eab52b9277155cab67616d00001e022f88fad020c457e1cd6b5e7dab67616d00001e02d15e9e36ce183a9031322c45ab67616d00001e02e04608636d6a2560981187c5",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/1tyWBxoSdNREWZGeKuUe3y?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2009,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e02a7f85f2df08fbeb6dac5677cab67616d00001e02aa2d1f1ecc9aa8f82fd56f7cab67616d00001e02aa48af4ba3632d92cc9fc3d3ab67616d00001e02c6458c69d33139ff88f2e70d",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/7srrVpTBXK2FYUylCDxqGG?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    {
+      "year": 2008,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e021017779b8f5fe0ccd77bf886ab67616d00001e025f5482a2f12a819b0efdfe6bab67616d00001e028b9719a98ddb60c13efcc458ab67616d00001e02d418827591ad466fc89096ef",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/1rbt7sLjbBfDRyX5mEQoCu?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
+    },
+    { 
+      "year": 2005,
+      "coverImage": "https://mosaic.scdn.co/640/ab67616d00001e028973ead5c82ddaa539ac0190ab67616d00001e02ad419b53eb86b9ca1decfaa3ab67616d00001e02d044bc71fb3423b370108ed4ab67616d00001e02e92e89a8ed6e9c4bd449cbed",
+      "enabled": true,
+      "playlists": {
+        "spotify": {
+          "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/4COFWht2eaTHXblyaPGfFl?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+        }
+      }
     }
   ]
 }
