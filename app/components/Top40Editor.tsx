@@ -27,21 +27,37 @@ export default function Top40Editor({
   const [hasChanges, setHasChanges] = useState(false);
   const localStorageKey = `top40-${year}-description`;
 
-  // Replace &nbsp; entities with regular spaces
+  // Replace &nbsp; entities with regular spaces and remove mark tags and inline background styles
   const cleanHtml = (html: string): string => {
-    return html.replace(/&nbsp;/g, ' ');
+    let cleaned = html
+      .replace(/&nbsp;/g, ' ')
+      .replace(/<mark[^>]*>/gi, '')
+      .replace(/<\/mark>/gi, '');
+    
+    // Remove background-related styles from style attributes
+    cleaned = cleaned.replace(/style="([^"]*)"/gi, (match, styles) => {
+      const cleanedStyles = styles
+        .split(';')
+        .filter((style: string) => {
+          const trimmed = style.trim();
+          return !trimmed.includes('background') && !trimmed.includes('background-color');
+        })
+        .join(';')
+        .trim();
+      return cleanedStyles ? `style="${cleanedStyles}"` : '';
+    });
+    
+    return cleaned;
   };
 
   useEffect(() => {
-    // Load from localStorage if available (for unsaved edits during editing session)
-    // Otherwise use the initial content from JSON file
-    const saved = localStorage.getItem(localStorageKey);
-    if (saved) {
-      setContent(cleanHtml(saved));
-    } else {
-      setContent(cleanHtml(initialContent));
-    }
-  }, [localStorageKey, initialContent]);
+    // Always use the latest initialContent when the editor opens
+    // Clear localStorage to ensure we start fresh with the latest remote content
+    // localStorage will be used again for unsaved changes during this editing session
+    localStorage.removeItem(localStorageKey);
+    setContent(cleanHtml(initialContent));
+    setHasChanges(false);
+  }, [initialContent, localStorageKey]);
 
   const handleChange = (value: string) => {
     setContent(value);
@@ -75,7 +91,7 @@ export default function Top40Editor({
         <div className="flex gap-2">
           <button
             onClick={handlePreview}
-            className="px-4 py-1.5 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="px-4 py-1.5 text-sm font-medium bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
             type="button"
           >
             Preview
@@ -83,7 +99,7 @@ export default function Top40Editor({
           {onCancel && (
             <button
               onClick={onCancel}
-              className="px-4 py-1.5 text-sm font-medium bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+              className="px-4 py-1.5 text-sm font-medium bg-gray-600 dark:bg-gray-700 text-white rounded hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
               type="button"
             >
               Cancel

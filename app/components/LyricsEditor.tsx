@@ -112,14 +112,14 @@ export default function LyricsEditor({ initialLyrics, year, onPreview, onSave, o
           )}
           <button
             onClick={handleAdd}
-            className="px-3 py-1.5 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="px-3 py-1.5 text-sm font-medium bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
             type="button"
           >
             Add Lyric
           </button>
           <button
             onClick={handlePreview}
-            className="px-3 py-1.5 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="px-3 py-1.5 text-sm font-medium bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
             type="button"
           >
             Preview
@@ -127,7 +127,7 @@ export default function LyricsEditor({ initialLyrics, year, onPreview, onSave, o
           {onCancel && (
             <button
               onClick={handleCancel}
-              className="px-3 py-1.5 text-sm font-medium bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+              className="px-3 py-1.5 text-sm font-medium bg-gray-600 dark:bg-gray-700 text-white rounded hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
               type="button"
             >
               Cancel
@@ -178,7 +178,7 @@ export default function LyricsEditor({ initialLyrics, year, onPreview, onSave, o
               </span>
               <button
                 onClick={() => handleDelete(index)}
-                className="px-2 py-1 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                className="px-2 py-1 text-xs font-medium bg-red-600 dark:bg-red-700 text-white rounded hover:bg-red-700 dark:hover:bg-red-600 transition-colors"
                 type="button"
               >
                 Delete

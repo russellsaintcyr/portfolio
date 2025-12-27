@@ -24,7 +24,7 @@ export default function LyricsCarousel({ lyrics }: LyricsCarouselProps) {
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-        Special Lyrics
+        Chosen Lyrics
       </h2>
       <div className="relative">
         <Swiper

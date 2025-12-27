@@ -37,9 +37,27 @@ interface Top40Props {
   tokenParam?: string;
 }
 
-// Replace &nbsp; entities with regular spaces
+// Replace &nbsp; entities with regular spaces and remove mark tags and inline background styles
 const cleanHtml = (html: string): string => {
-  return html.replace(/&nbsp;/g, ' ');
+  let cleaned = html
+    .replace(/&nbsp;/g, ' ')
+    .replace(/<mark[^>]*>/gi, '')
+    .replace(/<\/mark>/gi, '');
+  
+  // Remove background-related styles from style attributes
+  cleaned = cleaned.replace(/style="([^"]*)"/gi, (match, styles) => {
+    const cleanedStyles = styles
+      .split(';')
+      .filter((style: string) => {
+        const trimmed = style.trim();
+        return !trimmed.includes('background') && !trimmed.includes('background-color');
+      })
+      .join(';')
+      .trim();
+    return cleanedStyles ? `style="${cleanedStyles}"` : '';
+  });
+  
+  return cleaned;
 };
 
 export default function Top40({ data, originalData, canEdit: serverCanEdit = false, prevYear = null, nextYear = null, tokenParam = '' }: Top40Props) {
@@ -215,41 +233,51 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
         />
       )}
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-          Top 40 of {data.year}
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          My Top 40 of {data.year}
         </h1>
 
         {data.coverImage && (
-          <div className="mb-8 rounded-lg overflow-hidden">
+          <div className="mb-8 rounded-lg overflow-hidden flex justify-center">
             <div dangerouslySetInnerHTML={{ __html: data.coverImage }} />
           </div>
         )}
 
-        <div className="mb-8">
-          {canEdit && !isEditingDescription && (
-            <button
-              onClick={() => setIsEditingDescription(true)}
-              className="mb-4 px-4 py-2 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
-            >
-              Edit Description
-            </button>
-          )}
+        {(description.trim() || canEdit) && (
+          <div className="mb-8">
+            {canEdit && !isEditingDescription && (
+              <button
+                onClick={() => {
+                  // Clear localStorage when opening editor to ensure fresh start
+                  localStorage.removeItem(descriptionKey);
+                  setIsEditingDescription(true);
+                }}
+                className="mb-4 px-4 py-2 text-sm font-medium bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+              >
+                Edit Description
+              </button>
+            )}
 
-          {canEdit && isEditingDescription ? (
-            <Top40Editor
-              initialContent={description}
-              year={data.year}
-              onPreview={handleDescriptionPreview}
-              onSave={handleDescriptionSave}
-              onCancel={() => setIsEditingDescription(false)}
-            />
-          ) : (
-            <div
-              className="text-gray-900 dark:text-gray-100 [&_*]:max-w-full [&_p]:mb-4 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4 [&_li]:mb-2 [&_strong]:font-bold [&_a]:text-primary [&_a]:underline"
-              dangerouslySetInnerHTML={{ __html: cleanHtml(description) }}
-            />
-          )}
-        </div>
+            {canEdit && isEditingDescription ? (
+              <Top40Editor
+                initialContent={description}
+                year={data.year}
+                onPreview={handleDescriptionPreview}
+                onSave={handleDescriptionSave}
+                onCancel={() => {
+                  // Clear localStorage when canceling to ensure next edit starts fresh
+                  localStorage.removeItem(descriptionKey);
+                  setIsEditingDescription(false);
+                }}
+              />
+            ) : description.trim() ? (
+              <div
+                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 text-gray-900 dark:text-gray-100 [&_*]:max-w-full [&_p]:mb-4 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4 [&_li]:mb-2 [&_strong]:font-bold [&_a]:text-primary [&_a]:underline [&_mark]:bg-transparent [&_mark]:text-inherit [&_mark]:p-0"
+                dangerouslySetInnerHTML={{ __html: cleanHtml(description) }}
+              />
+            ) : null}
+          </div>
+        )}
 
         {canEdit && (
           <div className="mb-8">
@@ -265,7 +293,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
               <div>
                 <button
                   onClick={() => setIsEditingLyrics(false)}
-                  className="mb-4 px-4 py-2 text-sm font-medium bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+                  className="mb-4 px-4 py-2 text-sm font-medium bg-gray-600 dark:bg-gray-700 text-white rounded hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
                 >
                   Close Lyrics Editor
                 </button>

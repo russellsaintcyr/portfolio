@@ -43,10 +43,10 @@ export default function Top40Index() {
   const yearsData = config?.years || [];
 
   return (
-    <div className="font-display text-gray-800 dark:text-gray-200">
+    <div className="font-display text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900 min-h-screen">
       <div className="relative w-full overflow-x-hidden">
         <Header />
-        <main className="min-h-screen">
+        <main className="min-h-screen bg-white dark:bg-gray-900">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">

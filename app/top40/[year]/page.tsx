@@ -108,7 +108,7 @@ export async function generateMetadata({
   const yearNum = parseInt(year, 10);
   
   return {
-    title: `Top 40 of ${yearNum} - Russell Saint Cyr`,
+    title: `My Top 40 of ${yearNum} - Russell Saint Cyr`,
     description: `My favorite songs from ${yearNum}.`,
   };
 }
@@ -151,10 +151,27 @@ export default async function Top40YearPage({
 
   const { prev, next } = getAdjacentYears(yearNum);
   const tokenParam = token ? `?token=${encodeURIComponent(token)}` : '';
+  const metadata = getYearMetadata(yearNum);
+  const coverImageUrl = metadata?.coverImage || null;
 
   return (
-    <div className="font-display text-gray-800 dark:text-gray-200">
-      <div className="relative w-full">
+    <div 
+      className="font-display text-gray-800 dark:text-gray-200 min-h-screen relative"
+      style={coverImageUrl ? {
+        backgroundImage: `url(${coverImageUrl})`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: '200px 200px',
+        backgroundAttachment: 'fixed',
+      } : {}}
+    >
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        }}
+      />
+      <div className="dark:bg-gray-900/70 absolute inset-0" />
+      <div className="relative z-10">
         <Header />
         <main className="min-h-screen">
           <Top40 
