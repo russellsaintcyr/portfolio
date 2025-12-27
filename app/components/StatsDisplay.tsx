@@ -45,6 +45,7 @@ const getChartColors = (isDark: boolean) => {
 
 export default function StatsDisplay({ stats }: StatsDisplayProps) {
   const [isDark, setIsDark] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Check for dark mode on mount
@@ -60,7 +61,21 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
       }
     };
     
+    // Check for mobile view
+    const checkMobile = () => {
+      if (typeof window !== 'undefined') {
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        setIsMobile(mediaQuery.matches);
+        
+        // Listen for changes
+        const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        mediaQuery.addEventListener('change', handler);
+        return () => mediaQuery.removeEventListener('change', handler);
+      }
+    };
+    
     checkDarkMode();
+    checkMobile();
     
     // Also check for dark class on html element (in case theme is set via class)
     const htmlElement = document.documentElement;
@@ -102,7 +117,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
         {/* Year of Release */}
         {stats.yearOfRelease && stats.yearOfRelease.length > 0 && (
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Year of Release
             </h3>
             {(() => {
@@ -115,8 +130,8 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
               
               return (
                 <>
-                  <div className="mb-6">
-                    <ResponsiveContainer width="100%" height={300}>
+                  <div className="mb-1">
+                    <ResponsiveContainer width="100%" height={isMobile ? 300 : 400}>
                       <PieChart>
                         <Pie
                           data={pieData}
@@ -126,10 +141,11 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                           outerRadius={120}
                           paddingAngle={2}
                           dataKey="value"
-                          label={({ name, payload }) => {
+                          label={!isMobile ? ({ name, payload }) => {
                             const percentage = payload?.percentage || 0;
                             return `${name}: ${percentage}%`;
-                          }}
+                          } : false}
+                          labelLine={!isMobile}
                         >
                           {pieData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -140,7 +156,13 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             backgroundColor: isDark ? '#1f2937' : '#ffffff',
                             border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
                             borderRadius: '8px',
-                            color: isDark ? '#f3f4f6' : '#111827',
+                            color: isDark ? '#ffffff' : '#111827',
+                          }}
+                          itemStyle={{
+                            color: isDark ? '#ffffff' : '#111827',
+                          }}
+                          labelStyle={{
+                            color: isDark ? '#ffffff' : '#111827',
                           }}
                           formatter={(value: number | undefined, name: string | undefined, props: any) => {
                             const val = value || 0;
@@ -150,7 +172,22 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                         />
                       </PieChart>
                     </ResponsiveContainer>
-                    <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
+                    {isMobile && (
+                      <div className="mt-1 flex flex-wrap justify-center gap-2">
+                        {pieData.map((entry, index) => (
+                          <div key={index} className="flex items-center gap-1.5 leading-tight">
+                            <div
+                              className="w-4 h-4 rounded"
+                              style={{ backgroundColor: entry.color }}
+                            />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                              {entry.name}: {entry.value} ({entry.percentage}%)
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <div className="text-center mt-1 text-gray-700 dark:text-gray-300">
                       Past 3 Years (2023-2025): {recentYears} ({recentPercentage}%)
                     </div>
                   </div>
@@ -165,7 +202,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
           <>
             <hr className="border-gray-200 dark:border-gray-700 my-8" />
             <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Artists by Country
             </h3>
             {(() => {
@@ -175,7 +212,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
               return (
                 <>
                   <div className="mb-6">
-                    <ResponsiveContainer width="100%" height={350}>
+                    <ResponsiveContainer width="100%" height={isMobile ? 350 : 450}>
                       <PieChart>
                         <Pie
                           data={pieData}
@@ -185,10 +222,11 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                           outerRadius={120}
                           paddingAngle={2}
                           dataKey="value"
-                          label={({ name, payload }) => {
+                          label={!isMobile ? ({ name, payload }) => {
                             const percentage = payload?.percentage || 0;
                             return `${name}: ${percentage}%`;
-                          }}
+                          } : false}
+                          labelLine={!isMobile}
                         >
                           {pieData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -199,7 +237,13 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             backgroundColor: isDark ? '#1f2937' : '#ffffff',
                             border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
                             borderRadius: '8px',
-                            color: isDark ? '#f3f4f6' : '#111827',
+                            color: isDark ? '#ffffff' : '#111827',
+                          }}
+                          itemStyle={{
+                            color: isDark ? '#ffffff' : '#111827',
+                          }}
+                          labelStyle={{
+                            color: isDark ? '#ffffff' : '#111827',
                           }}
                           formatter={(value: number | undefined, name: string | undefined, props: any) => {
                             const val = value || 0;
@@ -209,21 +253,36 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                         />
                       </PieChart>
                     </ResponsiveContainer>
+                    {isMobile && (
+                      <div className="mt-1 flex flex-wrap justify-center gap-2">
+                        {pieData.map((entry, index) => (
+                          <div key={index} className="flex items-center gap-1.5 leading-tight">
+                            <div
+                              className="w-4 h-4 rounded"
+                              style={{ backgroundColor: entry.color }}
+                            />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                              {entry.name}: {entry.value} ({entry.percentage}%)
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
                       <thead>
                         <tr className="border-b border-gray-200 dark:border-gray-700">
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Country</th>
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Artists</th>
+                          <th className="text-left px-3 py-2 text-gray-900 dark:text-white font-semibold">Country</th>
+                          <th className="text-left px-3 py-2 text-gray-900 dark:text-white font-semibold">Artists</th>
                         </tr>
                       </thead>
                       <tbody>
                         {stats.artistsByCountry
                           .sort((a, b) => b.count - a.count)
                           .map((item, index) => (
-                            <tr key={index} className="border-b border-gray-100 dark:border-gray-800">
-                              <td className="p-2">
+                            <tr key={index} className={`border-b border-gray-100 dark:border-gray-800 ${index % 2 === 1 ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+                              <td className="pl-2 pr-3 py-2">
                                 <div className="flex items-center gap-2">
                                   {item.flag && (
                                     <img
@@ -235,7 +294,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                                   <span className="text-gray-900 dark:text-white font-medium">{item.country}</span>
                                 </div>
                               </td>
-                              <td className="p-2 text-gray-700 dark:text-gray-300">
+                              <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
                                 {item.artists.join(', ')}
                               </td>
                             </tr>
@@ -255,7 +314,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
           <>
             <hr className="border-gray-200 dark:border-gray-700 my-8" />
             <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Artists by Region
             </h3>
             {(() => {
@@ -264,7 +323,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
               return (
                 <>
                   <div className="mb-6">
-                    <ResponsiveContainer width="100%" height={350}>
+                    <ResponsiveContainer width="100%" height={isMobile ? 350 : 450}>
                       <PieChart>
                         <Pie
                           data={pieData}
@@ -274,6 +333,11 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                           outerRadius={120}
                           paddingAngle={2}
                           dataKey="value"
+                          label={!isMobile ? ({ name, payload }) => {
+                            const percentage = payload?.percentage || 0;
+                            return `${name}: ${percentage}%`;
+                          } : false}
+                          labelLine={!isMobile}
                         >
                           {pieData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -284,7 +348,13 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             backgroundColor: isDark ? '#1f2937' : '#ffffff',
                             border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
                             borderRadius: '8px',
-                            color: isDark ? '#f3f4f6' : '#111827',
+                            color: isDark ? '#ffffff' : '#111827',
+                          }}
+                          itemStyle={{
+                            color: isDark ? '#ffffff' : '#111827',
+                          }}
+                          labelStyle={{
+                            color: isDark ? '#ffffff' : '#111827',
                           }}
                           formatter={(value: number | undefined, name: string | undefined, props: any) => {
                             const val = value || 0;
@@ -292,32 +362,39 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             return [`${val} (${percentage}%)`, name || ''];
                           }}
                         />
-                        <Legend
-                          wrapperStyle={{ paddingTop: '20px' }}
-                          formatter={(value, entry: any) => (
-                            <span style={{ color: isDark ? '#f3f4f6' : '#111827' }}>
-                              {value}: {entry.payload.value} ({entry.payload.percentage}%)
-                            </span>
-                          )}
-                        />
                       </PieChart>
                     </ResponsiveContainer>
+                    {isMobile && (
+                      <div className="mt-1 flex flex-wrap justify-center gap-2">
+                        {pieData.map((entry, index) => (
+                          <div key={index} className="flex items-center gap-1.5 leading-tight">
+                            <div
+                              className="w-4 h-4 rounded"
+                              style={{ backgroundColor: entry.color }}
+                            />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                              {entry.name}: {entry.value} ({entry.percentage}%)
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
                       <thead>
                         <tr className="border-b border-gray-200 dark:border-gray-700">
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Region</th>
-                          <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Artists</th>
+                          <th className="text-left px-3 py-2 text-gray-900 dark:text-white font-semibold">Region</th>
+                          <th className="text-left px-3 py-2 text-gray-900 dark:text-white font-semibold">Artists</th>
                         </tr>
                       </thead>
                       <tbody>
                         {stats.artistsByRegion
                           .sort((a, b) => b.count - a.count)
                           .map((item, index) => (
-                            <tr key={index} className="border-b border-gray-100 dark:border-gray-800">
-                              <td className="p-2 text-gray-900 dark:text-white font-medium">{item.region}</td>
-                              <td className="p-2 text-gray-700 dark:text-gray-300">
+                            <tr key={index} className={`border-b border-gray-100 dark:border-gray-800 ${index % 2 === 1 ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+                              <td className="pl-2 pr-3 py-2 text-gray-900 dark:text-white font-medium">{item.region}</td>
+                              <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
                                 {item.artists.join(', ')}
                               </td>
                             </tr>
@@ -337,24 +414,24 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
           <>
             <hr className="border-gray-200 dark:border-gray-700 my-8" />
             <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Artists by Genre
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b border-gray-200 dark:border-gray-700">
-                    <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Genre</th>
-                    <th className="text-left p-2 text-gray-900 dark:text-white font-semibold">Artists</th>
+                    <th className="text-left px-3 py-2 text-gray-900 dark:text-white font-semibold">Genre</th>
+                    <th className="text-left px-3 py-2 text-gray-900 dark:text-white font-semibold">Artists</th>
                   </tr>
                 </thead>
                 <tbody>
                   {stats.artistsByGenre
                     .sort((a, b) => b.count - a.count)
                     .map((item, index) => (
-                      <tr key={index} className="border-b border-gray-100 dark:border-gray-800">
-                        <td className="p-2 text-gray-900 dark:text-white font-medium">{item.genre}</td>
-                        <td className="p-2 text-gray-700 dark:text-gray-300">
+                      <tr key={index} className={`border-b border-gray-100 dark:border-gray-800 ${index % 2 === 1 ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+                        <td className="pl-2 pr-3 py-2 text-gray-900 dark:text-white font-medium">{item.genre}</td>
+                        <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
                           {item.artists.join(', ')}
                         </td>
                       </tr>
