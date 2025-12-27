@@ -7,6 +7,7 @@ import { SiYoutubemusic } from 'react-icons/si';
 import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
+import StatsDisplay from './StatsDisplay';
 import Toast from './Toast';
 
 interface Lyric {
@@ -35,17 +36,7 @@ interface Top40Data {
       url?: string;
     };
   };
-  stats?: {
-    artistCountries?: Array<{
-      country: string;
-      count: number;
-      flag?: string;
-    }>;
-    languages?: Array<{
-      language: string;
-      count: number;
-    }>;
-  };
+  stats?: import('@/lib/top40-stats').Top40Stats;
 }
 
 interface Top40Props {
@@ -444,68 +435,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
         )}
 
         {/* Stats Section */}
-        {data.stats && (
-          <div className="mt-12 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              Stats
-            </h2>
-            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6">
-              {data.stats.artistCountries && data.stats.artistCountries.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Artist Countries
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {data.stats.artistCountries.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
-                      >
-                        {item.flag && (
-                          <img
-                            src={item.flag}
-                            alt={item.country}
-                            className="w-8 h-8 object-cover rounded"
-                          />
-                        )}
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-900 dark:text-white">
-                            {item.country}
-                          </div>
-                          <div className="text-sm text-gray-600 dark:text-gray-400">
-                            {item.count} {item.count === 1 ? 'artist' : 'artists'}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {data.stats.languages && data.stats.languages.length > 0 && (
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Languages
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {data.stats.languages.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
-                      >
-                        <div className="font-medium text-gray-900 dark:text-white">
-                          {item.language}
-                        </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">
-                          {item.count} {item.count === 1 ? 'song' : 'songs'}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+        {data.stats && <StatsDisplay stats={data.stats} />}
 
         {/* Year Navigation */}
         {(prevYear || nextYear) && (

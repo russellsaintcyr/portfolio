@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Top40 from '../../components/Top40';
 import { getYearMetadata, getAdjacentYears } from '@/lib/top40-index';
+import { getYearStats } from '@/lib/top40-stats';
 import type { Metadata } from 'next';
 
 interface Lyric {
@@ -31,17 +32,7 @@ interface Top40Data {
       url?: string;
     };
   };
-  stats?: {
-    artistCountries?: Array<{
-      country: string;
-      count: number;
-      flag?: string;
-    }>;
-    languages?: Array<{
-      language: string;
-      count: number;
-    }>;
-  };
+  stats?: import('@/lib/top40-stats').Top40Stats;
 }
 
 async function getTop40Data(year: number): Promise<Top40Data | null> {
@@ -86,6 +77,9 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
       // as long as the year is enabled in index.json
     }
     
+    // Get stats from JSON file
+    const stats = getYearStats(year);
+    
     // Merge metadata (from index.json) with content (from Redis)
     // Metadata takes precedence for coverImage and playlists
     // If no Redis data exists, use empty defaults
@@ -97,6 +91,7 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
       description: contentData?.description || '',
       lyrics: contentData?.lyrics || [],
       playlists: metadata?.playlists || undefined,
+      stats: stats || undefined,
     };
     
     return mergedData;

@@ -1,0 +1,130 @@
+{
+  "yearOfRelease": [
+    { "year": 2025, "count": 20 },
+    { "year": 2024, "count": 10 },
+    { "year": 2023, "count": 5 },
+    { "year": 1982, "count": 2 },
+    { "year": 2022, "count": 1 },
+    { "year": 2020, "count": 1 },
+    { "year": 2017, "count": 1 },
+    { "year": 2013, "count": 1 },
+    { "year": 2003, "count": 1 },
+    { "year": 1998, "count": 1 },
+    { "year": 1980, "count": 1 }
+  ],
+  "artistsByCountry": [
+    {
+      "country": "United Kingdom",
+      "count": 12,
+      "flag": "https://flagcdn.com/w40/gb.png",
+      "artists": [
+        "Above & Beyond",
+        "Blood Orange",
+        "Fatboy Slim",
+        "Geordie Greep",
+        "Jamie xx",
+        "Lola Young",
+        "Peter Godwin",
+        "Puma Blue",
+        "The Cure",
+        "The Wildhearts",
+        "Tom Odell",
+        "Wet Leg"
+      ]
+    },
+    {
+      "country": "United States",
+      "count": 10,
+      "flag": "https://flagcdn.com/w40/us.png",
+      "artists": [
+        "Bodeans",
+        "HAIM",
+        "Julianna Barwick",
+        "Kesha",
+        "Ministry",
+        "My Morning Jacket",
+        "Nathaniel Rateliff & The Night Sweats",
+        "Sofi Tukker",
+        "The Bad Plus",
+        "The Black Keys"
+      ]
+    },
+    {
+      "country": "Canada",
+      "count": 9,
+      "flag": "https://flagcdn.com/w40/ca.png",
+      "artists": [
+        "Altered by Mom",
+        "Beyries",
+        "Chalk Circle",
+        "Loud",
+        "Men Without Hats",
+        "Reuben and the Bullhorn Singers",
+        "Toronto",
+        "bbno$",
+        "Unknown"
+      ]
+    },
+    {
+      "country": "France",
+      "count": 2,
+      "flag": "https://flagcdn.com/w40/fr.png",
+      "artists": [
+        "Caravan Palace",
+        "Unknown"
+      ]
+    },
+    {
+      "country": "South Korea",
+      "count": 2,
+      "flag": "https://flagcdn.com/w40/kr.png",
+      "artists": [
+        "ROSÉ",
+        "Saja Boys"
+      ]
+    },
+    {
+      "country": "Australia",
+      "count": 1,
+      "flag": "https://flagcdn.com/w40/au.png",
+      "artists": [
+        "Girl and Girl"
+      ]
+    },
+    {
+      "country": "Germany",
+      "count": 1,
+      "flag": "https://flagcdn.com/w40/de.png",
+      "artists": [
+        "Electric Callboy"
+      ]
+    },
+    {
+      "country": "Iceland",
+      "count": 1,
+      "flag": "https://flagcdn.com/w40/is.png",
+      "artists": [
+        "Unknown"
+      ]
+    },
+    {
+      "country": "Japan",
+      "count": 1,
+      "flag": "https://flagcdn.com/w40/jp.png",
+      "artists": [
+        "Unknown"
+      ]
+    },
+    {
+      "country": "PR",
+      "count": 1,
+      "flag": "https://flagcdn.com/w40/pr.png",
+      "artists": [
+        "Unknown"
+      ]
+    }
+  ],
+  "artistsByRegion": [],
+  "artistsByGenre": []
+}
+
