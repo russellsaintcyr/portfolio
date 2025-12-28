@@ -24,7 +24,7 @@ export default function LyricsCarousel({ lyrics }: LyricsCarouselProps) {
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-        Chosen Lyrics
+        Special Lyrics
       </h2>
       <div className="relative">
         <Swiper
@@ -40,7 +40,7 @@ export default function LyricsCarousel({ lyrics }: LyricsCarouselProps) {
             dynamicBullets: false,
           }}
           autoplay={{
-            delay: 10000,
+            delay: 15000,
             disableOnInteraction: false,
           }}
           className="lyrics-carousel"
