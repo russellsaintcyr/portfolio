@@ -50,7 +50,7 @@ export default function Top40Index() {
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Top 40
+                My Annual Top 40
               </h1>
               <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
                 Explore my favorite songs from the past two decades.
