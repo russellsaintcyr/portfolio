@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaSpotify, FaYoutube } from 'react-icons/fa';
-import { SiYoutubemusic, SiApplemusic } from 'react-icons/si';
+import { FaSpotify, FaYoutube, FaApple } from 'react-icons/fa';
+import { SiYoutubemusic } from 'react-icons/si';
 import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
@@ -334,7 +334,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
               )}
               {((data.playlists.youtubeMusic?.embed && data.playlists.youtubeMusic.embed.trim() !== '') || hasYouTubeMusicUrl()) && (
                 <div className="flex flex-col items-center">
-                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">YouTube Music</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">YT Music</span>
                   <button
                     onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeMusic' ? null : 'youtubeMusic')}
                     className={`p-3 rounded-full transition-all group ${
@@ -366,7 +366,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
               )}
               {hasAppleMusic() && (
                 <div className="flex flex-col items-center">
-                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">Apple Music</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">Apple</span>
                   <button
                     onClick={() => setSelectedPlaylist(selectedPlaylist === 'apple' ? null : 'apple')}
                     className={`p-3 rounded-full transition-all group ${
@@ -376,7 +376,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                     }`}
                     aria-label="Apple Music"
                   >
-                    <SiApplemusic size={32} className={selectedPlaylist !== 'apple' ? 'group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors' : ''} />
+                    <FaApple size={32} className={selectedPlaylist !== 'apple' ? 'group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors' : ''} />
                   </button>
                 </div>
               )}
@@ -463,7 +463,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-medium transition-colors"
                 >
-                  <SiApplemusic size={20} />
+                  <FaApple size={20} />
                   <span>Open Apple Music Playlist</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

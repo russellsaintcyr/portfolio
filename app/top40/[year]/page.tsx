@@ -19,7 +19,7 @@ interface Top40Data {
   lyrics?: Lyric[];
   playlists?: {
     spotify?: {
-      embed?: string;
+      embed?: string; // Spotify embed code for the playlist
       url?: string;
     };
     youtube?: {
