@@ -8,9 +8,21 @@ interface YearConfig {
   playlists?: {
     spotify?: {
       embed?: string;
+      url?: string;
     };
     youtube?: {
       embed?: string;
+      url?: string;
+    };
+    youtubeMusic?: {
+      embed?: string;
+      url?: string;
+    };
+    youtubeVideo?: {
+      url?: string;
+    };
+    apple?: {
+      url?: string;
     };
   } | null;
 }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaSpotify, FaYoutube } from 'react-icons/fa';
-import { SiYoutubemusic } from 'react-icons/si';
+import { SiYoutubemusic, SiApplemusic } from 'react-icons/si';
 import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
@@ -24,6 +24,7 @@ interface Top40Data {
   playlists?: {
     spotify?: {
       embed?: string;
+      url?: string;
     };
     youtube?: {
       embed?: string;
@@ -31,8 +32,12 @@ interface Top40Data {
     };
     youtubeMusic?: {
       embed?: string;
+      url?: string;
     };
     youtubeVideo?: {
+      url?: string;
+    };
+    apple?: {
       url?: string;
     };
   };
@@ -82,7 +87,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
   const [isSavingDescription, setIsSavingDescription] = useState(false);
   const [isSavingLyrics, setIsSavingLyrics] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
-  const [selectedPlaylist, setSelectedPlaylist] = useState<'spotify' | 'youtubeMusic' | 'youtubeVideo' | null>(null);
+  const [selectedPlaylist, setSelectedPlaylist] = useState<'spotify' | 'youtubeMusic' | 'youtubeVideo' | 'apple' | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -142,18 +147,6 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
     }
   }, [data.description, data.lyrics, data.year, serverCanEdit]);
 
-  // Auto-select Spotify by default if available
-  useEffect(() => {
-    if (data.playlists && selectedPlaylist === null) {
-      const hasSpotify = data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '';
-      
-      // Always select Spotify by default if available
-      if (hasSpotify) {
-        setSelectedPlaylist('spotify');
-      }
-    }
-  }, [data.playlists, selectedPlaylist]);
-
   // Helper function to check if YouTube Video has a URL
   const hasYouTubeVideo = () => {
     return (data.playlists?.youtubeVideo?.url && data.playlists.youtubeVideo.url.trim() !== '') ||
@@ -164,6 +157,48 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
   const getYouTubeVideoUrl = () => {
     return data.playlists?.youtubeVideo?.url || data.playlists?.youtube?.url || '';
   };
+
+  // Helper function to check if Apple Music has a URL
+  const hasAppleMusic = () => {
+    return data.playlists?.apple?.url && data.playlists.apple.url.trim() !== '';
+  };
+
+  // Helper function to get Apple Music URL
+  const getAppleMusicUrl = () => {
+    return data.playlists?.apple?.url || '';
+  };
+
+  // Helper function to check if Spotify has a URL
+  const hasSpotifyUrl = () => {
+    return data.playlists?.spotify?.url && data.playlists.spotify.url.trim() !== '';
+  };
+
+  // Helper function to get Spotify URL
+  const getSpotifyUrl = () => {
+    return data.playlists?.spotify?.url || '';
+  };
+
+  // Helper function to check if YouTube Music has a URL
+  const hasYouTubeMusicUrl = () => {
+    return data.playlists?.youtubeMusic?.url && data.playlists.youtubeMusic.url.trim() !== '';
+  };
+
+  // Helper function to get YouTube Music URL
+  const getYouTubeMusicUrl = () => {
+    return data.playlists?.youtubeMusic?.url || '';
+  };
+
+  // Auto-select Spotify by default if available
+  useEffect(() => {
+    if (data.playlists && selectedPlaylist === null) {
+      const hasSpotify = (data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '') || hasSpotifyUrl();
+      
+      // Always select Spotify by default if available
+      if (hasSpotify) {
+        setSelectedPlaylist('spotify');
+      }
+    }
+  }, [data.playlists, selectedPlaylist]);
 
   const handleDescriptionPreview = (content: string) => {
     localStorage.setItem(descriptionKey, content);
@@ -278,6 +313,167 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
           </div>
         )}
 
+        {data.playlists && (
+          <div className="mb-8">
+            <div className="flex justify-center gap-6 mb-6">
+              {((data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '') || hasSpotifyUrl()) && (
+                <div className="flex flex-col items-center">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">Spotify</span>
+                  <button
+                    onClick={() => setSelectedPlaylist(selectedPlaylist === 'spotify' ? null : 'spotify')}
+                    className={`p-3 rounded-full transition-all group ${
+                      selectedPlaylist === 'spotify'
+                        ? 'bg-green-500 text-white scale-110'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                    aria-label="Spotify"
+                  >
+                    <FaSpotify size={32} className={selectedPlaylist !== 'spotify' ? 'group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors' : ''} />
+                  </button>
+                </div>
+              )}
+              {((data.playlists.youtubeMusic?.embed && data.playlists.youtubeMusic.embed.trim() !== '') || hasYouTubeMusicUrl()) && (
+                <div className="flex flex-col items-center">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">YouTube Music</span>
+                  <button
+                    onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeMusic' ? null : 'youtubeMusic')}
+                    className={`p-3 rounded-full transition-all group ${
+                      selectedPlaylist === 'youtubeMusic'
+                        ? 'bg-red-500 text-white scale-110'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                    aria-label="YouTube Music"
+                  >
+                    <SiYoutubemusic size={32} className={selectedPlaylist !== 'youtubeMusic' ? 'group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors' : ''} />
+                  </button>
+                </div>
+              )}
+              {hasYouTubeVideo() && (
+                <div className="flex flex-col items-center">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">YouTube</span>
+                  <button
+                    onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeVideo' ? null : 'youtubeVideo')}
+                    className={`p-3 rounded-full transition-all group ${
+                      selectedPlaylist === 'youtubeVideo'
+                        ? 'bg-red-500 text-white scale-110'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                    aria-label="YouTube Video"
+                  >
+                    <FaYoutube size={32} className={selectedPlaylist !== 'youtubeVideo' ? 'group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors' : ''} />
+                  </button>
+                </div>
+              )}
+              {hasAppleMusic() && (
+                <div className="flex flex-col items-center">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 mb-2">Apple Music</span>
+                  <button
+                    onClick={() => setSelectedPlaylist(selectedPlaylist === 'apple' ? null : 'apple')}
+                    className={`p-3 rounded-full transition-all group ${
+                      selectedPlaylist === 'apple'
+                        ? 'bg-pink-500 text-white scale-110'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                    aria-label="Apple Music"
+                  >
+                    <SiApplemusic size={32} className={selectedPlaylist !== 'apple' ? 'group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors' : ''} />
+                  </button>
+                </div>
+              )}
+            </div>
+            {selectedPlaylist === 'spotify' && (
+              <>
+                {hasSpotifyUrl() && (
+                  <div className="mb-4 text-center">
+                    <a
+                      href={getSpotifyUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+                    >
+                      <FaSpotify size={20} />
+                      <span>Open Spotify Playlist</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+                {data.playlists.spotify?.embed && (
+                  <div className="mb-4">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: data.playlists.spotify.embed,
+                      }}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+            {selectedPlaylist === 'youtubeMusic' && (
+              <>
+                {hasYouTubeMusicUrl() && (
+                  <div className="mb-4 text-center">
+                    <a
+                      href={getYouTubeMusicUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+                    >
+                      <SiYoutubemusic size={20} />
+                      <span>Open YouTube Music Playlist</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+                {data.playlists.youtubeMusic?.embed && (
+                  <div className="mb-4">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: data.playlists.youtubeMusic.embed,
+                      }}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+            {selectedPlaylist === 'youtubeVideo' && hasYouTubeVideo() && (
+              <div className="mb-4 text-center">
+                <a
+                  href={getYouTubeVideoUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  <FaYoutube size={20} />
+                  <span>Open YouTube Video Playlist</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            )}
+            {selectedPlaylist === 'apple' && hasAppleMusic() && (
+              <div className="mb-4 text-center">
+                <a
+                  href={getAppleMusicUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  <SiApplemusic size={20} />
+                  <span>Open Apple Music Playlist</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            )}
+          </div>
+        )}
+
         {(description.trim() || canEdit) && (
           <div className="mb-8">
             {canEdit && !isEditingDescription && (
@@ -314,88 +510,6 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
           </div>
         )}
 
-        {data.playlists && (
-          <div className="mt-12">
-            {/* <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-              Playlists
-            </h2> */}
-            <div className="flex justify-center gap-6 mb-6">
-              {data.playlists.spotify?.embed && data.playlists.spotify.embed.trim() !== '' && (
-                <button
-                  onClick={() => setSelectedPlaylist(selectedPlaylist === 'spotify' ? null : 'spotify')}
-                  className={`p-3 rounded-full transition-all group ${
-                    selectedPlaylist === 'spotify'
-                      ? 'bg-green-500 text-white scale-110'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                  aria-label="Spotify"
-                >
-                  <FaSpotify size={32} className={selectedPlaylist !== 'spotify' ? 'group-hover:text-green-500 dark:group-hover:text-green-400 transition-colors' : ''} />
-                </button>
-              )}
-              {data.playlists.youtubeMusic?.embed && data.playlists.youtubeMusic.embed.trim() !== '' && (
-                <button
-                  onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeMusic' ? null : 'youtubeMusic')}
-                  className={`p-3 rounded-full transition-all group ${
-                    selectedPlaylist === 'youtubeMusic'
-                      ? 'bg-red-500 text-white scale-110'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                  aria-label="YouTube Music"
-                >
-                  <SiYoutubemusic size={32} className={selectedPlaylist !== 'youtubeMusic' ? 'group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors' : ''} />
-                </button>
-              )}
-              {hasYouTubeVideo() && (
-                <button
-                  onClick={() => setSelectedPlaylist(selectedPlaylist === 'youtubeVideo' ? null : 'youtubeVideo')}
-                  className={`p-3 rounded-full transition-all group ${
-                    selectedPlaylist === 'youtubeVideo'
-                      ? 'bg-red-500 text-white scale-110'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                  aria-label="YouTube Video"
-                >
-                  <FaYoutube size={32} className={selectedPlaylist !== 'youtubeVideo' ? 'group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors' : ''} />
-                </button>
-              )}
-            </div>
-            {selectedPlaylist === 'spotify' && data.playlists.spotify?.embed && (
-              <div className="mb-4">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: data.playlists.spotify.embed,
-                  }}
-                />
-              </div>
-            )}
-            {selectedPlaylist === 'youtubeMusic' && data.playlists.youtubeMusic?.embed && (
-              <div className="mb-4">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: data.playlists.youtubeMusic.embed,
-                  }}
-                />
-              </div>
-            )}
-            {selectedPlaylist === 'youtubeVideo' && hasYouTubeVideo() && (
-              <div className="mb-4 text-center">
-                <a
-                  href={getYouTubeVideoUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
-                >
-                  <FaYoutube size={20} />
-                  <span>Open YouTube Playlist</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
-            )}
-          </div>
-        )}
 
         {canEdit && (
           <div className="mb-8">

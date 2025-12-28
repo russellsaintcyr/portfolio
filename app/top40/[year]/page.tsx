@@ -20,6 +20,7 @@ interface Top40Data {
   playlists?: {
     spotify?: {
       embed?: string;
+      url?: string;
     };
     youtube?: {
       embed?: string;
@@ -27,8 +28,12 @@ interface Top40Data {
     };
     youtubeMusic?: {
       embed?: string;
+      url?: string;
     };
     youtubeVideo?: {
+      url?: string;
+    };
+    apple?: {
       url?: string;
     };
   };

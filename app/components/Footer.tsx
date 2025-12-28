@@ -8,7 +8,7 @@ export default function Footer() {
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             © 2025 Russell Saint Cyr.</p>
           <p className="text-gray-600 dark:text-gray-400 text-sm">
-            This site was built with Next.js, Tailwind CSS, Cursor, Claude and Gemini.
+            This site was built with React (Next.js), Tailwind CSS, Cursor, Claude and Gemini.
           </p>
           <SocialLinks />
         </div>

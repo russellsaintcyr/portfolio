@@ -54,7 +54,7 @@ export default function LyricsCarousel({ lyrics }: LyricsCarouselProps) {
                 />
                 {lyric.artist && lyric.song && (
                   <div className="text-gray-600 dark:text-gray-400">
-                    by {lyric.artist}, from {lyric.song}
+                    from "{lyric.song}" by {lyric.artist}
                   </div>
                 )}
               </div>

@@ -6,10 +6,17 @@
       "enabled": true,
       "playlists": {
         "spotify": {
+          "url": "https://open.spotify.com/playlist/32gNZnWdi67mMKmOo60YfV?si=94aafccd744f4b4b",
           "embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/32gNZnWdi67mMKmOo60YfV?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
         },
         "youtube": {
           "url": "https://www.youtube.com/watch?v=s7vH2qySsLQ&list=PLAOpNCH56R9l78l7heBAgTBcHeVk2iQ5c"
+        },
+        "youtubeMusic": {
+          "url": "https://music.youtube.com/playlist?list=PLAOpNCH56R9kmns6P2dcrAA1HB8O6smI8&si=t32c1aPqo-OdwL0_"
+        },
+        "apple": {
+          "url": "https://music.apple.com/ca/playlist/my-top-40-2025/pl.u-76oNl23sW9ozJWK?ls"
         }
       }
     },

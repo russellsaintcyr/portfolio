@@ -415,7 +415,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
             <hr className="border-gray-200 dark:border-gray-700 my-8" />
             <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
-              Artists by Genre
+              Artists by Genre/Tags
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
@@ -442,6 +442,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
             </div>
           </>
         )}
+        <div className="text-center text-gray-700 dark:text-gray-300 text-sm">Musician metadata provided by MusicBrainz</div>
       </div>
     </div>
   );
