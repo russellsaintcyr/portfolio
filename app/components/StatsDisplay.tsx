@@ -187,9 +187,9 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                         ))}
                       </div>
                     )}
-                    <div className="text-center mt-1 text-gray-700 dark:text-gray-300">
+                    {/* <div className="text-center mt-1 text-gray-700 dark:text-gray-300">
                       Past 3 Years (2023-2025): {recentYears} ({recentPercentage}%)
-                    </div>
+                    </div> */}
                   </div>
                 </>
               );
@@ -212,7 +212,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
               return (
                 <>
                   <div className="mb-6">
-                    <ResponsiveContainer width="100%" height={isMobile ? 350 : 450}>
+                    <ResponsiveContainer width="100%" height={isMobile ? 300 : 375}>
                       <PieChart>
                         <Pie
                           data={pieData}
@@ -323,7 +323,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
               return (
                 <>
                   <div className="mb-6">
-                    <ResponsiveContainer width="100%" height={isMobile ? 350 : 450}>
+                    <ResponsiveContainer width="100%" height={isMobile ? 300 : 375}>
                       <PieChart>
                         <Pie
                           data={pieData}
