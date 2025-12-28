@@ -125,9 +125,60 @@ export async function generateMetadata({
   const { year } = await params;
   const yearNum = parseInt(year, 10);
   
+  // Get data for richer metadata
+  const data = await getTop40Data(yearNum);
+  const metadata = getYearMetadata(yearNum);
+  
+  // Create description from page content if available
+  let description = `My favorite songs from ${yearNum}.`;
+  if (data?.description) {
+    // Strip HTML tags and get first 160 characters for meta description
+    const textOnly = data.description
+      .replace(/<[^>]*>/g, '')
+      .replace(/&nbsp;/g, ' ')
+      .trim();
+    if (textOnly.length > 0) {
+      // Use first 160 characters, or up to the last complete sentence
+      const truncated = textOnly.length > 160 
+        ? textOnly.substring(0, 160).replace(/\s+\S*$/, '') + '...'
+        : textOnly;
+      description = truncated;
+    }
+  }
+  
+  // Get cover image URL for Open Graph
+  const coverImageUrl = metadata?.coverImage 
+    ? new URL(metadata.coverImage, process.env.NEXT_PUBLIC_SITE_URL || 'https://russellsaintcyr.com').toString()
+    : undefined;
+  
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://russellsaintcyr.com';
+  const pageUrl = `${siteUrl}/top40/${yearNum}`;
+  
   return {
     title: `My Top Songs of ${yearNum} - Russell Saint Cyr`,
-    description: `My favorite songs from ${yearNum}.`,
+    description,
+    openGraph: {
+      title: `My Top Songs of ${yearNum}`,
+      description,
+      url: pageUrl,
+      siteName: 'Russell Saint Cyr',
+      images: coverImageUrl ? [
+        {
+          url: coverImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `Top 40 ${yearNum} Cover`,
+        },
+      ] : undefined,
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `My Top Songs of ${yearNum}`,
+      description,
+      images: coverImageUrl ? [coverImageUrl] : undefined,
+    },
   };
 }
 
