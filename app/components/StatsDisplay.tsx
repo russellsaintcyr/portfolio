@@ -200,7 +200,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
         {/* Artists by Country */}
         {stats.artistsByCountry && stats.artistsByCountry.length > 0 && (
           <>
-            <hr className="border-gray-200 dark:border-gray-700 my-8" />
+            <hr className="border-gray-200 dark:border-gray-700 my-2" />
             <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Artists by Country
@@ -312,7 +312,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
         {/* Artists by Region */}
         {stats.artistsByRegion && stats.artistsByRegion.length > 0 && (
           <>
-            <hr className="border-gray-200 dark:border-gray-700 my-8" />
+            <hr className="border-gray-200 dark:border-gray-700 my-2" />
             <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Artists by Region
@@ -412,7 +412,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
         {/* Artists by Genre */}
         {stats.artistsByGenre && stats.artistsByGenre.length > 0 && (
           <>
-            <hr className="border-gray-200 dark:border-gray-700 my-8" />
+            <hr className="border-gray-200 dark:border-gray-700 my-2" />
             <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1 text-center">
               Artists by Genre/Tags
