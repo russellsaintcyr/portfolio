@@ -295,7 +295,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                                 </div>
                               </td>
                               <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
-                                {item.artists.join(', ')}
+                                {item.artists.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })).join(', ')}
                               </td>
                             </tr>
                           ))}
@@ -395,7 +395,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                             <tr key={index} className={`border-b border-gray-100 dark:border-gray-800 ${index % 2 === 1 ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
                               <td className="pl-2 pr-3 py-2 text-gray-900 dark:text-white font-medium">{item.region}</td>
                               <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
-                                {item.artists.join(', ')}
+                                {item.artists.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })).join(', ')}
                               </td>
                             </tr>
                           ))}
@@ -432,7 +432,7 @@ export default function StatsDisplay({ stats }: StatsDisplayProps) {
                       <tr key={index} className={`border-b border-gray-100 dark:border-gray-800 ${index % 2 === 1 ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
                         <td className="pl-2 pr-3 py-2 text-gray-900 dark:text-white font-medium">{item.genre}</td>
                         <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
-                          {item.artists.join(', ')}
+                          {item.artists.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })).join(', ')}
                         </td>
                       </tr>
                     ))}
