@@ -132,13 +132,37 @@ export async function generateMetadata({
   // Create description from page content if available
   let description = `My favorite songs from ${yearNum}.`;
   if (data?.description) {
-    // Strip HTML tags and get first 160 characters for meta description
-    const textOnly = data.description
+    // Extract first paragraph from HTML
+    let firstParagraph = '';
+    
+    // Try to find first <p> tag
+    const pMatch = data.description.match(/<p[^>]*>(.*?)<\/p>/i);
+    if (pMatch && pMatch[1]) {
+      firstParagraph = pMatch[1];
+    } else {
+      // If no <p> tag, get text before first heading or block element
+      const beforeHeading = data.description.split(/<h[1-6][^>]*>/i)[0];
+      if (beforeHeading) {
+        firstParagraph = beforeHeading;
+      } else {
+        // Fallback: just take the beginning of the content
+        firstParagraph = data.description;
+      }
+    }
+    
+    // Strip HTML tags and clean up
+    const textOnly = firstParagraph
       .replace(/<[^>]*>/g, '')
       .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
       .trim();
+    
     if (textOnly.length > 0) {
-      // Use first 160 characters, or up to the last complete sentence
+      // Truncate to 160 characters, breaking at word boundary
       const truncated = textOnly.length > 160 
         ? textOnly.substring(0, 160).replace(/\s+\S*$/, '') + '...'
         : textOnly;
