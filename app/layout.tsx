@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { GoogleTagManager } from "@next/third-parties/google";
+import PostHogProvider from "./components/PostHogProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        {children}
+        <PostHogProvider>
+          {children}
+        </PostHogProvider>
         <GoogleAnalytics gaId="G-F6DT2D4BPF" />
         <GoogleTagManager gtmId="GTM-K5DNJRFZ" />
       </body>

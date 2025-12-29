@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { FaSpotify, FaYoutube, FaApple } from 'react-icons/fa';
 import { SiYoutubemusic } from 'react-icons/si';
@@ -9,6 +9,7 @@ import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
 import StatsDisplay from './StatsDisplay';
 import Toast from './Toast';
+import { captureEvent } from '@/lib/posthog';
 
 interface Lyric {
   artist: string;
@@ -88,9 +89,18 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
   const [isSavingLyrics, setIsSavingLyrics] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const [selectedPlaylist, setSelectedPlaylist] = useState<'spotify' | 'youtubeMusic' | 'youtubeVideo' | 'apple' | null>(null);
+  const hasTrackedPageLoad = useRef(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      // Track "playlist selected" event when page loads (only once)
+      if (!hasTrackedPageLoad.current) {
+        captureEvent('playlist_selected', {
+          year: data.year,
+        });
+        hasTrackedPageLoad.current = true;
+      }
+
       // If server already validated the token, trust it
       if (serverCanEdit) {
         setCanEdit(true);
@@ -389,6 +399,11 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                       href={getSpotifyUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        captureEvent('play_button_clicked', {
+                          service_name: 'spotify',
+                        });
+                      }}
                       className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
                     >
                       <FaSpotify size={20} />
@@ -418,6 +433,11 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                       href={getYouTubeMusicUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        captureEvent('play_button_clicked', {
+                          service_name: 'youtube_music',
+                        });
+                      }}
                       className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
                     >
                       <SiYoutubemusic size={20} />
@@ -445,6 +465,11 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   href={getYouTubeVideoUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    captureEvent('play_button_clicked', {
+                      service_name: 'youtube_videos',
+                    });
+                  }}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
                 >
                   <FaYoutube size={20} />
@@ -461,6 +486,11 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   href={getAppleMusicUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    captureEvent('play_button_clicked', {
+                      service_name: 'apple_music',
+                    });
+                  }}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-medium transition-colors"
                 >
                   <FaApple size={20} />
