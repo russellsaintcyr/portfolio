@@ -467,7 +467,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   rel="noopener noreferrer"
                   onClick={() => {
                     captureEvent('play_button_clicked', {
-                      service_name: 'youtube_videos',
+                      service_name: 'youtube_video',
                     });
                   }}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
