@@ -4,6 +4,8 @@
       "year": 2025,
       "coverImage": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8466d8e4ed90c88053dc47eaa1",
       "enabled": true,
+      "hasDescription": true,
+      "hasLyrics": true,
       "playlists": {
         "spotify": {
           "url": "https://open.spotify.com/playlist/32gNZnWdi67mMKmOo60YfV?si=94aafccd744f4b4b",

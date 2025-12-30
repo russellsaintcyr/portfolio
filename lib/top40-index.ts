@@ -5,6 +5,8 @@ interface YearConfig {
   year: number;
   coverImage: string | null;
   enabled: boolean;
+  hasDescription?: boolean;
+  hasLyrics?: boolean;
   playlists?: {
     spotify?: {
       embed?: string;

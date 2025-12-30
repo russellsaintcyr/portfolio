@@ -1,4 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
+
+/**
+ * Validates the edit token using constant-time comparison to prevent timing attacks
+ */
+function validateEditToken(token: string | null): boolean {
+  const validToken = process.env.EDIT_TOKEN;
+  if (!validToken || !token) {
+    return false;
+  }
+  
+  // Ensure buffers are same length (required for timingSafeEqual)
+  const tokenBuffer = Buffer.from(token);
+  const validTokenBuffer = Buffer.from(validToken);
+  
+  if (tokenBuffer.length !== validTokenBuffer.length) {
+    return false;
+  }
+  
+  return crypto.timingSafeEqual(tokenBuffer, validTokenBuffer);
+}
 
 /**
  * Validates the edit token from query parameters against the environment variable
@@ -21,7 +42,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Use constant-time comparison to prevent timing attacks
-  const isValid = token === validToken;
+  const isValid = validateEditToken(token);
 
   return NextResponse.json({ valid: isValid }, { status: 200 });
 }

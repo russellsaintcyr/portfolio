@@ -55,31 +55,39 @@ async function getTop40Data(year: number): Promise<Top40Data | null> {
       return html.replace(/&nbsp;/g, ' ');
     };
 
-    // Get content from Redis (description, lyrics)
+    // Get content from Redis (description, lyrics) only if the JSON indicates it exists
+    // Default to false if properties are not present
+    const hasDescription = metadata.hasDescription ?? false;
+    const hasLyrics = metadata.hasLyrics ?? false;
+    
     let contentData: Partial<Top40Data> | null = null;
-    try {
-      const { getRedisClient } = await import('@/lib/redis');
-      const redis = await getRedisClient();
-      const key = `top40:${year}`;
-      const dataStr = await redis.get(key);
-      if (dataStr) {
-        contentData = JSON.parse(dataStr) as Partial<Top40Data>;
-        // Clean &nbsp; from description
-        if (contentData.description) {
-          contentData.description = cleanHtml(contentData.description);
+    
+    // Only check Redis if the JSON indicates there's content to retrieve
+    if (hasDescription || hasLyrics) {
+      try {
+        const { getRedisClient } = await import('@/lib/redis');
+        const redis = await getRedisClient();
+        const key = `top40:${year}`;
+        const dataStr = await redis.get(key);
+        if (dataStr) {
+          contentData = JSON.parse(dataStr) as Partial<Top40Data>;
+          // Clean &nbsp; from description
+          if (contentData.description) {
+            contentData.description = cleanHtml(contentData.description);
+          }
+          // Clean &nbsp; from lyrics text
+          if (contentData.lyrics) {
+            contentData.lyrics = contentData.lyrics.map(lyric => ({
+              ...lyric,
+              text: cleanHtml(lyric.text)
+            }));
+          }
         }
-        // Clean &nbsp; from lyrics text
-        if (contentData.lyrics) {
-          contentData.lyrics = contentData.lyrics.map(lyric => ({
-            ...lyric,
-            text: cleanHtml(lyric.text)
-          }));
-        }
+      } catch (redisError) {
+        console.error('Redis read error:', redisError);
+        // If Redis fails, we'll still allow the page to render with empty content
+        // as long as the year is enabled in index.json
       }
-    } catch (redisError) {
-      console.error('Redis read error:', redisError);
-      // If Redis fails, we'll still allow the page to render with empty content
-      // as long as the year is enabled in index.json
     }
     
     // Get stats from JSON file

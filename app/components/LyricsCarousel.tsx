@@ -2,6 +2,7 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { sanitizeHtml } from '@/lib/sanitize-html';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -50,7 +51,7 @@ export default function LyricsCarousel({ lyrics }: LyricsCarouselProps) {
               <div className="h-[320px] md:h-[250px] p-6 pb-12 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col items-center justify-center text-center relative overflow-y-auto">
                 <div
                   className="text-gray-700 dark:text-gray-300 whitespace-pre-line italic mb-4"
-                  dangerouslySetInnerHTML={{ __html: lyric.text }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(lyric.text) }}
                 />
                 {lyric.artist && lyric.song && (
                   <div className="text-gray-600 dark:text-gray-400">

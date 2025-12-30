@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 import { getRedisClient } from '@/lib/redis';
+import { sanitizeHtml } from '@/lib/sanitize-html';
 
 interface Lyric {
   artist: string;
@@ -37,26 +39,21 @@ export async function GET(
 
     const key = `top40:${yearNum}`;
 
-    // Replace &nbsp; entities with regular spaces
-    const cleanHtml = (html: string): string => {
-      return html.replace(/&nbsp;/g, ' ');
-    };
-
     // Get from Redis
     try {
       const redis = await getRedisClient();
       const dataStr = await redis.get(key);
       if (dataStr) {
         const data = JSON.parse(dataStr) as Top40Data;
-        // Clean &nbsp; from description
+        // Sanitize HTML from description (defense in depth)
         if (data.description) {
-          data.description = cleanHtml(data.description);
+          data.description = sanitizeHtml(data.description);
         }
-        // Clean &nbsp; from lyrics text
+        // Sanitize HTML from lyrics text (defense in depth)
         if (data.lyrics) {
           data.lyrics = data.lyrics.map(lyric => ({
             ...lyric,
-            text: cleanHtml(lyric.text)
+            text: sanitizeHtml(lyric.text)
           }));
         }
         console.log(`✅ GET /api/top40/${yearNum}: Data loaded from Redis`);
@@ -93,8 +90,17 @@ function validateEditToken(token: string | null): boolean {
   if (!validToken || !token) {
     return false;
   }
+  
+  // Ensure buffers are same length (required for timingSafeEqual)
+  const tokenBuffer = Buffer.from(token);
+  const validTokenBuffer = Buffer.from(validToken);
+  
+  if (tokenBuffer.length !== validTokenBuffer.length) {
+    return false;
+  }
+  
   // Constant-time comparison to prevent timing attacks
-  return token === validToken;
+  return crypto.timingSafeEqual(tokenBuffer, validTokenBuffer);
 }
 
 // PUT - Save data to KV
@@ -132,20 +138,15 @@ export async function PUT(
       );
     }
 
-    // Replace &nbsp; entities with regular spaces before saving
-    const cleanHtml = (html: string): string => {
-      return html.replace(/&nbsp;/g, ' ');
-    };
-
-    // Clean &nbsp; from description
+    // Sanitize HTML before saving to Redis (defense in depth)
     if (data.description) {
-      data.description = cleanHtml(data.description);
+      data.description = sanitizeHtml(data.description);
     }
-    // Clean &nbsp; from lyrics text
+    // Sanitize HTML from lyrics text before saving
     if (data.lyrics) {
       data.lyrics = data.lyrics.map(lyric => ({
         ...lyric,
-        text: cleanHtml(lyric.text)
+        text: sanitizeHtml(lyric.text)
       }));
     }
 

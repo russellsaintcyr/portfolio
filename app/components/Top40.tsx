@@ -10,6 +10,7 @@ import LyricsCarousel from './LyricsCarousel';
 import StatsDisplay from './StatsDisplay';
 import Toast from './Toast';
 import { captureEvent } from '@/lib/posthog';
+import { sanitizeHtml, sanitizeEmbed } from '@/lib/sanitize-html';
 
 interface Lyric {
   artist: string;
@@ -54,34 +55,11 @@ interface Top40Props {
   tokenParam?: string;
 }
 
-// Replace &nbsp; entities with regular spaces and remove mark tags and inline background styles
-const cleanHtml = (html: string): string => {
-  let cleaned = html
-    .replace(/&nbsp;/g, ' ')
-    .replace(/<mark[^>]*>/gi, '')
-    .replace(/<\/mark>/gi, '');
-  
-  // Remove background-related styles from style attributes
-  cleaned = cleaned.replace(/style="([^"]*)"/gi, (match, styles) => {
-    const cleanedStyles = styles
-      .split(';')
-      .filter((style: string) => {
-        const trimmed = style.trim();
-        return !trimmed.includes('background') && !trimmed.includes('background-color');
-      })
-      .join(';')
-      .trim();
-    return cleanedStyles ? `style="${cleanedStyles}"` : '';
-  });
-  
-  return cleaned;
-};
-
 export default function Top40({ data, originalData, canEdit: serverCanEdit = false, prevYear = null, nextYear = null, tokenParam = '' }: Top40Props) {
   const [canEdit, setCanEdit] = useState(serverCanEdit);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingLyrics, setIsEditingLyrics] = useState(false);
-  const [description, setDescription] = useState(cleanHtml(data.description));
+  const [description, setDescription] = useState(sanitizeHtml(data.description));
   const [lyrics, setLyrics] = useState<Lyric[]>(data.lyrics || []);
   const [descriptionKey] = useState(`top40-${data.year}-description`);
   const [lyricsKey] = useState(`top40-${data.year}-lyrics`);
@@ -128,7 +106,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
 
       // Always use JSON file data on initial load
       // localStorage is only used as temporary buffer during active editing
-      setDescription(cleanHtml(data.description));
+      setDescription(sanitizeHtml(data.description));
       setLyrics(data.lyrics || []);
 
       // Check if data exists in Redis
@@ -319,7 +297,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
 
         {data.coverImage && (
           <div className="mb-8 flex justify-center items-center px-4 py-4">
-            <div className="max-w-[500px] w-full top40-cover-image" dangerouslySetInnerHTML={{ __html: data.coverImage }} />
+            <div className="max-w-[500px] w-full top40-cover-image" dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.coverImage) }} />
           </div>
         )}
 
@@ -418,7 +396,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   <div className="mb-4">
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: data.playlists.spotify.embed,
+                        __html: sanitizeEmbed(data.playlists.spotify.embed),
                       }}
                     />
                   </div>
@@ -452,7 +430,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                   <div className="mb-4">
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: data.playlists.youtubeMusic.embed,
+                        __html: sanitizeEmbed(data.playlists.youtubeMusic.embed),
                       }}
                     />
                   </div>
@@ -534,7 +512,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
             ) : description.trim() ? (
               <div
                 className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 text-gray-900 dark:text-gray-100 [&_*]:max-w-full [&_p]:mb-4 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4 [&_li]:mb-2 [&_strong]:font-bold [&_a]:text-primary [&_a]:underline [&_mark]:bg-transparent [&_mark]:text-inherit [&_mark]:p-0"
-                dangerouslySetInnerHTML={{ __html: cleanHtml(description) }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(description) }}
               />
             ) : null}
           </div>
