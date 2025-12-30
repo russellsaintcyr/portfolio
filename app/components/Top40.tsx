@@ -399,6 +399,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                 {data.playlists.spotify?.embed && (
                   <div className="mb-4">
                     <div
+                      className="w-full [&_iframe]:w-full [&_iframe]:h-[352px] [&_iframe]:border-0 [&_iframe]:rounded-xl"
                       dangerouslySetInnerHTML={{
                         __html: sanitizeEmbed(data.playlists.spotify.embed),
                       }}
@@ -433,6 +434,7 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
                 {data.playlists.youtubeMusic?.embed && (
                   <div className="mb-4">
                     <div
+                      className="w-full [&_iframe]:w-full [&_iframe]:h-[352px] [&_iframe]:border-0 [&_iframe]:rounded-xl"
                       dangerouslySetInnerHTML={{
                         __html: sanitizeEmbed(data.playlists.youtubeMusic.embed),
                       }}
