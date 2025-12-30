@@ -8,6 +8,7 @@ import Top40Editor from './Top40Editor';
 import LyricsEditor from './LyricsEditor';
 import LyricsCarousel from './LyricsCarousel';
 import StatsDisplay from './StatsDisplay';
+import TechStack from './TechStack';
 import Toast from './Toast';
 import { captureEvent } from '@/lib/posthog';
 import { sanitizeHtml, sanitizeEmbed } from '@/lib/sanitize-html';
@@ -595,6 +596,13 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
             )}
           </div>
         )}
+
+        {/* Tech Stack Section */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-2xl">
+            <TechStack />
+          </div>
+        </div>
       </div>
     </div>
   );
