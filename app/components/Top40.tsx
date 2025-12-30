@@ -109,29 +109,32 @@ export default function Top40({ data, originalData, canEdit: serverCanEdit = fal
       setDescription(sanitizeHtml(data.description));
       setLyrics(data.lyrics || []);
 
-      // Check if data exists in Redis
-      fetch(`/api/top40/${data.year}`)
-        .then((response) => {
-          const dataSource = response.headers.get('X-Data-Source');
-          if (response.ok) {
-            return response.json().then((data) => ({ data, dataSource }));
-          }
-          return null;
-        })
-        .then((result) => {
-          if (result) {
-            if (result.dataSource === 'redis') {
-              console.log(`✅ Top40 ${data.year} data loaded from Redis`);
-            } else {
-              console.log(`⚠️ Top40 ${data.year} data source: ${result.dataSource}`);
+      // Only check Redis if we have description or lyrics (indicates content exists)
+      // This avoids unnecessary API calls for years without content
+      if ((data.description && data.description.trim() !== '') || (data.lyrics && data.lyrics.length > 0)) {
+        fetch(`/api/top40/${data.year}`)
+          .then((response) => {
+            const dataSource = response.headers.get('X-Data-Source');
+            if (response.ok) {
+              return response.json().then((data) => ({ data, dataSource }));
             }
-          } else {
-            console.log(`⚠️ Top40 ${data.year} data not found in Redis`);
-          }
-        })
-        .catch((error) => {
-          console.log(`⚠️ Top40 ${data.year} Redis check failed:`, error);
-        });
+            return null;
+          })
+          .then((result) => {
+            if (result) {
+              if (result.dataSource === 'redis') {
+                console.log(`✅ Top40 ${data.year} data loaded from Redis`);
+              } else {
+                console.log(`⚠️ Top40 ${data.year} data source: ${result.dataSource}`);
+              }
+            } else {
+              console.log(`⚠️ Top40 ${data.year} data not found in Redis`);
+            }
+          })
+          .catch((error) => {
+            console.log(`⚠️ Top40 ${data.year} Redis check failed:`, error);
+          });
+      }
     }
   }, [data.description, data.lyrics, data.year, serverCanEdit]);
 
